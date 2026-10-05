@@ -27,7 +27,7 @@ def gnssvod_file(vod_ds, tmp_path):
 
 
 def test_import_goes_to_the_tool_group(store, gnssvod_file, vod_ds):
-    adapter = GnssvodVod(bands=BANDS)
+    adapter = GnssvodVod(bands=BANDS, time_system="GPS")
 
     assert import_vod(adapter, gnssvod_file, store, "canopy_01_vs_reference_01")
 
@@ -39,14 +39,14 @@ def test_import_goes_to_the_tool_group(store, gnssvod_file, vod_ds):
 
 
 def test_same_file_is_imported_once(store, gnssvod_file):
-    adapter = GnssvodVod(bands=BANDS)
+    adapter = GnssvodVod(bands=BANDS, time_system="GPS")
     import_vod(adapter, gnssvod_file, store, "a")
 
     assert not import_vod(adapter, gnssvod_file, store, "a")
 
 
 def test_export_from_a_group(store, gnssvod_file, tmp_path):
-    adapter = GnssvodVod(bands=BANDS)
+    adapter = GnssvodVod(bands=BANDS, time_system="GPS")
     import_vod(adapter, gnssvod_file, store, "a")
 
     path = export_vod(adapter, store, "gnssvod/a", tmp_path / "out.nc")

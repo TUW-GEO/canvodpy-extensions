@@ -28,8 +28,10 @@ class GnssvodObsReader(GNSSDataReader):
         gnssvod observation file (dims ``Epoch``, ``SV``).
     time_system : str
         Time scale of the file's epochs, which gnssvod keeps as in the
-        RINEX file (its ``TIME OF FIRST OBS`` record), e.g. ``"GPS"``.
-        Recorded on the epoch coordinate, like the other readers do.
+        RINEX file (its ``TIME OF FIRST OBS`` record). canvodpy stores
+        every epoch in GPS time, so only ``"GPS"`` is accepted; files in
+        another time scale are refused when read. Recorded on the epoch
+        coordinate, like the other readers do.
     """
 
     time_system: str

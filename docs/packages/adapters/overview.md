@@ -63,7 +63,9 @@ from canvod.adapters.gnssvod import GnssvodVod
 from canvod.adapters.store import export_vod, import_vod
 
 # The bands argument of gnssvod.calc_vod
-adapter = GnssvodVod(bands={"VOD_L1": ["S1C", "S1W", "S1X"], "VOD_L2": ["S2W"]})
+adapter = GnssvodVod(
+    bands={"VOD_L1": ["S1C", "S1W", "S1X"], "VOD_L2": ["S2W"]}, time_system="GPS"
+)
 
 # gnssvod -> canvodpy: into the VOD store group "gnssvod/canopy_01_vs_reference_01"
 import_vod(adapter, "vod_rosalia.nc", site.vod_store, "canopy_01_vs_reference_01")
@@ -82,7 +84,9 @@ adapter.export_file(vod, "again.nc", source="vod_rosalia.nc")
 ```
 
 A gnssvod VOD file is the result of `calc_vod` for one station pair,
-written with `DataFrame.to_xarray().to_netcdf()`.
+written with `DataFrame.to_xarray().to_netcdf()`. Its epochs are those of
+the RINEX files gnssvod read, so their time scale is a required setting,
+as for observations below; the VOD store refuses epochs not in GPS time.
 
 `calc_vod` merges the observation codes of a band. Imported VOD of a band
 with one code gets that code's sids (`S2W` → `G01|L2|W`). A band with
@@ -108,7 +112,9 @@ adapter.export_file(obs, "for_gnssvod.nc", source="canopy_01")
 ```
 
 gnssvod keeps the epochs of the RINEX file, so the time scale of the
-file (its `TIME OF FIRST OBS` record) is a required setting.
+file (its `TIME OF FIRST OBS` record) is a required setting. canvodpy
+stores every epoch in GPS time, so a file in another time scale is
+refused rather than converted.
 
 ### Verification
 
