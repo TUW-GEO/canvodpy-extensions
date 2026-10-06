@@ -55,6 +55,31 @@ For every change; `CONTRIBUTING.md` has the long form for people.
 
 Releasing is a separate step after merging: see the `release-package` guide.
 
+## Git and GitHub
+
+These hold for every contributor's agent, whatever tool it is.
+
+- **Every change reaches `main` through a pull request.** Work on a
+  feature branch, never on `main`.
+- **An agent may push its feature branch and open a pull request.**
+  Nothing else: it never pushes `main` or a tag, never force-pushes,
+  never deletes a remote branch or tag. Push with
+  `git push --no-follow-tags`: a git config with `push.followTags` sends
+  local tags along otherwise.
+- **An agent never merges or approves a pull request.** A person reviews
+  and merges, and cuts releases (`just release`, pushing the tag).
+- **No bypassing.** No `--no-verify` or `git commit -n`, no skipping,
+  redirecting or removing the git hooks (`SKIP=`, `core.hooksPath`,
+  `pre-commit uninstall`), no rewriting history that is already on
+  GitHub, no changes to branch protection, rulesets, repository settings,
+  CI or the agent settings to get a change through. If a check blocks a
+  change, fix the change or ask the maintainers.
+
+For Claude Code, `.claude/settings.json` enforces this with deny rules and
+a hook (`scripts/agent_git_guard.py`) that blocks such commands; GitHub
+rulesets require a pull request and passing checks on `main` and protect
+release tags.
+
 ## Commands
 
 ```bash

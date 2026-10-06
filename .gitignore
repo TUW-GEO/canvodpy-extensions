@@ -2,8 +2,10 @@
 # Claude Code — track project setup, ignore private state
 # ============================================================================
 # AGENTS.md / CLAUDE.md files and .claude/skills/ are tracked
+# .claude/settings.json is tracked (the agent git rules, enforced)
 .claude/*
 !.claude/skills/
+!.claude/settings.json
 
 # graphify (code knowledge graph): generated, local
 graphify-out/
