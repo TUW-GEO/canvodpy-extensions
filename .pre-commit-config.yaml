@@ -4,13 +4,17 @@ repos:
       # Use uv-managed ruff so local hooks and CI always use the same version
       - id: ruff-check
         name: ruff lint
-        entry: uv run ruff check --fix
+        # --locked: never write uv.lock, and fail loudly when it is out of
+        # date ("run `uv lock`"). A plain `uv run` would rewrite it as a side
+        # effect, and pre-commit would abort with uv.lock "modified by this
+        # hook"; --frozen would lint silently with a stale lock.
+        entry: uv run --locked ruff check --fix
         language: system
         types: [python]
         stages: [pre-commit]
       - id: ruff-format
         name: ruff format
-        entry: uv run ruff format
+        entry: uv run --locked ruff format
         language: system
         types: [python]
         stages: [pre-commit]
@@ -53,7 +57,7 @@ repos:
         stages: [pre-commit]
       - id: ty-check
         name: ty type check
-        entry: uv run ty check
+        entry: uv run --locked ty check
         language: system
         pass_filenames: false
         stages: [pre-push]
