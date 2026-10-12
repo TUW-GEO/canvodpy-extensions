@@ -735,14 +735,36 @@ body{
   border-bottom: 1px solid #2a2a2a;
 }
 
-.hero p.hero-logo{
-  margin: 0 0 0.5rem;
+/* The hero heading is a lockup: canVODpy's logo, with "extensions" set
+   right after the logo's wordmark, on its baseline and at its x-height.
+   The numbers follow the logo's geometry (viewBox 372 x 251): the
+   wordmark ends at 75% of the width, its baseline sits 15% above the
+   bottom, its x-height is 8.6% of the height (Space Grotesk's x-height
+   is about 0.49 em). */
+.hero h1.hero-lockup{
+  --logo-w: 26rem;
+  --logo-h: calc(var(--logo-w) * 250.894 / 372.34);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 0 0 1rem;
   line-height: 0;
+  font-size: 1rem !important;
 }
-.hero p.hero-logo img{
-  width: 27rem;          /* 18rem high at the logo's aspect ratio */
-  max-width: 100%;
+.hero h1.hero-lockup img{
+  flex: none;
+  width: var(--logo-w);
   height: auto;
+}
+.hero h1.hero-lockup .hero-lockup__word{
+  flex: none;
+  margin-left: calc(var(--logo-w) * -0.205);   /* into the space after "py" */
+  margin-bottom: calc(var(--logo-h) * 0.153);  /* onto the wordmark's baseline */
+  font-size: calc(var(--logo-h) * 0.086 / 0.49);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.74;
+  color: var(--text);
 }
 
 /* The logo in the header: larger than the theme's 1.2rem icon size */
@@ -768,6 +790,11 @@ body{
   letter-spacing: 0.03em;
   text-transform: uppercase;
   font-weight: 500;
+}
+
+/* The tagline is set in capitals, but "canVODpy" keeps its spelling */
+.hero p:first-of-type a{
+  text-transform: none;
 }
 
 /* Sub-tagline (third paragraph) */
