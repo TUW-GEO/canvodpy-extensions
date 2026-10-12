@@ -63,9 +63,7 @@ from canvod.adapters.gnssvod import GnssvodVod
 from canvod.adapters.store import export_vod, import_vod
 
 # The bands argument of gnssvod.calc_vod
-adapter = GnssvodVod(
-    bands={"VOD_L1": ["S1C", "S1W", "S1X"], "VOD_L2": ["S2W"]}, time_system="GPS"
-)
+adapter = GnssvodVod(bands={"VOD_L1": ["S1C", "S1W", "S1X"], "VOD_L2": ["S2W"]}, time_system="GPS")
 
 # gnssvod -> canvodpy: into the VOD store group "gnssvod/canopy_01_vs_reference_01"
 import_vod(adapter, "vod_rosalia.nc", site.vod_store, "canopy_01_vs_reference_01")
