@@ -85,6 +85,9 @@ for the expected layout (`pyproject.toml`, `src/`, `tests/`, `README.md`).
    ```bash
    git push origin name-of-your-bugfix-or-feature
    ```
+   A maintainer reviews and merges it. Coding agents may push the feature
+   branch and open the pull request, but never merge, push `main` or tags,
+   or bypass a check (`AGENTS.md`, Git and GitHub).
 
 ### Commit Message Format
 
@@ -145,6 +148,9 @@ all source files. Per-file license headers are not required.
 Run `just check` before committing.
 
 ## Releasing (Maintainers)
+
+Releases are cut by a maintainer, never by a coding agent; only
+maintainers can create release tags.
 
 Each package is versioned and released on its own. A release is the git tag
 `<package>-v<version>`, e.g. `canvod-filemap-v0.2.0`, on `main`.
