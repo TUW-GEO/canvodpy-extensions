@@ -6,10 +6,12 @@
 [![REUSE](https://img.shields.io/badge/REUSE-3.3-blue)](https://reuse.software/)
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B-orange)](https://fair-software.eu)
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/logo/canvodpy_logo_dark_mode.svg">
-  <img alt="canVODpy logo" src="docs/assets/logo/canvodpy_logo_bright_mode.svg" width="240">
-</picture>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://canvodpy.eu/assets/logo/canvodpy_logo_dark_mode.svg">
+    <img alt="canVODpy logo" src="https://canvodpy.eu/assets/logo/canvodpy_logo_bright_mode.svg" width="312">
+  </picture>
+</p>
 
 # canvodpy-extensions
 

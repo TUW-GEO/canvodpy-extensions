@@ -115,11 +115,13 @@ custom_checkbox = true
 # --------------------------------------------------------------------------
 [project.theme]
 language = "en"
-# canVODpy's logo. The header is dark green in both color schemes, so it
-# takes the light (dark mode) emblem. The favicon follows the browser's
-# color scheme (docs/overrides/main.html adds the dark one).
-logo = "assets/logo/canvodpy_favicon_dark_mode.svg"
-favicon = "assets/logo/canvodpy_favicon_bright_mode.svg"
+# canVODpy's logo, loaded from canvodpy's site (the files live only in
+# the canvodpy repository, docs/assets/logo/). The header is dark green in
+# both color schemes, so it takes the light (dark mode) logo. The favicon
+# follows the browser's color scheme (docs/overrides/main.html adds the
+# dark one).
+logo = "https://canvodpy.eu/assets/logo/canvodpy_logo_dark_mode.svg"
+favicon = "https://canvodpy.eu/assets/logo/canvodpy_favicon_bright_mode.svg"
 custom_dir = "docs/overrides"
 
 features = [
