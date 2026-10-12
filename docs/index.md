@@ -5,12 +5,11 @@ description: Optional extension packages for the canVODpy ecosystem
 
 <div class="hero" markdown>
 
-<p class="hero-logo">
-  <img src="https://raw.githubusercontent.com/nfb2021/canvodpy/main/docs/assets/logo/canvodpy_logo_bright_mode.svg#only-light" alt="canVODpy logo">
-  <img src="https://raw.githubusercontent.com/nfb2021/canvodpy/main/docs/assets/logo/canvodpy_logo_dark_mode.svg#only-dark" alt="canVODpy logo">
-</p>
-
-# canvodpy-extensions
+<h1 class="hero-lockup">
+  <img src="https://raw.githubusercontent.com/nfb2021/canvodpy/main/docs/assets/logo/canvodpy_logo_bright_mode.svg#only-light" alt="canVODpy">
+  <img src="https://raw.githubusercontent.com/nfb2021/canvodpy/main/docs/assets/logo/canvodpy_logo_dark_mode.svg#only-dark" alt="canVODpy">
+  <span class="hero-lockup__word">extensions</span>
+</h1>
 
 **Optional extension packages for the [canVODpy](https://github.com/nfb2021/canvodpy) ecosystem**
 
