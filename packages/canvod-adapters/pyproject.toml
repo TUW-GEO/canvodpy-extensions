@@ -21,7 +21,7 @@ store = ["canvod-store>=0.2.3"]
 
 [project.urls]
 Homepage = "https://github.com/nfb2021/canvodpy-extensions"
-Documentation = "https://nfb2021.github.io/canvodpy-extensions/packages/adapters/overview/"
+Documentation = "https://extensions.canvodpy.eu/packages/adapters/overview/"
 Repository = "https://github.com/nfb2021/canvodpy-extensions"
 Issues = "https://github.com/nfb2021/canvodpy-extensions/issues"
 

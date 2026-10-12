@@ -14,7 +14,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/nfb2021/canvodpy-extensions"
-Documentation = "https://nfb2021.github.io/canvodpy-extensions/packages/filemap/overview/"
+Documentation = "https://extensions.canvodpy.eu/packages/filemap/overview/"
 Repository = "https://github.com/nfb2021/canvodpy-extensions"
 Issues = "https://github.com/nfb2021/canvodpy-extensions/issues"
 

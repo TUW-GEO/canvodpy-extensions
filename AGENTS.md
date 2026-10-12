@@ -163,7 +163,7 @@ than that, see the `canvodpy-dependency` guide.
   extensions, and what happens when one is missing.
 
 **3. Read what your extension touches** (paths in the canvodpy
-repository; docs also at <https://nfb2021.github.io/canvodpy/>):
+repository; docs also at <https://canvodpy.eu/>):
 
 | Extension | canvodpy docs | canvodpy code it must match |
 |---|---|---|

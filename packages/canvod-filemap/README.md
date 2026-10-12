@@ -50,7 +50,7 @@ print(vf.conventional_name)  # canonical canVOD name; the file keeps its name
 
 ## Documentation
 
-[Full documentation](https://nfb2021.github.io/canvodpy/packages/naming/overview/)
+[Full documentation](https://canvodpy.eu/packages/naming/overview/)
 
 ## License
 
