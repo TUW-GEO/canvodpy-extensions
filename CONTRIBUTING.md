@@ -188,7 +188,9 @@ than the one you tagged, orphaning the tag.)
 
 Pushing the tag runs [`release.yml`](.github/workflows/release.yml), which
 checks that the tag matches the package version and drafts a GitHub Release
-with the package's changes. Publish the draft by hand. Then update the pin in
+with the package's changes. Publish the draft by hand. Publishing archives the
+repository on Zenodo, versioned by the tag: `.zenodo.json` and `CITATION.cff`
+carry no version, since the packages have different ones. Then update the pin in
 downstream `[tool.uv.sources]`, e.g. canvodpy's root `pyproject.toml`.
 
 canvodpy-extensions is deliberately GitHub-only. It is where logic for

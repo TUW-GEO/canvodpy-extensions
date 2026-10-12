@@ -30,7 +30,6 @@ keywords:
   - remote sensing
   - geodesy
 license: Apache-2.0
-version: 0.1.0
 doi: "10.5281/zenodo.21359005"
 references:
   - type: software

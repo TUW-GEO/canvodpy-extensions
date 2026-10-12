@@ -72,6 +72,10 @@ version and drafts a GitHub Release from the changelog.
 
 - `gh release list`, then read the draft (`gh release view PKG-vX.Y.Z`) and
   publish it: `gh release edit PKG-vX.Y.Z --draft=false`.
+- Publishing the release archives the repository on Zenodo. Check the new
+  record: its version must be the tag `PKG-vX.Y.Z`. `.zenodo.json` and
+  `CITATION.cff` carry no version on purpose: the repository holds several
+  packages at different versions, so Zenodo takes the version from the tag.
 - Install from the tag outside the workspace:
 
 ```bash
