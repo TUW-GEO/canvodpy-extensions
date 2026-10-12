@@ -16,7 +16,7 @@
 site_name = "canvodpy-extensions"
 site_description = "Optional extension packages for the canVODpy ecosystem"
 site_author = "Nicolas Bader"
-site_url = "https://nfb2021.github.io/canvodpy-extensions/"
+site_url = "https://extensions.canvodpy.eu/"
 copyright = "Copyright &copy; 2026 Nicolas François Bader, TU Wien. This documentation is provided &ldquo;as is&rdquo; without warranty of any kind, express or implied, including but not limited to warranties of correctness, completeness, or fitness for a particular purpose."
 
 repo_url = "https://github.com/nfb2021/canvodpy-extensions"

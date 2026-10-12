@@ -63,7 +63,7 @@ just docs         # Preview documentation locally
 
 ## Documentation
 
-Full documentation is available at **[nfb2021.github.io/canvodpy-extensions](https://nfb2021.github.io/canvodpy-extensions/)**.
+Full documentation is available at **[extensions.canvodpy.eu](https://extensions.canvodpy.eu/)**.
 
 ## Contributing
 

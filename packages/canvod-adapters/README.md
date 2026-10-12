@@ -36,7 +36,7 @@ uv add "canvod-adapters[store] @ git+https://github.com/nfb2021/canvodpy-extensi
 
 ## Documentation
 
-[Full documentation](https://nfb2021.github.io/canvodpy-extensions/packages/adapters/overview/)
+[Full documentation](https://extensions.canvodpy.eu/packages/adapters/overview/)
 
 ## License
 

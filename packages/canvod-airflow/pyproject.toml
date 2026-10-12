@@ -15,7 +15,7 @@ airflow = ["apache-airflow>=3.0"]
 
 [project.urls]
 Homepage = "https://github.com/nfb2021/canvodpy-extensions"
-Documentation = "https://nfb2021.github.io/canvodpy-extensions/packages/airflow/overview/"
+Documentation = "https://extensions.canvodpy.eu/packages/airflow/overview/"
 Repository = "https://github.com/nfb2021/canvodpy-extensions"
 Issues = "https://github.com/nfb2021/canvodpy-extensions/issues"
 
