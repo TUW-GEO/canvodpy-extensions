@@ -735,6 +735,15 @@ body{
   border-bottom: 1px solid #2a2a2a;
 }
 
+.hero p.hero-logo{
+  margin: 0 0 0.5rem;
+  line-height: 0;
+}
+.hero p.hero-logo img{
+  height: 9rem;
+  max-width: 100%;
+}
+
 .hero h1{
   font-size: 3.2rem !important;
   font-weight: 800;
