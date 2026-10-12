@@ -8,8 +8,8 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://canvodpy.eu/assets/logo/canvodpy_logo_dark_mode.svg">
-    <img alt="canVODpy logo" src="https://canvodpy.eu/assets/logo/canvodpy_logo_bright_mode.svg" width="312">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nfb2021/canvodpy/main/docs/assets/logo/canvodpy_logo_dark_mode.svg">
+    <img alt="canVODpy logo" src="https://raw.githubusercontent.com/nfb2021/canvodpy/main/docs/assets/logo/canvodpy_logo_bright_mode.svg" width="312">
   </picture>
 </p>
 

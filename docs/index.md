@@ -6,8 +6,8 @@ description: Optional extension packages for the canVODpy ecosystem
 <div class="hero" markdown>
 
 <p class="hero-logo">
-  <img src="https://canvodpy.eu/assets/logo/canvodpy_logo_bright_mode.svg#only-light" alt="canVODpy logo">
-  <img src="https://canvodpy.eu/assets/logo/canvodpy_logo_dark_mode.svg#only-dark" alt="canVODpy logo">
+  <img src="https://raw.githubusercontent.com/nfb2021/canvodpy/main/docs/assets/logo/canvodpy_logo_bright_mode.svg#only-light" alt="canVODpy logo">
+  <img src="https://raw.githubusercontent.com/nfb2021/canvodpy/main/docs/assets/logo/canvodpy_logo_dark_mode.svg#only-dark" alt="canVODpy logo">
 </p>
 
 # canvodpy-extensions
