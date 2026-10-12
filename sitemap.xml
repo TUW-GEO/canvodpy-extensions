@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <url>
-        <loc>https://nfb2021.github.io/canvodpy-extensions/</loc>
+        <loc>https://extensions.canvodpy.eu/</loc>
       </url>
       <url>
-        <loc>https://nfb2021.github.io/canvodpy-extensions/packages/filemap/overview/</loc>
+        <loc>https://extensions.canvodpy.eu/CONTRIBUTING/</loc>
       </url>
       <url>
-        <loc>https://nfb2021.github.io/canvodpy-extensions/packages/airflow/overview/</loc>
+        <loc>https://extensions.canvodpy.eu/api/canvod-adapters/</loc>
       </url>
       <url>
-        <loc>https://nfb2021.github.io/canvodpy-extensions/packages/adapters/overview/</loc>
+        <loc>https://extensions.canvodpy.eu/api/canvod-airflow/</loc>
       </url>
       <url>
-        <loc>https://nfb2021.github.io/canvodpy-extensions/CONTRIBUTING/</loc>
+        <loc>https://extensions.canvodpy.eu/api/canvod-filemap/</loc>
       </url>
       <url>
-        <loc>https://nfb2021.github.io/canvodpy-extensions/api/canvod-filemap/</loc>
+        <loc>https://extensions.canvodpy.eu/includes/abbreviations/</loc>
       </url>
       <url>
-        <loc>https://nfb2021.github.io/canvodpy-extensions/api/canvod-airflow/</loc>
+        <loc>https://extensions.canvodpy.eu/packages/adapters/overview/</loc>
       </url>
       <url>
-        <loc>https://nfb2021.github.io/canvodpy-extensions/api/canvod-adapters/</loc>
+        <loc>https://extensions.canvodpy.eu/packages/airflow/overview/</loc>
+      </url>
+      <url>
+        <loc>https://extensions.canvodpy.eu/packages/filemap/overview/</loc>
       </url>
 </urlset>
