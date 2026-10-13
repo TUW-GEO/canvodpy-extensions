@@ -7,7 +7,7 @@
 | packages/canvod-adapters/src/canvod/adapters/\_\_init\_\_.py         |        4 |        0 |    100% |           |
 | packages/canvod-adapters/src/canvod/adapters/base.py                 |       55 |        0 |    100% |           |
 | packages/canvod-adapters/src/canvod/adapters/gnssvod/\_\_init\_\_.py |        4 |        0 |    100% |           |
-| packages/canvod-adapters/src/canvod/adapters/gnssvod/adapter.py      |       55 |        0 |    100% |           |
+| packages/canvod-adapters/src/canvod/adapters/gnssvod/adapter.py      |       59 |        0 |    100% |           |
 | packages/canvod-adapters/src/canvod/adapters/gnssvod/convert.py      |      128 |        0 |    100% |           |
 | packages/canvod-adapters/src/canvod/adapters/gnssvod/reader.py       |       54 |        0 |    100% |           |
 | packages/canvod-adapters/src/canvod/adapters/provenance.py           |       34 |        0 |    100% |           |
@@ -18,7 +18,7 @@
 | packages/canvod-filemap/src/canvod/filemap/patterns.py               |       12 |        0 |    100% |           |
 | packages/canvod-filemap/src/canvod/filemap/recipe.py                 |      120 |        7 |     94% |225-229, 235-239, 260, 316-317 |
 | packages/canvod-filemap/src/canvod/filemap/recipe\_files.py          |       26 |        0 |    100% |           |
-| **TOTAL**                                                            |  **523** |    **7** | **99%** |           |
+| **TOTAL**                                                            |  **527** |    **7** | **99%** |           |
 
 
 ## Setup coverage badge
