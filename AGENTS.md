@@ -1,25 +1,36 @@
 # canvodpy-extensions: instructions for coding agents
 
-Optional packages for [canvodpy](https://github.com/nfb2021/canvodpy), the
-GNSS-Transmissometry (GNSS-T) toolkit that computes vegetation optical depth
-(VOD) from GNSS receivers below and above a canopy. Code that serves specific
-workflows or data lives here, not in the canvodpy core. Packages are
-GitHub-only: never published to PyPI.
+Optional packages for [canvodpy](https://github.com/nfb2021/canvodpy).
+canvodpy computes vegetation optical depth (VOD) from GNSS signals: a
+receiver below a canopy and a reference receiver with open sky
+(GNSS-Transmissometry, GNSS-T). Code that serves specific workflows or
+data lives here, not in canvodpy. Its users are scientists. The packages
+are GitHub-only, never on PyPI.
 
-`CLAUDE.md` files only import this file; edit `AGENTS.md`.
+`CLAUDE.md` files only import this file; edit `AGENTS.md`. Every package
+has its own `AGENTS.md`: read it before changing that package.
+
+## Scientific context
+
+canvodpy's root `AGENTS.md` (`canvodpy:AGENTS.md`, "Scientific context")
+explains GNSS-T, VOD and the words the code uses (SNR, signal ID, polar
+angle, epoch, hemisphere grid). Read it before changing how an extension
+converts data; the words are those of canvodpy's glossary
+(`canvodpy:GLOSSARY.md`).
 
 ## Packages
 
-| Package | Import | What it does | Read first |
+| Package | Import | Role | Read first |
 |---|---|---|---|
-| canvod-filemap | `canvod.filemap` | Naming recipes: map a receiver's own file names to canonical canVOD names | `packages/canvod-filemap/AGENTS.md` |
+| canvod-filemap | `canvod.filemap` | Naming recipes: translate a receiver's own file names to canVOD file names | `packages/canvod-filemap/AGENTS.md` |
 | canvod-airflow | `canvod.airflow` | Airflow DAGs that run canvodpy per site and day | `packages/canvod-airflow/AGENTS.md` |
 | canvod-adapters | `canvod.adapters` | Data exchange between canvodpy and other GNSS-T programs (gnssvod) | `packages/canvod-adapters/AGENTS.md` |
 
 Each package has its own `pyproject.toml`, version, changelog, tests and
-docs page (`docs/packages/<short name>/overview.md`). `canvod` is a namespace
-package shared by all of them: its `canvod` folder under `src` never gets
-an init module, only the folder below it does.
+docs page (`docs/packages/<short name>/overview.md`). All packages share
+one `.venv` at the root (uv workspace). `canvod` is a namespace package
+shared with canvodpy: the `canvod` folder under each `src` has no init
+module.
 
 ## Task guides
 
@@ -33,89 +44,64 @@ other agents read the files directly.
 | Write or debug a naming recipe for a receiver | `.claude/skills/naming-recipe/SKILL.md` |
 | Support another GNSS-T program in canvod-adapters | `.claude/skills/add-adapter/SKILL.md` |
 | Add a new extension package | `.claude/skills/add-package/SKILL.md` |
+| Deprecate code | canvodpy's guide, `canvodpy:.claude/skills/deprecate/SKILL.md` |
 
 ## Development workflow
 
-For every change; `CONTRIBUTING.md` has the long form for people.
+Work on a branch, never on `main`; every change reaches `main` through a
+pull request. An agent may push its branch and open the pull request, but
+never merges, never pushes `main` or tags, never force-pushes and never
+bypasses a check (`CODING_STANDARDS.md`, Git and GitHub; enforced for
+Claude Code by `scripts/agent_git_guard.py`). Read `CODING_STANDARDS.md`
+before writing code: its rules and its checklist apply to every change,
+and `/mattpocock-skills:code-review` checks against them. Read the
+`AGENTS.md` of every package you change, the task guide if one fits, and
+the canvodpy side of the change (below).
 
-1. Branch from an up-to-date `main`: `git checkout main && git pull`, then
-   `git checkout -b <type>/<topic>`, type as in the commit convention.
-   `main` is protected; nothing is pushed to it directly.
-2. Read the package's `AGENTS.md`, and the task guide if one fits.
-3. Change code and tests together. A bug fix gets a test that failed
-   before the fix.
-4. Same PR: the package `README.md`, its `docs/packages/<short name>/overview.md`
-   and the `AGENTS.md` files, wherever the change makes them wrong.
-5. Verify: `just check`, then `just test-package <package>` (or `just test`
-   when several packages changed). Report failures; don't skip tests.
-6. Commit in conventional form with the package scope (see Rules). Mark
-   breaking changes; they end up in the package changelog.
-7. Push the branch and open a PR (`gh pr create`). CI must pass on all
-   three platforms before merging.
+Changes go through the agent workflow canvodpy uses (the
+mattpocock-skills plugin, `just agent-skills`;
+`canvodpy:docs/guides/ai-development.md`). Claude Code calls plugin
+skills only by their full name:
 
-Releasing is a separate step after merging: see the `release-package` guide.
+| Situation | Start with |
+|---|---|
+| An idea or a change to design | `/mattpocock-skills:grill-with-docs`: interview until every decision is settled; records terms and decisions (`docs/agents/domain.md` says where) |
+| A change too big for one session | `/mattpocock-skills:to-spec`, then `/mattpocock-skills:to-tickets` (GitHub issues), then `/mattpocock-skills:implement` per ticket |
+| A change that fits one session | `/mattpocock-skills:implement` (test first with `/mattpocock-skills:tdd`, then `/mattpocock-skills:code-review`) |
+| Something is broken | `/mattpocock-skills:diagnosing-bugs`: a command that shows the bug before any theory |
+| Not sure | `/mattpocock-skills:ask-matt` |
 
-## Git and GitHub
-
-These hold for every contributor's agent, whatever tool it is.
-
-- **Every change reaches `main` through a pull request.** Work on a
-  feature branch, never on `main`.
-- **An agent may push its feature branch and open a pull request.**
-  Nothing else: it never pushes `main` or a tag, never force-pushes,
-  never deletes a remote branch or tag. Push with
-  `git push --no-follow-tags`: a git config with `push.followTags` sends
-  local tags along otherwise.
-- **An agent never merges or approves a pull request.** A person reviews
-  and merges, and cuts releases (`just release`, pushing the tag).
-- **No bypassing.** No `--no-verify` or `git commit -n`, no skipping,
-  redirecting or removing the git hooks (`SKIP=`, `core.hooksPath`,
-  `pre-commit uninstall`), no rewriting history that is already on
-  GitHub, no changes to branch protection, rulesets, repository settings,
-  CI or the agent settings to get a change through. If a check blocks a
-  change, fix the change or ask the maintainers.
-
-For Claude Code, `.claude/settings.json` enforces this with deny rules and
-a hook (`scripts/agent_git_guard.py`) that blocks such commands; GitHub
-rulesets require a pull request and passing checks on `main` and protect
-release tags.
+Releasing is a separate step after merging: see the `release-package`
+guide. Running on real data or writing to a production store needs the
+maintainers' go-ahead first.
 
 ## Commands
 
 ```bash
-uv sync                               # all packages, one .venv at the root
-just check                            # ruff lint + format, ty
+just sync                             # all packages, one .venv, git hooks
+just agent-skills                     # the agent workflow plugin (Claude Code)
+just check                            # ruff lint + format, ty, agent docs
 just test                             # all tests
 just test-package canvod-filemap      # one package
 just docs                             # preview the docs site
 just versions                         # version of every package
 just canvodpy-ref                     # canvodpy code this workspace is locked at
+just lock-canvodpy                    # relock at the current tip of the canvodpy branch
 ```
 
-CI runs `just check-lock`, `just check-lint-only`, `just check-format-only`,
-`just check-types` and `uv run pytest` on Linux, macOS and Windows. Use
-`pathlib` and `re.escape` on paths in tests: Windows paths contain `\`.
+Pre-commit runs ruff, `uv lock`, whitespace checks and the agent docs
+check; commitizen checks the commit message; the pre-push hook runs ty.
+CI runs `just check-lock`, `just check-lint-only`,
+`just check-format-only`, `just check-types` and the tests on Linux,
+macOS and Windows.
 
 ## Rules
 
-- **Fail loudly.** No silent fallbacks or defaults that hide a missing
-  input. Raise with a message that says what to do.
-- **canvodpy owns the contracts.** Dataset structure, the canonical file
-  name and the configuration are defined in canvodpy (canvod-readers,
-  canvod-preflight, canvod-config). Import and check against them; never
-  copy them here.
-- **No pipeline logic in the extensions.** Processing belongs in canvodpy;
-  extensions call it (Airflow calls `canvodpy.workflows.tasks`).
-- **Interfaces are ABCs**, settings are frozen pydantic models; prefer
-  passing objects in over subclassing for reuse.
-- **Delete, don't deprecate.** Unlike canvodpy, the extensions make no
-  stability promise: remove old code and say so in the changelog
-  (`feat!:` / `BREAKING CHANGE:`).
-- **Conventional commits**, scope = package short name: `feat(filemap): ...`,
-  `fix(adapters): ...`, `docs(airflow): ...`. Per-package changelogs are
-  generated from them (`cliff.toml`); a commit that changes several packages
-  appears in each of their changelogs.
-- `main` is protected: every change goes through a PR.
+The rules every change follows (free tools only, explicit over implicit,
+canvodpy owns the contracts, one implementation per job, composition over
+inheritance, deprecate don't delete, write for scientists) are in
+`CODING_STANDARDS.md`. They are canvodpy's rules; the reasons are in
+canvodpy's decisions (`canvodpy:docs/adr/index.md`).
 
 ## Dependency on canvodpy
 
@@ -132,8 +118,8 @@ of this repo.
 ## canvodpy: read it before changing an extension
 
 Every extension plugs into canvodpy: its file discovery, readers,
-configuration, workflows or stores. An extension is only right if it
-matches what canvodpy does, so read the canvodpy side first, every time.
+settings, workflows or stores. An extension is only right if it matches
+what canvodpy does, so read the canvodpy side first, every time.
 
 **1. Find the canvodpy code this workspace uses.**
 
@@ -150,15 +136,15 @@ link printed by the recipe. If the extension needs canvodpy code newer
 than that, see the `canvodpy-dependency` guide.
 
 **2. Follow canvodpy's own trail.** canvodpy's agent instructions are its
-`CLAUDE.md` files:
+`AGENTS.md` files:
 
-- `canvodpy:CLAUDE.md`, the root. Read at least "Scientific context",
+- `canvodpy:AGENTS.md`, the root. Read at least "Scientific context",
   "Project architecture", "Guardrails" and "Key documentation" (its
   breadcrumb trail, canvodpy's docs in reading order).
-- The `CLAUDE.md` of each canvodpy package the extension imports, e.g.
-  `canvodpy:packages/canvod-readers/CLAUDE.md`,
-  `canvodpy:packages/canvod-store/CLAUDE.md`,
-  `canvodpy:packages/canvod-config/CLAUDE.md`, `canvodpy:canvodpy/CLAUDE.md`.
+- The `AGENTS.md` of each canvodpy package the extension imports, e.g.
+  `canvodpy:packages/canvod-readers/AGENTS.md`,
+  `canvodpy:packages/canvod-store/AGENTS.md`,
+  `canvodpy:packages/canvod-config/AGENTS.md`, `canvodpy:canvodpy/AGENTS.md`.
 - `canvodpy:docs/guides/extensions.md`: how canvodpy installs and uses the
   extensions, and what happens when one is missing.
 
@@ -179,7 +165,9 @@ change too.
 
 ### canvodpy facts used throughout
 
-- Canonical file name (canvod-preflight, `canvod.preflight.convention`):
+The code is the truth; don't copy these constants into new code.
+
+- canVOD file name (canvod-preflight, `canvod.preflight.convention`):
   `{SIT}{T}{NN}{AGC}_R_{YYYY}{DOY}{HHMM}_{PERIOD}_{SAMPLING}_{CONTENT}.{TYPE}`,
   e.g. `ROSA01TUW_R_20250010000_15M_05S_AA.rnx`. canvodpy finds files by
   this name, or through a naming recipe.
@@ -188,14 +176,37 @@ change too.
   datasets: `VOD`, `theta`, `phi` (radians) on `(epoch, sid)`; checked by
   `canvod.readers.validate_vod_dataset`.
 - Processing: `canvodpy run --site ... --start ... --end ...`, one day at a
-  time, results in Icechunk stores.
+  time, results in Icechunk stores. A store must exist, with its
+  repository metadata, before data is written to it.
+
+## Agent skills
+
+### Issue tracker
+
+Issues and specs live in GitHub Issues of nfb2021/canvodpy-extensions
+(`gh`). See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+The five default triage labels (`needs-triage`, `needs-info`,
+`ready-for-agent`, `ready-for-human`, `wontfix`). See
+`docs/agents/triage-labels.md`.
+
+### Domain docs
+
+canvodpy's glossary and decisions, plus this repository's own decisions.
+See `docs/agents/domain.md`.
 
 ## Keeping these files useful
 
 - Write what an agent cannot see quickly in the code: decisions, invariants,
-  traps, where things live. Don't list functions or restate docstrings.
+  traps, where things live. Don't list functions or restate docstrings;
+  point at the file that holds the truth.
+- Name the `just` recipe whenever one does the job, not the raw command
+  behind it. If no recipe fits a recurring task, add one rather than
+  documenting a command.
 - Every path and `just` recipe named in `AGENTS.md` and the guides must
-  exist: `just check-agent-docs` verifies this (also a pre-commit hook).
+  exist: `just check-agent-docs` verifies this (pre-commit and CI).
 - Write paths in the canvodpy repository as `canvodpy:<path>`; they are
   checked at the locked canvodpy commit when a canvodpy checkout is next to
   this repository (or at `$CANVODPY_REPO`), and always in CI.

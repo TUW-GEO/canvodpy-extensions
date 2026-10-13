@@ -29,6 +29,21 @@ sync:
 hooks:
     uv run pre-commit install --hook-type pre-commit --hook-type commit-msg --hook-type pre-push
 
+# install or update the shared agent workflow skills (Claude Code plugin from GitHub mattpocock/skills, the same as canvodpy's)
+agent-skills:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if ! command -v claude >/dev/null 2>&1; then
+        echo "Claude Code ('claude') is not installed: https://code.claude.com/docs" >&2
+        echo "Other coding agents: npx skills@latest add mattpocock/skills" >&2
+        exit 1
+    fi
+    # the author's own marketplace (GitHub mattpocock/skills): its latest release,
+    # which the official Claude marketplace may lag behind
+    claude plugin marketplace add mattpocock/skills --scope project
+    claude plugin install mattpocock-skills@mattpocock --scope project
+    claude plugin marketplace update mattpocock
+
 # ============================================================================
 # Code Quality
 # ============================================================================
