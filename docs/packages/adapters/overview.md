@@ -67,8 +67,7 @@ it:
 Observations come in through a reader of the program's files (a
 `canvod.readers.GNSSDataReader`), so they carry the same file hash,
 attributes and epoch time scale as observations read from RINEX or SBF
-files. See [Building a reader](https://canvodpy.eu/packages/readers/building-a-reader/)
-and [Your own readers and VOD calculators](https://canvodpy.eu/guides/plugins/).
+files. See [Building a reader](https://canvodpy.eu/packages/readers/building-a-reader/).
 
 **Settings are Pydantic models.** An adapter is a frozen Pydantic model
 whose fields are the program's settings, checked when the adapter is

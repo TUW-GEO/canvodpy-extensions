@@ -187,7 +187,7 @@ just tag canvod-filemap                # tags main and pushes the tag
 (Don't tag before the PR merges: a merge can produce a different commit SHA
 than the one you tagged, orphaning the tag.)
 
-Pushing the tag runs [`release.yml`](.github/workflows/release.yml), which
+Pushing the tag runs [`release.yml`](https://github.com/nfb2021/canvodpy-extensions/blob/main/.github/workflows/release.yml), which
 checks that the tag matches the package version and drafts a GitHub Release
 with the package's changes. Publish the draft by hand. Publishing archives the
 repository on Zenodo, versioned by the tag: `.zenodo.json` and `CITATION.cff`
