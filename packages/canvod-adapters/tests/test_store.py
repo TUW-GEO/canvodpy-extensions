@@ -14,8 +14,11 @@ BANDS = {"VOD_L2": ["S2W"], "VOD_E5a": ["S5Q"]}
 
 @pytest.fixture
 def store(tmp_path):
+    # Opening a store never creates one (canvodpy#236): create it first
+    import icechunk
+
     path = tmp_path / "vod_store"
-    path.mkdir()
+    icechunk.Repository.create(icechunk.local_filesystem_storage(str(path)))
     return store_module.MyIcechunkStore(path, store_type="vod_store")
 
 
