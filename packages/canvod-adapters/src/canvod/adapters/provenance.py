@@ -18,7 +18,7 @@ NOT_INSTALLED = "not installed"
 class Tool(BaseModel):
     """A program canvodpy exchanges data with.
 
-    Parameters
+    Attributes
     ----------
     name : str
         Short name, also the model layer of imported VOD in the VOD store
@@ -51,7 +51,7 @@ def package_version(distribution: str) -> str:
 class Provenance(BaseModel):
     """Which tool data was converted from or to, by what, when.
 
-    Parameters
+    Attributes
     ----------
     tool : str
         Name of the other tool.

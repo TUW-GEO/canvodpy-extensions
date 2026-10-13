@@ -35,7 +35,7 @@ def _netcdf(path: Path) -> xr.Dataset:
 class GnssvodObservations(ObservationsAdapter):
     """gnssvod observation files <-> canvodpy observations.
 
-    Parameters
+    Attributes
     ----------
     time_system : str
         Time scale of the epochs of the gnssvod files to import, as in the
@@ -70,7 +70,7 @@ class GnssvodVod(VodAdapter):
     station pair (``DataFrame.to_xarray()``) written as NetCDF: dims
     ``Epoch``, ``SV``, one variable per band, ``Azimuth``/``Elevation``.
 
-    Parameters
+    Attributes
     ----------
     bands : dict[str, list[str]]
         gnssvod's ``bands`` argument: band variable to the signal-strength

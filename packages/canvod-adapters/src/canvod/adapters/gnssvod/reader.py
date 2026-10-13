@@ -22,7 +22,7 @@ class GnssvodObsReader(GNSSDataReader):
     the file hash for deduplication and the global attributes of every
     canvodpy reader.
 
-    Parameters
+    Attributes
     ----------
     fpath : Path
         gnssvod observation file (dims ``Epoch``, ``SV``).
