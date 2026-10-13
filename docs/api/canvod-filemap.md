@@ -1,4 +1,4 @@
-# canvod.filemap API Reference
+# canvod.filemap API reference
 
 ## Package
 
@@ -8,7 +8,7 @@
 
 ::: canvod.filemap.recipe
 
-## Recipe Files
+## Recipe files
 
 ::: canvod.filemap.recipe_files
 
