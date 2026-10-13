@@ -458,7 +458,7 @@ provides-extras = ["airflow"]
 [[package]]
 name = "canvod-auxiliary"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-auxiliary&branch=fix%2Fgnssgeodesy-upstream-bugs#e15ed77834a685373e537c57e84b8489d173579d" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-auxiliary&branch=fix%2Fgnssgeodesy-upstream-bugs#c3019b6bf3a5cc958a412004e00d4821156b49a4" }
 dependencies = [
     { name = "canvod-config" },
     { name = "canvod-readers" },
@@ -468,6 +468,7 @@ dependencies = [
     { name = "pydantic" },
     { name = "pymap3d" },
     { name = "requests" },
+    { name = "rich" },
     { name = "scipy" },
     { name = "structlog" },
     { name = "tqdm" },
@@ -477,7 +478,7 @@ dependencies = [
 [[package]]
 name = "canvod-config"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-config&branch=fix%2Fgnssgeodesy-upstream-bugs#e15ed77834a685373e537c57e84b8489d173579d" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-config&branch=fix%2Fgnssgeodesy-upstream-bugs#c3019b6bf3a5cc958a412004e00d4821156b49a4" }
 dependencies = [
     { name = "canvod-utils" },
     { name = "email-validator" },
@@ -508,9 +509,8 @@ requires-dist = [
 [[package]]
 name = "canvod-grids"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-grids&branch=fix%2Fgnssgeodesy-upstream-bugs#e15ed77834a685373e537c57e84b8489d173579d" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-grids&branch=fix%2Fgnssgeodesy-upstream-bugs#c3019b6bf3a5cc958a412004e00d4821156b49a4" }
 dependencies = [
-    { name = "canvod-store" },
     { name = "canvod-utils" },
     { name = "dask" },
     { name = "loguru" },
@@ -527,13 +527,12 @@ dependencies = [
 [[package]]
 name = "canvod-ops"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-ops&branch=fix%2Fgnssgeodesy-upstream-bugs#e15ed77834a685373e537c57e84b8489d173579d" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-ops&branch=fix%2Fgnssgeodesy-upstream-bugs#c3019b6bf3a5cc958a412004e00d4821156b49a4" }
 dependencies = [
     { name = "canvod-config" },
     { name = "canvod-grids" },
     { name = "numpy" },
     { name = "pandas" },
-    { name = "polars" },
     { name = "structlog" },
     { name = "xarray" },
 ]
@@ -541,7 +540,7 @@ dependencies = [
 [[package]]
 name = "canvod-preflight"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-preflight&branch=fix%2Fgnssgeodesy-upstream-bugs#e15ed77834a685373e537c57e84b8489d173579d" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-preflight&branch=fix%2Fgnssgeodesy-upstream-bugs#c3019b6bf3a5cc958a412004e00d4821156b49a4" }
 dependencies = [
     { name = "canvod-utils" },
     { name = "natsort" },
@@ -552,7 +551,7 @@ dependencies = [
 [[package]]
 name = "canvod-readers"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-readers&branch=fix%2Fgnssgeodesy-upstream-bugs#e15ed77834a685373e537c57e84b8489d173579d" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-readers&branch=fix%2Fgnssgeodesy-upstream-bugs#c3019b6bf3a5cc958a412004e00d4821156b49a4" }
 dependencies = [
     { name = "canvod-config" },
     { name = "canvod-utils" },
@@ -572,18 +571,21 @@ dependencies = [
 [[package]]
 name = "canvod-store"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-store&branch=fix%2Fgnssgeodesy-upstream-bugs#e15ed77834a685373e537c57e84b8489d173579d" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-store&branch=fix%2Fgnssgeodesy-upstream-bugs#c3019b6bf3a5cc958a412004e00d4821156b49a4" }
 dependencies = [
     { name = "canvod-auxiliary" },
     { name = "canvod-config" },
     { name = "canvod-grids" },
     { name = "canvod-readers" },
+    { name = "canvod-store-metadata" },
     { name = "canvod-utils" },
     { name = "canvod-vod" },
+    { name = "dask" },
     { name = "icechunk" },
     { name = "networkx" },
     { name = "numpy" },
     { name = "polars" },
+    { name = "structlog" },
     { name = "xarray" },
     { name = "zarr" },
 ]
@@ -591,19 +593,24 @@ dependencies = [
 [[package]]
 name = "canvod-store-metadata"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-store-metadata&branch=fix%2Fgnssgeodesy-upstream-bugs#e15ed77834a685373e537c57e84b8489d173579d" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-store-metadata&branch=fix%2Fgnssgeodesy-upstream-bugs#c3019b6bf3a5cc958a412004e00d4821156b49a4" }
 dependencies = [
     { name = "canvod-config" },
+    { name = "canvod-utils" },
+    { name = "filelock" },
     { name = "icechunk" },
+    { name = "numpy" },
     { name = "polars" },
     { name = "pydantic" },
+    { name = "structlog" },
     { name = "zarr" },
+    { name = "zarr-cm" },
 ]
 
 [[package]]
 name = "canvod-utils"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-utils&branch=fix%2Fgnssgeodesy-upstream-bugs#e15ed77834a685373e537c57e84b8489d173579d" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-utils&branch=fix%2Fgnssgeodesy-upstream-bugs#c3019b6bf3a5cc958a412004e00d4821156b49a4" }
 dependencies = [
     { name = "pydantic" },
     { name = "structlog" },
@@ -612,7 +619,7 @@ dependencies = [
 [[package]]
 name = "canvod-viz"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-viz&branch=fix%2Fgnssgeodesy-upstream-bugs#e15ed77834a685373e537c57e84b8489d173579d" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-viz&branch=fix%2Fgnssgeodesy-upstream-bugs#c3019b6bf3a5cc958a412004e00d4821156b49a4" }
 dependencies = [
     { name = "canvod-grids" },
     { name = "matplotlib" },
@@ -623,7 +630,7 @@ dependencies = [
 [[package]]
 name = "canvod-vod"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-vod&branch=fix%2Fgnssgeodesy-upstream-bugs#e15ed77834a685373e537c57e84b8489d173579d" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-vod&branch=fix%2Fgnssgeodesy-upstream-bugs#c3019b6bf3a5cc958a412004e00d4821156b49a4" }
 dependencies = [
     { name = "canvod-utils" },
     { name = "numpy" },
@@ -635,7 +642,7 @@ dependencies = [
 [[package]]
 name = "canvodpy"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=canvodpy&branch=fix%2Fgnssgeodesy-upstream-bugs#e15ed77834a685373e537c57e84b8489d173579d" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=canvodpy&branch=fix%2Fgnssgeodesy-upstream-bugs#c3019b6bf3a5cc958a412004e00d4821156b49a4" }
 dependencies = [
     { name = "altair" },
     { name = "canvod-auxiliary" },
@@ -3902,6 +3909,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/93/8d/aeb164004f87543b06ef54f885d02c342c31ceb274e2bbec470a98927621/zarr-3.2.1.tar.gz", hash = "sha256:71565b738a0e7e8ed226f0516eba8c6bb53440ad7669a8c48ebb3534a161d035", size = 675161, upload-time = "2026-05-05T12:37:22.383Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/88/0a/469e2bd01be1490336e6c8707386845655d59261543315778a3ccc7e8019/zarr-3.2.1-py3-none-any.whl", hash = "sha256:f78cdd3d9687ad0e9f9cba2c5683b64f0c52589c19f685eeabe872e93cc0d2c7", size = 319617, upload-time = "2026-05-05T12:37:20.66Z" },
+]
+
+[[package]]
+name = "zarr-cm"
+version = "0.5.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/45/81/29d60d04fad69ae1d7ee2675990a4c7421ded4d9a15280ead2d4c5f470c6/zarr_cm-0.5.0.tar.gz", hash = "sha256:f39234ef5abc9acab2a4fadcde9132f8695fa47692a1f4e000d2d7b6fac039bd", size = 202161, upload-time = "2026-09-26T07:57:43.488Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/85/fb/8c17b2956a248be9398f6727490976ab3e69cd419af9d983164a46d830da/zarr_cm-0.5.0-py3-none-any.whl", hash = "sha256:99fef56dae5eb5ee2a7126d8a18e669944494e0778832577ae8ae922b0207b12", size = 55585, upload-time = "2026-09-26T07:57:41.935Z" },
 ]
 
 [[package]]

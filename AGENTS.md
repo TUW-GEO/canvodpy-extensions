@@ -169,7 +169,7 @@ repository; docs also at <https://canvodpy.eu/>):
 |---|---|---|
 | canvod-filemap | `canvodpy:docs/packages/naming/overview.md` (convention, which files a run processes, recipes), `canvodpy:docs/guides/configuration.md` (the `recipe:` setting) | `canvodpy:canvodpy/src/canvodpy/orchestrator/discovery.py` (calls the recipe), `canvodpy:packages/canvod-preflight/src/canvod/preflight/convention.py` |
 | canvod-airflow | `canvodpy:docs/guides/api-levels.md`, `canvodpy:docs/guides/parallel-processing.md`, `canvodpy:docs/packages/store/icechunk.md` (concurrent writes) | `canvodpy:canvodpy/src/canvodpy/workflows/tasks.py` (every task the DAGs call) |
-| canvod-adapters | `canvodpy:docs/packages/readers/architecture.md`, `canvodpy:docs/packages/readers/extending.md` (reader contract), `canvodpy:docs/packages/vod/overview.md`, `canvodpy:docs/packages/store/overview.md` | `canvodpy:packages/canvod-readers/src/canvod/readers/base.py` (contracts, `GNSSDataReader`) |
+| canvod-adapters | `canvodpy:docs/packages/readers/overview.md`, `canvodpy:docs/packages/readers/building-a-reader.md` (reader contract), `canvodpy:docs/packages/vod/overview.md`, `canvodpy:docs/packages/store/overview.md` | `canvodpy:packages/canvod-readers/src/canvod/readers/base.py` (contracts, `GNSSDataReader`) |
 
 **4. Check canvodpy's side of a change.** canvodpy imports canvod-filemap
 (`canvodpy.orchestrator.discovery`, its `Justfile`, tests). Before renaming
