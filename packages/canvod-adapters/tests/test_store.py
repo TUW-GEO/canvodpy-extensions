@@ -14,9 +14,17 @@ BANDS = {"VOD_L2": ["S2W"], "VOD_E5a": ["S5Q"]}
 
 @pytest.fixture
 def store(tmp_path):
-    path = tmp_path / "vod_store"
-    path.mkdir()
-    return store_module.MyIcechunkStore(path, store_type="vod_store")
+    # Opening a store never creates one (canvodpy#236): create it the way a
+    # run does, with the made-up site's metadata and settings, never the
+    # user's own settings file
+    from canvod.config import load_config
+    from canvod.store_metadata.testing import give_test_metadata
+    from canvod.utils import testing
+
+    path = give_test_metadata(tmp_path / "vod_store", "vod_store")
+    testing.write_settings(tmp_path / "settings")
+    settings = load_config(config_dir=tmp_path / "settings")
+    return store_module.MyIcechunkStore(path, store_type="vod_store", config=settings)
 
 
 @pytest.fixture
@@ -27,7 +35,7 @@ def gnssvod_file(vod_ds, tmp_path):
 
 
 def test_import_goes_to_the_tool_group(store, gnssvod_file, vod_ds):
-    adapter = GnssvodVod(bands=BANDS)
+    adapter = GnssvodVod(bands=BANDS, time_system="GPS")
 
     assert import_vod(adapter, gnssvod_file, store, "canopy_01_vs_reference_01")
 
@@ -39,14 +47,14 @@ def test_import_goes_to_the_tool_group(store, gnssvod_file, vod_ds):
 
 
 def test_same_file_is_imported_once(store, gnssvod_file):
-    adapter = GnssvodVod(bands=BANDS)
+    adapter = GnssvodVod(bands=BANDS, time_system="GPS")
     import_vod(adapter, gnssvod_file, store, "a")
 
     assert not import_vod(adapter, gnssvod_file, store, "a")
 
 
 def test_export_from_a_group(store, gnssvod_file, tmp_path):
-    adapter = GnssvodVod(bands=BANDS)
+    adapter = GnssvodVod(bands=BANDS, time_system="GPS")
     import_vod(adapter, gnssvod_file, store, "a")
 
     path = export_vod(adapter, store, "gnssvod/a", tmp_path / "out.nc")

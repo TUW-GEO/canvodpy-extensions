@@ -83,10 +83,10 @@ class TestInterfaces:
                 return tool_ds  # still gnssvod-shaped
 
         with pytest.raises(ValueError, match="VOD dataset validation failed"):
-            SloppyAdapter(bands=BANDS).import_file(gnssvod_vod_file)
+            SloppyAdapter(bands=BANDS, time_system="GPS").import_file(gnssvod_vod_file)
 
     def test_settings_are_frozen(self):
-        adapter = GnssvodVod(bands=BANDS)
+        adapter = GnssvodVod(bands=BANDS, time_system="GPS")
         with pytest.raises(ValidationError):
             adapter.bands = {}  # ty: ignore[invalid-assignment]
 
@@ -105,15 +105,15 @@ class TestGnssvodVodSettings:
     )
     def test_bad_bands_raise(self, bands, match):
         with pytest.raises(ValidationError, match=match):
-            GnssvodVod(bands=bands)
+            GnssvodVod(bands=bands, time_system="GPS")
 
     def test_rinex2_codes_are_accepted(self):
-        GnssvodVod(bands={"VOD_L1": ["S1"], "VOD_L2": ["S2"]})
+        GnssvodVod(bands={"VOD_L1": ["S1"], "VOD_L2": ["S2"]}, time_system="GPS")
 
 
 class TestGnssvodVod:
     def test_import_meets_the_contract_with_provenance(self, gnssvod_vod_file):
-        vod = GnssvodVod(bands=BANDS).import_file(gnssvod_vod_file)
+        vod = GnssvodVod(bands=BANDS, time_system="GPS").import_file(gnssvod_vod_file)
 
         validate_vod_dataset(vod)
         assert set(vod["sid"].values) == {
@@ -127,7 +127,7 @@ class TestGnssvodVod:
         assert (prov.tool, prov.direction, prov.source) == ("gnssvod", "import", "vod.nc")
 
     def test_export_round_trip(self, vod_ds, tmp_path):
-        adapter = GnssvodVod(bands={"VOD_L2": ["S2W"]})
+        adapter = GnssvodVod(bands={"VOD_L2": ["S2W"]}, time_system="GPS")
         path = adapter.export_file(vod_ds, tmp_path / "out.nc", source="tau_omega/a")
         back = adapter.import_file(path)
 
@@ -139,7 +139,7 @@ class TestGnssvodVod:
 
     def test_import_export_returns_the_file(self, gnssvod_vod_file, tmp_path):
         """Merged bands come in with the marker sids and go out unchanged."""
-        adapter = GnssvodVod(bands=BANDS)
+        adapter = GnssvodVod(bands=BANDS, time_system="GPS")
         path = adapter.export_file(
             adapter.import_file(gnssvod_vod_file), tmp_path / "again.nc", source="x"
         )
@@ -149,11 +149,23 @@ class TestGnssvodVod:
                 a, b = xr.align(original[band], again[band], join="outer")
                 np.testing.assert_allclose(a.values, b.values)
 
+    def test_epochs_record_gps_time(self, gnssvod_vod_file):
+        vod = GnssvodVod(bands=BANDS, time_system="GPS").import_file(gnssvod_vod_file)
+        assert vod["epoch"].attrs["time_system"] == "GPS"
+
+    def test_time_system_is_required(self):
+        with pytest.raises(ValidationError, match="time_system"):
+            GnssvodVod(bands=BANDS)  # ty: ignore[missing-argument]
+
+    def test_time_system_other_than_gps_raises(self, gnssvod_vod_file):
+        with pytest.raises(ValueError, match="stores every epoch in GPS time"):
+            GnssvodVod(bands=BANDS, time_system="UTC").import_file(gnssvod_vod_file)
+
     def test_file_without_angles_is_rejected(self, vod_ds, tmp_path):
         path = tmp_path / "no_angles.nc"
         to_gnssvod_vod(vod_ds, BANDS).drop_vars(["Azimuth", "Elevation"]).to_netcdf(path)
         with pytest.raises(ValueError, match="theta"):
-            GnssvodVod(bands=BANDS).import_file(path)
+            GnssvodVod(bands=BANDS, time_system="GPS").import_file(path)
 
 
 class TestGnssvodObservations:
@@ -184,9 +196,10 @@ class TestGnssvodObservations:
         with pytest.raises(ValidationError, match="time_system"):
             GnssvodObservations()  # ty: ignore[missing-argument]
 
-    def test_unknown_time_system_raises(self, gnssvod_obs_file):
-        with pytest.raises(ValueError, match="unknown epoch time system"):
-            GnssvodObservations(time_system="MARS").import_file(gnssvod_obs_file)
+    @pytest.mark.parametrize("time_system", ["UTC", "GLO", "MARS"])
+    def test_time_system_other_than_gps_raises(self, gnssvod_obs_file, time_system):
+        with pytest.raises(ValueError, match="stores every epoch in GPS time"):
+            GnssvodObservations(time_system=time_system).import_file(gnssvod_obs_file)
 
     def test_export_round_trip(self, obs_ds, tmp_path):
         adapter = GnssvodObservations(time_system="GPS")
