@@ -1,44 +1,32 @@
 # canvod-filemap
 
-Naming recipes for receiver files that don't follow the canVOD filename
-convention.
+`canvod-filemap` gives a receiver a naming recipe: a description of how
+the receiver's own filenames translate to canVOD filenames. A run then
+finds the receiver's files without you renaming anything on disk.
 
-`canvodpy run` processes files whose names follow the canVOD convention, in any
-folder layout. For a receiver whose files are named differently (Septentrio SBF,
-RINEX v2 short names, etc.), a naming recipe translates each filename to its
-canonical name, without renaming any file on disk.
+## When you need it
 
-`canvodpy config validate --site <site>` checks before a run which files the
-run would process.
+`canvodpy run` processes files whose names follow the canVOD filename
+convention, in any folder layout. If your receiver writes files with
+other names, for example Septentrio SBF files, legacy RINEX v2 short
+names, or a custom layout, set a naming recipe on the receiver.
 
-## Convention format
+You don't need it when your files already follow the convention, or when
+a run already finds them.
 
-```
-{SIT}{T}{NN}{AGC}_R_{YYYY}{DOY}{HHMM}_{PERIOD}_{SAMPLING}_{CONTENT}.{TYPE}
-```
-
-Example: `ROSA01TUW_R_20250010000_15M_05S_AA.rnx`
-
-## Key components
-
-| Module | Component | Purpose |
-|---|---|---|
-| `recipe.py` | `NamingRecipe` | Translates a receiver's own filenames to canonical names |
-| `recipe_files.py` | `find_recipe`, `create_recipe` | Where recipe files live; new recipes from the template |
-| `mapping.py` | `VirtualFile` | A physical file paired with its canonical name (`NamingRecipe.to_virtual_file`) |
-
-The canonical names are parsed and built with `CanVODFilename` of `canvod-preflight`
-(`canvod.preflight.convention`), the same class `canvodpy run` uses.
-
-## Installation
-
-GitHub-only by design; install via the git-subdirectory pattern:
+## Install
 
 ```bash
 uv add "canvod-filemap @ git+https://github.com/nfb2021/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-filemap"
 ```
 
-## Quick Start
+The package lives on GitHub only, not on PyPI.
+
+## A minimal example
+
+A naming recipe is a YAML file, kept per site in the configuration
+directory at `<config dir>/recipes/<site>/<name>.yaml`. Load it, then map
+one file:
 
 ```python
 from pathlib import Path
@@ -47,76 +35,48 @@ from canvod.filemap import NamingRecipe
 
 recipe = NamingRecipe.load(Path("config/recipes/rosalia/rosalia_reference.yaml"))
 vf = recipe.to_virtual_file(Path("rref001a15.25o"))
-print(vf.conventional_name)  # canonical canVOD name; the file keeps its name
+print(vf.canonical_str)  # the canVOD filename; the file on disk keeps its name
 ```
 
-Before a run, check which files the run would process:
+The recipe reads the receiver identity, the date, and the sampling
+from the receiver's own filename and writes them as a canVOD filename.
+`CanVODFilename` of `canvod-preflight` parses and builds the names, the
+same class a run uses. Before a run, check which files it would process:
 
 ```bash
 canvodpy config validate --site rosalia
 ```
 
-## NamingRecipe YAML format
+## How it fits into a run
 
-If your GNSS receiver outputs files in a proprietary or legacy format, a
-`NamingRecipe` tells canvodpy how to extract canonical fields from a physical
-filename:
-
-```yaml
-name: rosalia_reference
-description: Septentrio RINEX v2 files from Rosalia reference receiver
-site: ROS
-agency: TUW
-receiver_number: 1
-receiver_type: reference
-sampling: "05S"
-period: "15M"
-file_type: rnx
-glob: "*.??o"
-fields:
-  - skip: 4          # "rref"
-  - doy: 3           # "001"
-  - hour_letter: 1   # "a"
-  - minute: 2        # "15"
-  - skip: 1          # "."
-  - yy: 2            # "25"
-  - skip: 1          # "o"
-```
-
-| Field key | Description |
-|-----------|-------------|
-| `year` | 4-digit year |
-| `yy` | 2-digit year (80–99 = 19xx, 00–79 = 20xx) |
-| `doy` | Day of year |
-| `month` / `day` | Month + day of month (converted to DOY) |
-| `hour` | Hour (0–23) |
-| `hour_letter` | RINEX v2 session letter (a–x = hours 0–23; `0` = daily file, period `01D`) |
-| `minute` | Minute (0–59) |
-| `skip` | Ignore N characters |
-
-Reference a recipe from canvodpy's `canvod-settings.yaml`:
+A run uses the naming recipe only for a receiver whose settings set a
+recipe. Reference it on the receiver in `canvod-settings.yaml`:
 
 ```yaml
 sites:
   my_site:
     receivers:
       reference_01:
-        recipe: my_site_reference   # → <config dir>/recipes/my_site/my_site_reference.yaml
+        recipe: my_site_reference
 ```
 
-Recipe files are kept per site in the configuration directory, at
-`<config dir>/recipes/<site>/<name>.yaml`. `find_recipe(config_dir, site, name)`
-returns that path, and raises `RecipeNotFoundError` if the file does not exist.
-A recipe saved directly in `<config dir>/recipes/` is not used; the error says
-where to move it. `create_recipe(config_dir, site, name)` creates a new recipe
-from the template shipped with this package, with `name` filled in.
+A run finds the files in any folder layout and takes each file's day from
+its name. See the canVOD [file naming convention](https://canvodpy.eu/packages/naming/overview/)
+and [Configuration](https://canvodpy.eu/guides/configuration/).
 
-A recipe has no `layout` field: `canvodpy run` finds the files in any folder
-layout and takes each file's day from its name. An older recipe that still
-sets `layout` loads unchanged; the field is ignored.
+## Limits and known issues
 
-## Important
+- A recipe has no `layout` field: a run finds the files in any folder
+  layout and takes each file's day from its name. An older recipe that
+  still sets `layout` loads, and the field has no effect.
+- A recipe saved directly in `<config dir>/recipes/` is not used. The
+  error says where to move it. It belongs in
+  `<config dir>/recipes/<site>/`.
+- A recipe does not change that compressed files are never processed.
+- `DataDirMatcher` and `PairDataDirMatcher` in canvod-readers are
+  obsolete and the next major version removes them.
 
-- `DataDirMatcher` and `PairDataDirMatcher` in canvod-readers are **deprecated**: `canvodpy run` finds the files itself
+## API
 
-See the [API Reference](../../api/canvod-filemap.md) for the full public API.
+See the [API reference](../../api/canvod-filemap.md) for the full public
+API.
