@@ -34,9 +34,7 @@ Import a gnssvod VOD file into the VOD store, and export one back:
 from canvod.adapters.gnssvod import GnssvodVod
 from canvod.adapters.store import export_vod, import_vod
 
-adapter = GnssvodVod(
-    bands={"VOD_L1": ["S1C", "S1W", "S1X"], "VOD_L2": ["S2W"]}, time_system="GPS"
-)
+adapter = GnssvodVod(bands={"VOD_L1": ["S1C", "S1W", "S1X"], "VOD_L2": ["S2W"]}, time_system="GPS")
 
 import_vod(adapter, "vod_rosalia.nc", site.vod_store, "canopy_01_vs_reference_01")
 
