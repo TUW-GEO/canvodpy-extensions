@@ -129,7 +129,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -150,7 +150,9 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="./.." title="canvodpy-extensions" class="md-header__button md-logo" aria-label="canvodpy-extensions" data-md-component="logo">
       
@@ -162,6 +164,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
+      <a href="./.." class="md-header__home" title="canvodpy-extensions">
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
@@ -176,6 +179,7 @@
           </span>
         </div>
       </div>
+      </a>
     </div>
     
       
@@ -184,20 +188,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
       </label>
     
   
@@ -237,14 +241,8 @@
     </div>
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
@@ -274,22 +272,12 @@
       
       
         
-      
+          
         
       
         
       
-    
-    
-    
-    
-      
-  
-  
-  
-  
-    
-      
+        
       
         
       
@@ -298,16 +286,13 @@
     
     
       <li class="md-tabs__item">
-        <a href="../packages/filemap/overview/" class="md-tabs__link">
+        <a href="../users/" class="md-tabs__link">
           
   
-  Packages
+  Use the extensions
 
         </a>
       </li>
-    
-  
-
     
   
 
@@ -334,7 +319,7 @@
         <a href="././" class="md-tabs__link">
           
   
-  Development
+  Contribute
 
         </a>
       </li>
@@ -364,7 +349,7 @@
         <a href="../api/canvod-filemap/" class="md-tabs__link">
           
   
-  API Reference
+  Reference
 
         </a>
       </li>
@@ -375,7 +360,13 @@
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -452,6 +443,10 @@
     
       
         
+          
+        
+      
+        
       
         
       
@@ -473,22 +468,29 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../users/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
     
   
-  Packages
+  Use the extensions
 
     
   </span>
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         
           <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
@@ -496,65 +498,12 @@
               <span class="md-nav__icon md-icon"></span>
               
   
-  Packages
+  Use the extensions
 
             </label>
             <ul class="md-nav__list" data-md-scrollfix>
               
                 
-                  
-  
-  
-  
-  
-    
-    
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  canvod-filemap
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_2_1">
-              <span class="md-nav__icon md-icon"></span>
-              
-  
-  canvod-filemap
-
-            </label>
-            <ul class="md-nav__list" data-md-scrollfix>
               
                 
                   
@@ -570,7 +519,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  Non-canonical file names (canvod-filemap)
 
     
   </span>
@@ -582,70 +531,6 @@
   
 
                 
-              
-            </ul>
-          </nav>
-        
-      
-    </li>
-  
-
-                
-              
-                
-                  
-  
-  
-  
-  
-    
-    
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  canvod-airflow
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_2_2">
-              <span class="md-nav__icon md-icon"></span>
-              
-  
-  canvod-airflow
-
-            </label>
-            <ul class="md-nav__list" data-md-scrollfix>
               
                 
                   
@@ -661,7 +546,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  Scheduled runs with Airflow (canvod-airflow)
 
     
   </span>
@@ -673,70 +558,6 @@
   
 
                 
-              
-            </ul>
-          </nav>
-        
-      
-    </li>
-  
-
-                
-              
-                
-                  
-  
-  
-  
-  
-    
-    
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  canvod-adapters
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_2_3">
-              <span class="md-nav__icon md-icon"></span>
-              
-  
-  canvod-adapters
-
-            </label>
-            <ul class="md-nav__list" data-md-scrollfix>
               
                 
                   
@@ -752,7 +573,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  Exchange with other GNSS-T software (canvod-adapters)
 
     
   </span>
@@ -760,15 +581,6 @@
   
 
       </a>
-    </li>
-  
-
-                
-              
-            </ul>
-          </nav>
-        
-      
     </li>
   
 
@@ -823,7 +635,7 @@
   <span class="md-ellipsis">
     
   
-  Development
+  Contribute
 
     
   </span>
@@ -839,7 +651,7 @@
               <span class="md-nav__icon md-icon"></span>
               
   
-  Development
+  Contribute
 
             </label>
             <ul class="md-nav__list" data-md-scrollfix>
@@ -913,19 +725,19 @@
   <a href="#required-tools" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Required Tools
+        Required tools
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Required Tools">
+    <nav class="md-nav" aria-label="Required tools">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#uv-python-package-manager" class="md-nav__link">
+  <a href="#uv" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        uv (Python Package Manager)
+        uv
       </span>
     </span>
   </a>
@@ -933,10 +745,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#just-command-runner" class="md-nav__link">
+  <a href="#just" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        just (Command Runner)
+        just
       </span>
     </span>
   </a>
@@ -949,22 +761,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#types-of-contributions" class="md-nav__link">
+  <a href="#ways-to-contribute" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Types of Contributions
+        Ways to contribute
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Types of Contributions">
+    <nav class="md-nav" aria-label="Ways to contribute">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#report-bugs" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Report Bugs
+        Report bugs
       </span>
     </span>
   </a>
@@ -972,10 +784,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fix-bugs-implement-features" class="md-nav__link">
+  <a href="#fix-bugs-and-implement-features" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Fix Bugs / Implement Features
+        Fix bugs and implement features
       </span>
     </span>
   </a>
@@ -986,7 +798,7 @@
   <a href="#add-a-new-package" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Add a New Package
+        Add a new package
       </span>
     </span>
   </a>
@@ -1002,19 +814,19 @@
   <a href="#development-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Development Workflow
+        Development workflow
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Development Workflow">
+    <nav class="md-nav" aria-label="Development workflow">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#commit-message-format" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Commit Message Format
+        Commit message format
       </span>
     </span>
   </a>
@@ -1030,7 +842,7 @@
   <a href="#common-commands" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Common Commands
+        Common commands
       </span>
     </span>
   </a>
@@ -1052,7 +864,7 @@
   <a href="#pull-request-guidelines" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Pull Request Guidelines
+        Pull request guidelines
       </span>
     </span>
   </a>
@@ -1074,7 +886,7 @@
   <a href="#code-quality" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Code Quality
+        Code quality
       </span>
     </span>
   </a>
@@ -1082,10 +894,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#releasing-maintainers" class="md-nav__link">
+  <a href="#releasing" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Releasing (Maintainers)
+        Releasing
       </span>
     </span>
   </a>
@@ -1115,7 +927,7 @@
   <span class="md-ellipsis">
     
   
-  Security Policy
+  Security policy
 
     
   </span>
@@ -1174,7 +986,7 @@
   <span class="md-ellipsis">
     
   
-  API Reference
+  Reference
 
     
   </span>
@@ -1190,7 +1002,7 @@
               <span class="md-nav__icon md-icon"></span>
               
   
-  API Reference
+  Reference
 
             </label>
             <ul class="md-nav__list" data-md-scrollfix>
@@ -1328,19 +1140,19 @@
   <a href="#required-tools" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Required Tools
+        Required tools
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Required Tools">
+    <nav class="md-nav" aria-label="Required tools">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#uv-python-package-manager" class="md-nav__link">
+  <a href="#uv" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        uv (Python Package Manager)
+        uv
       </span>
     </span>
   </a>
@@ -1348,10 +1160,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#just-command-runner" class="md-nav__link">
+  <a href="#just" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        just (Command Runner)
+        just
       </span>
     </span>
   </a>
@@ -1364,22 +1176,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#types-of-contributions" class="md-nav__link">
+  <a href="#ways-to-contribute" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Types of Contributions
+        Ways to contribute
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Types of Contributions">
+    <nav class="md-nav" aria-label="Ways to contribute">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#report-bugs" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Report Bugs
+        Report bugs
       </span>
     </span>
   </a>
@@ -1387,10 +1199,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fix-bugs-implement-features" class="md-nav__link">
+  <a href="#fix-bugs-and-implement-features" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Fix Bugs / Implement Features
+        Fix bugs and implement features
       </span>
     </span>
   </a>
@@ -1401,7 +1213,7 @@
   <a href="#add-a-new-package" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Add a New Package
+        Add a new package
       </span>
     </span>
   </a>
@@ -1417,19 +1229,19 @@
   <a href="#development-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Development Workflow
+        Development workflow
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Development Workflow">
+    <nav class="md-nav" aria-label="Development workflow">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#commit-message-format" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Commit Message Format
+        Commit message format
       </span>
     </span>
   </a>
@@ -1445,7 +1257,7 @@
   <a href="#common-commands" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Common Commands
+        Common commands
       </span>
     </span>
   </a>
@@ -1467,7 +1279,7 @@
   <a href="#pull-request-guidelines" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Pull Request Guidelines
+        Pull request guidelines
       </span>
     </span>
   </a>
@@ -1489,7 +1301,7 @@
   <a href="#code-quality" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Code Quality
+        Code quality
       </span>
     </span>
   </a>
@@ -1497,10 +1309,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#releasing-maintainers" class="md-nav__link">
+  <a href="#releasing" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Releasing (Maintainers)
+        Releasing
       </span>
     </span>
   </a>
@@ -1564,7 +1376,7 @@
           
   
   <span class="md-ellipsis">
-    Development
+    Contribute
   </span>
 
         </a>
@@ -1587,9 +1399,9 @@
 
 <h1 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">&para;</a></h1>
 <p>Contributions are welcome. This guide covers the development setup and contribution workflow.</p>
-<h2 id="required-tools">Required Tools<a class="headerlink" href="#required-tools" title="Permanent link">&para;</a></h2>
+<h2 id="required-tools">Required tools<a class="headerlink" href="#required-tools" title="Permanent link">&para;</a></h2>
 <p>Two external tools must be installed separately (not managed by <code>uv sync</code>):</p>
-<h3 id="uv-python-package-manager"><abbr title="Fast Python package manager written in Rust — replaces pip, pip-tools, virtualenv">uv</abbr> (Python Package Manager)<a class="headerlink" href="#uv-python-package-manager" title="Permanent link">&para;</a></h3>
+<h3 id="uv"><abbr title="Fast Python package manager written in Rust — replaces pip, pip-tools, virtualenv">uv</abbr><a class="headerlink" href="#uv" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># macOS/Linux</span>
 curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 
@@ -1597,7 +1409,7 @@ curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/in
 brew<span class="w"> </span>install<span class="w"> </span>uv
 </code></pre></div>
 <p><a href="https://docs.astral.sh/uv/"><abbr title="Fast Python package manager written in Rust — replaces pip, pip-tools, virtualenv">uv</abbr> documentation</a></p>
-<h3 id="just-command-runner">just (Command Runner)<a class="headerlink" href="#just-command-runner" title="Permanent link">&para;</a></h3>
+<h3 id="just">just<a class="headerlink" href="#just" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># macOS/Linux</span>
 curl<span class="w"> </span>--proto<span class="w"> </span><span class="s1">&#39;=https&#39;</span><span class="w"> </span>--tlsv1.2<span class="w"> </span>-sSf<span class="w"> </span>https://just.systems/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
 
@@ -1605,19 +1417,20 @@ curl<span class="w"> </span>--proto<span class="w"> </span><span class="s1">&#39
 brew<span class="w"> </span>install<span class="w"> </span>just
 </code></pre></div>
 <p><a href="https://github.com/casey/just">just documentation</a></p>
-<h2 id="types-of-contributions">Types of Contributions<a class="headerlink" href="#types-of-contributions" title="Permanent link">&para;</a></h2>
-<h3 id="report-bugs">Report Bugs<a class="headerlink" href="#report-bugs" title="Permanent link">&para;</a></h3>
-<p>Report bugs at https://github.com/nfb2021/canvodpy-extensions/issues. Include operating
-system, local setup details, and steps to reproduce.</p>
-<h3 id="fix-bugs-implement-features">Fix Bugs / Implement Features<a class="headerlink" href="#fix-bugs-implement-features" title="Permanent link">&para;</a></h3>
+<h2 id="ways-to-contribute">Ways to contribute<a class="headerlink" href="#ways-to-contribute" title="Permanent link">&para;</a></h2>
+<h3 id="report-bugs">Report bugs<a class="headerlink" href="#report-bugs" title="Permanent link">&para;</a></h3>
+<p>Report bugs at https://github.com/nfb2021/canvodpy-extensions/issues. Include
+your operating system, your setup, and the steps to reproduce.</p>
+<h3 id="fix-bugs-and-implement-features">Fix bugs and implement features<a class="headerlink" href="#fix-bugs-and-implement-features" title="Permanent link">&para;</a></h3>
 <p>Issues tagged "bug"/"enhancement" and "help wanted" are open for contributions.</p>
-<h3 id="add-a-new-package">Add a New Package<a class="headerlink" href="#add-a-new-package" title="Permanent link">&para;</a></h3>
-<p>New extension packages live under <code>packages/&lt;name&gt;/</code> and are picked up automatically
-by the <abbr title="Fast Python package manager written in Rust — replaces pip, pip-tools, virtualenv">uv</abbr> workspace (<code>packages/*</code>). Each package is independently versioned.
-canvodpy-extensions is GitHub-only by design (see "Releasing" below) — packages
-install via git-subdirectory sources, not <abbr title="Python Package Index — public Python package repository">PyPI</abbr>. See <code>packages/canvod-filemap</code>
-for the expected layout (<code>pyproject.toml</code>, <code>src/</code>, <code>tests/</code>, <code>README.md</code>).</p>
-<h2 id="development-workflow">Development Workflow<a class="headerlink" href="#development-workflow" title="Permanent link">&para;</a></h2>
+<h3 id="add-a-new-package">Add a new package<a class="headerlink" href="#add-a-new-package" title="Permanent link">&para;</a></h3>
+<p>New extension packages live under <code>packages/&lt;name&gt;/</code> and are picked up
+automatically by the <abbr title="Fast Python package manager written in Rust — replaces pip, pip-tools, virtualenv">uv</abbr> workspace (<code>packages/*</code>). Each package is versioned
+on its own. canvodpy-extensions is GitHub-only by design (see Releasing
+below). Packages install via git-subdirectory sources, not <abbr title="Python Package Index — public Python package repository">PyPI</abbr>. See
+<code>packages/canvod-filemap</code> for the expected layout (<code>pyproject.toml</code>, <code>src/</code>,
+<code>tests/</code>, <code>README.md</code>).</p>
+<h2 id="development-workflow">Development workflow<a class="headerlink" href="#development-workflow" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Install required tools (<abbr title="Fast Python package manager written in Rust — replaces pip, pip-tools, virtualenv">uv</abbr> and just).</p>
@@ -1659,7 +1472,7 @@ just<span class="w"> </span>check
    or bypass a check (<code>AGENTS.md</code>, Git and GitHub).</p>
 </li>
 </ol>
-<h3 id="commit-message-format">Commit Message Format<a class="headerlink" href="#commit-message-format" title="Permanent link">&para;</a></h3>
+<h3 id="commit-message-format">Commit message format<a class="headerlink" href="#commit-message-format" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
 </code></pre></div>
 <p><strong>Types:</strong> <code>feat</code>, <code>fix</code>, <code>docs</code>, <code>refactor</code>, <code>test</code>, <code>chore</code>, <code>perf</code>, <code>ci</code></p>
@@ -1670,7 +1483,7 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;docs: update installation instructions&quot;</span>
 </code></pre></div></p>
 <p>See <a href="https://www.conventionalcommits.org/">Conventional Commits</a> for the full specification.</p>
-<h2 id="common-commands">Common Commands<a class="headerlink" href="#common-commands" title="Permanent link">&para;</a></h2>
+<h2 id="common-commands">Common commands<a class="headerlink" href="#common-commands" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>just<span class="w"> </span>--list<span class="w">                    </span><span class="c1"># Show all commands</span>
 just<span class="w"> </span><span class="nb">test</span><span class="w">                      </span><span class="c1"># Run all tests</span>
 just<span class="w"> </span>test-coverage<span class="w">             </span><span class="c1"># With coverage report</span>
@@ -1681,11 +1494,11 @@ just<span class="w"> </span>check<span class="w">                     </span><sp
 agents; the <code>CLAUDE.md</code> files import it. Task guides for agents are in
 <code>.claude/skills/</code>. Keep them correct when you change what they describe;
 <code>just check-agent-docs</code> checks that the paths and recipes they name exist.</p>
-<h2 id="pull-request-guidelines">Pull Request Guidelines<a class="headerlink" href="#pull-request-guidelines" title="Permanent link">&para;</a></h2>
+<h2 id="pull-request-guidelines">Pull request guidelines<a class="headerlink" href="#pull-request-guidelines" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Include tests for new functionality — new code must not reduce test coverage.</li>
+<li>Include tests for new features. New code must not reduce test coverage.</li>
 <li>Update the package's <code>README.md</code> and the Zensical documentation in <code>docs/</code> if
-   adding or changing public API or behaviour.</li>
+   adding or changing public API or behavior.</li>
 <li>Ensure compatibility with Python 3.14+.</li>
 <li>Add yourself to <code>CONTRIBUTORS.md</code> if this is your first contribution.</li>
 </ol>
@@ -1694,21 +1507,21 @@ agents; the <code>CLAUDE.md</code> files import it. Task guides for agents are i
 By submitting a pull request, you agree that your contribution is licensed under
 the same terms. The <code>LICENSE</code> and <code>NOTICE</code> files at the repository root apply to
 all source files. Per-file license headers are not required.</p>
-<h2 id="code-quality">Code Quality<a class="headerlink" href="#code-quality" title="Permanent link">&para;</a></h2>
+<h2 id="code-quality">Code quality<a class="headerlink" href="#code-quality" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong><abbr title="Fast Python linter and formatter written in Rust — replaces flake8, black, isort">ruff</abbr></strong> for linting and formatting</li>
 <li><strong>ty</strong> for type checking</li>
 <li><strong>pytest</strong> for testing with coverage</li>
 </ul>
 <p>Run <code>just check</code> before committing.</p>
-<h2 id="releasing-maintainers">Releasing (Maintainers)<a class="headerlink" href="#releasing-maintainers" title="Permanent link">&para;</a></h2>
+<h2 id="releasing">Releasing<a class="headerlink" href="#releasing" title="Permanent link">&para;</a></h2>
 <p>Releases are cut by a maintainer, never by a coding agent; only
 maintainers can create release tags.</p>
 <p>Each package is versioned and released on its own. A release is the git tag
-<code>&lt;package&gt;-v&lt;version&gt;</code>, e.g. <code>canvod-filemap-v0.2.0</code>, on <code>main</code>.</p>
+<code>&lt;package&gt;-v&lt;version&gt;</code>, for example <code>canvod-filemap-v0.2.0</code>, on <code>main</code>.</p>
 <div class="highlight"><pre><span></span><code>just<span class="w"> </span>versions<span class="w">                         </span><span class="c1"># current version of every package</span>
 just<span class="w"> </span>changelog<span class="w"> </span>canvod-filemap<span class="w">         </span><span class="c1"># changes since its last release</span>
-just<span class="w"> </span>release<span class="w"> </span>canvod-filemap<span class="w"> </span>minor<span class="w">     </span><span class="c1"># or major, patch, or e.g. 0.2.0</span>
+just<span class="w"> </span>release<span class="w"> </span>canvod-filemap<span class="w"> </span>minor<span class="w">     </span><span class="c1"># or major, patch, or for example 0.2.0</span>
 </code></pre></div>
 <p><code>just release</code> runs the package's tests and makes one commit that</p>
 <ul>
@@ -1717,7 +1530,7 @@ just<span class="w"> </span>release<span class="w"> </span>canvod-filemap<span c
   <code>packages/&lt;package&gt;/</code> (<a href="https://git-cliff.org">git-cliff</a>, <code>cliff.toml</code>),</li>
 <li>pins the package's install snippets in the READMEs and docs to the new tag.</li>
 </ul>
-<p>Commit messages become the changelog, so follow the commit convention above
+<p>Commit messages become the changelog, so follow the commit convention here
 and mark breaking changes (<code>feat!:</code> or a <code>BREAKING CHANGE:</code> footer).</p>
 <p><code>main</code> requires a PR (branch protection), so the tag is set after the merge:</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>chore/release-canvod-filemap-0.2.0<span class="w">   </span><span class="c1"># before just release</span>
@@ -1730,12 +1543,12 @@ just<span class="w"> </span>tag<span class="w"> </span>canvod-filemap<span class
 </code></pre></div>
 <p>(Don't tag before the PR merges: a merge can produce a different commit SHA
 than the one you tagged, orphaning the tag.)</p>
-<p>Pushing the tag runs <a href="../.github/workflows/release.yml"><code>release.yml</code></a>, which
+<p>Pushing the tag runs <a href="https://github.com/nfb2021/canvodpy-extensions/blob/main/.github/workflows/release.yml"><code>release.yml</code></a>, which
 checks that the tag matches the package version and drafts a GitHub Release
 with the package's changes. Publish the draft by hand. Publishing archives the
 repository on Zenodo, versioned by the tag: <code>.zenodo.json</code> and <code>CITATION.cff</code>
 carry no version, since the packages have different ones. Then update the pin in
-downstream <code>[tool.uv.sources]</code>, e.g. canvodpy's root <code>pyproject.toml</code>.</p>
+downstream <code>[tool.uv.sources]</code>, for example canvodpy's root <code>pyproject.toml</code>.</p>
 <p>canvodpy-extensions is deliberately GitHub-only. It is where logic for
 specific needs, workflows and data realities lives, looser than the canvodpy
 core, so a <abbr title="Python Package Index — public Python package repository">PyPI</abbr> release would imply a stability contract it doesn't make.
@@ -1750,9 +1563,7 @@ starts its changelog and tags.</p>
 <!-- Observation data -->
 <!-- VOD and transmissometry -->
 <!-- Ephemerides and orbits -->
-<!-- Data standards -->
 <!-- Infrastructure -->
-<!-- Coordinate systems -->
 <!-- Signal bands -->
 <!-- Software tools -->
 
@@ -1794,7 +1605,7 @@ starts its changelog and tags.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../packages/adapters/overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+          <a href="../packages/adapters/overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Exchange with other GNSS-T software (canvod-adapters)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
@@ -1804,20 +1615,20 @@ starts its changelog and tags.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Overview
+                Exchange with other GNSS-T software (canvod-adapters)
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../SECURITY.md" class="md-footer__link md-footer__link--next" aria-label="Next: Security Policy">
+          <a href="../../SECURITY.md" class="md-footer__link md-footer__link--next" aria-label="Next: Security policy">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Security Policy
+                Security policy
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1837,8 +1648,9 @@ starts its changelog and tags.</p>
       Copyright &copy; 2026 Nicolas François Bader, TU Wien. This documentation is provided &ldquo;as is&rdquo; without warranty of any kind, express or implied, including but not limited to warranties of correctness, completeness, or fitness for a particular purpose.
     </div>
   
+  <a href="https://canvodpy.eu/impressum/">Impressum and AI disclosure</a>
   
-    Made with
+    · Made with
     <a href="https://zensical.org/" target="_blank" rel="noopener">
       Zensical
     </a>
@@ -1880,7 +1692,7 @@ starts its changelog and tags.</p>
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["content.code.copy","content.code.annotate","content.tooltips","content.tabs.link","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.sections","navigation.tabs","navigation.top","navigation.tracking","search.highlight","search.suggest","toc.follow"],"redirect":null,"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["content.code.copy","content.code.annotate","content.footnote.tooltips","content.tooltips","content.tabs.link","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","search.highlight","toc.follow"],"redirect":null,"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../assets/javascripts/bundle.67a597eb.min.js"></script>

@@ -29,7 +29,7 @@
     
     
       
-        <title>Overview - canvodpy-extensions</title>
+        <title>Scheduled runs with Airflow (canvod-airflow) - canvodpy-extensions</title>
       
     
     
@@ -129,7 +129,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -150,7 +150,9 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="canvodpy-extensions" class="md-header__button md-logo" aria-label="canvodpy-extensions" data-md-component="logo">
       
@@ -162,6 +164,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
+      <a href="../../.." class="md-header__home" title="canvodpy-extensions">
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
@@ -171,11 +174,12 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Scheduled runs with Airflow (canvod-airflow)
             
           </span>
         </div>
       </div>
+      </a>
     </div>
     
       
@@ -184,20 +188,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
       </label>
     
   
@@ -237,14 +241,8 @@
     </div>
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
@@ -276,24 +274,12 @@
       
       
         
-      
+          
         
       
         
       
-    
-    
-    
-    
-      
-  
-  
-  
-    
-  
-  
-    
-      
+        
       
         
       
@@ -302,16 +288,13 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../filemap/overview/" class="md-tabs__link">
+        <a href="../../../users/" class="md-tabs__link">
           
   
-  Packages
+  Use the extensions
 
         </a>
       </li>
-    
-  
-
     
   
 
@@ -336,7 +319,7 @@
         <a href="../../../CONTRIBUTING/" class="md-tabs__link">
           
   
-  Development
+  Contribute
 
         </a>
       </li>
@@ -366,7 +349,7 @@
         <a href="../../../api/canvod-filemap/" class="md-tabs__link">
           
   
-  API Reference
+  Reference
 
         </a>
       </li>
@@ -377,7 +360,13 @@
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -456,6 +445,10 @@
     
       
         
+          
+        
+      
+        
       
         
       
@@ -480,22 +473,29 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../users/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
     
   
-  Packages
+  Use the extensions
 
     
   </span>
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         
           <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
@@ -503,68 +503,12 @@
               <span class="md-nav__icon md-icon"></span>
               
   
-  Packages
+  Use the extensions
 
             </label>
             <ul class="md-nav__list" data-md-scrollfix>
               
                 
-                  
-  
-  
-  
-  
-    
-    
-      
-        
-      
-    
-    
-    
-      
-      
-        
-          
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  canvod-filemap
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_2_1">
-              <span class="md-nav__icon md-icon"></span>
-              
-  
-  canvod-filemap
-
-            </label>
-            <ul class="md-nav__list" data-md-scrollfix>
               
                 
                   
@@ -580,7 +524,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  Non-canonical file names (canvod-filemap)
 
     
   </span>
@@ -592,75 +536,6 @@
   
 
                 
-              
-            </ul>
-          </nav>
-        
-      
-    </li>
-  
-
-                
-              
-                
-                  
-  
-  
-    
-  
-  
-  
-    
-    
-      
-        
-      
-    
-    
-    
-      
-      
-        
-          
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  canvod-airflow
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
-            <label class="md-nav__title" for="__nav_2_2">
-              <span class="md-nav__icon md-icon"></span>
-              
-  
-  canvod-airflow
-
-            </label>
-            <ul class="md-nav__list" data-md-scrollfix>
               
                 
                   
@@ -685,7 +560,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  Scheduled runs with Airflow (canvod-airflow)
 
     
   </span>
@@ -702,7 +577,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  Scheduled runs with Airflow (canvod-airflow)
 
     
   </span>
@@ -728,10 +603,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#dags" class="md-nav__link">
+  <a href="#when-you-need-it" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        DAGs
+        When you need it
       </span>
     </span>
   </a>
@@ -739,10 +614,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#retry-driven-scheduling" class="md-nav__link">
+  <a href="#install" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Retry-driven scheduling
+        Install
       </span>
     </span>
   </a>
@@ -750,10 +625,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#concurrency-safety" class="md-nav__link">
+  <a href="#a-minimal-example" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Concurrency safety
+        A minimal example
       </span>
     </span>
   </a>
@@ -761,10 +636,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#manual-backfill" class="md-nav__link">
+  <a href="#how-it-fits-into-a-run" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Manual backfill
+        How it fits into a run
       </span>
     </span>
   </a>
@@ -772,10 +647,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#task-functions" class="md-nav__link">
+  <a href="#limits-and-known-issues" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Task functions
+        Limits and known issues
       </span>
     </span>
   </a>
@@ -783,21 +658,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
+  <a href="#api" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Installation
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deployment" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Deployment
+        API
       </span>
     </span>
   </a>
@@ -813,73 +677,6 @@
 
                 
               
-            </ul>
-          </nav>
-        
-      
-    </li>
-  
-
-                
-              
-                
-                  
-  
-  
-  
-  
-    
-    
-      
-        
-      
-    
-    
-    
-      
-      
-        
-          
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  canvod-adapters
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_2_3">
-              <span class="md-nav__icon md-icon"></span>
-              
-  
-  canvod-adapters
-
-            </label>
-            <ul class="md-nav__list" data-md-scrollfix>
-              
                 
                   
   
@@ -894,7 +691,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  Exchange with other GNSS-T software (canvod-adapters)
 
     
   </span>
@@ -902,15 +699,6 @@
   
 
       </a>
-    </li>
-  
-
-                
-              
-            </ul>
-          </nav>
-        
-      
     </li>
   
 
@@ -960,7 +748,7 @@
   <span class="md-ellipsis">
     
   
-  Development
+  Contribute
 
     
   </span>
@@ -976,7 +764,7 @@
               <span class="md-nav__icon md-icon"></span>
               
   
-  Development
+  Contribute
 
             </label>
             <ul class="md-nav__list" data-md-scrollfix>
@@ -1022,7 +810,7 @@
   <span class="md-ellipsis">
     
   
-  Security Policy
+  Security policy
 
     
   </span>
@@ -1081,7 +869,7 @@
   <span class="md-ellipsis">
     
   
-  API Reference
+  Reference
 
     
   </span>
@@ -1097,7 +885,7 @@
               <span class="md-nav__icon md-icon"></span>
               
   
-  API Reference
+  Reference
 
             </label>
             <ul class="md-nav__list" data-md-scrollfix>
@@ -1232,10 +1020,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#dags" class="md-nav__link">
+  <a href="#when-you-need-it" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        DAGs
+        When you need it
       </span>
     </span>
   </a>
@@ -1243,10 +1031,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#retry-driven-scheduling" class="md-nav__link">
+  <a href="#install" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Retry-driven scheduling
+        Install
       </span>
     </span>
   </a>
@@ -1254,10 +1042,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#concurrency-safety" class="md-nav__link">
+  <a href="#a-minimal-example" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Concurrency safety
+        A minimal example
       </span>
     </span>
   </a>
@@ -1265,10 +1053,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#manual-backfill" class="md-nav__link">
+  <a href="#how-it-fits-into-a-run" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Manual backfill
+        How it fits into a run
       </span>
     </span>
   </a>
@@ -1276,10 +1064,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#task-functions" class="md-nav__link">
+  <a href="#limits-and-known-issues" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Task functions
+        Limits and known issues
       </span>
     </span>
   </a>
@@ -1287,21 +1075,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
+  <a href="#api" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Installation
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deployment" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Deployment
+        API
       </span>
     </span>
   </a>
@@ -1353,20 +1130,12 @@
     
       
         
-      
+          
         
       
         
       
-    
-    
-    
-    
-      
-  
-  
-    
-    
+        
       
         
       
@@ -1375,40 +1144,11 @@
     
     
       <li class="md-path__item">
-        <a href="../../filemap/overview/" class="md-path__link">
+        <a href="../../../users/" class="md-path__link">
           
   
   <span class="md-ellipsis">
-    Packages
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-    
-  
-
-      
-        
-  
-  
-    
-    
-      
-        
-      
-    
-    
-    
-    
-      <li class="md-path__item">
-        <a href="././" class="md-path__link">
-          
-  
-  <span class="md-ellipsis">
-    canvod-airflow
+    Use the extensions
   </span>
 
         </a>
@@ -1430,141 +1170,80 @@
 
 
 <h1 id="canvod-airflow">canvod-airflow<a class="headerlink" href="#canvod-airflow" title="Permanent link">&para;</a></h1>
-<p>Airflow <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr> definitions for canvodpy <abbr title="GNSS Transmissometry — method using differential SNR between canopy and reference receivers to estimate vegetation properties">GNSS-T</abbr> pipelines.</p>
-<p><code>canvod-airflow</code> wraps canvodpy's stateless task functions
-(<code>canvodpy.workflows.tasks</code>) into Airflow TaskFlow DAGs, generated
-dynamically — one set per site configured in canvodpy's <code>sites.yaml</code>. No
-pipeline logic lives in this package: every task is a thin call into
-<code>canvodpy.workflows.tasks</code>, which stays in the core <code>canvodpy</code> package and
-has no Airflow dependency of its own.</p>
-<h2 id="dags">DAGs<a class="headerlink" href="#dags" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>graph TD
-    subgraph sbf["canvod_{site}_sbf — @daily"]
-        A1["validate_dirs"] --&gt; A2["check_sbf"] --&gt; A3["process_sbf"]
-        A3 --&gt; A4["validate_ingest"] --&gt; A5["calculate_vod"] --&gt; A6["cleanup"]
-    end</code></pre>
-<pre class="mermaid"><code>graph TD
-    subgraph rinex["canvod_{site}_rinex — @daily"]
-        B1["validate_dirs"] --&gt; B2["wait_for_rinex"]
-        B1 --&gt; B3["wait_for_sp3"] --&gt; B4["fetch_aux_data"]
-        B2 --&gt; B5["process_rinex"]
-        B4 --&gt; B5
-        B5 --&gt; B6["validate_ingest"] --&gt; B7["calculate_vod"] --&gt; B8["cleanup"]
-    end</code></pre>
-<pre class="mermaid"><code>graph TD
-    subgraph agency["canvod_{site}_sbf_agency — @daily"]
-        C1["validate_dirs"] --&gt; C2["check_sbf"]
-        C1 --&gt; C3["wait_for_sp3"] --&gt; C4["fetch_aux_data"]
-        C2 --&gt; C5["process_sbf"]
-        C4 --&gt; C5
-        C5 --&gt; C6["validate_ingest"] --&gt; C7["calculate_vod"] --&gt; C8["cleanup"]
-    end</code></pre>
-<table>
-<thead>
-<tr>
-<th><abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr></th>
-<th>Ephemeris</th>
-<th>Data availability</th>
-<th>Chain</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>canvod_{site}_sbf</code></td>
-<td>Broadcast (embedded in <abbr title="Septentrio Binary Format — proprietary binary telemetry from Septentrio receivers; embeds satellite geometry">SBF</abbr>)</td>
-<td>Same-day</td>
-<td><code>validate_dirs → check_sbf → process_sbf → validate_ingest → calculate_vod → cleanup</code></td>
-</tr>
-<tr>
-<td><code>canvod_{site}_rinex</code></td>
-<td>Agency <abbr title="Standard Product 3 — precise satellite orbit (position ± ~2 cm) file format, produced by IGS analysis centres (Navipedia: SP3)">SP3</abbr>/<abbr title="Clock — precise satellite and station clock correction file (30 s intervals), companion to SP3 orbits">CLK</abbr> (final products)</td>
-<td>~12-18 day lag</td>
-<td><code>validate_dirs → {wait_for_rinex, wait_for_sp3} → fetch_aux_data → process_rinex → validate_ingest → calculate_vod → cleanup</code></td>
-</tr>
-<tr>
-<td><code>canvod_{site}_sbf_agency</code></td>
-<td>Agency <abbr title="Standard Product 3 — precise satellite orbit (position ± ~2 cm) file format, produced by IGS analysis centres (Navipedia: SP3)">SP3</abbr>/<abbr title="Clock — precise satellite and station clock correction file (30 s intervals), companion to SP3 orbits">CLK</abbr>, <abbr title="Septentrio Binary Format — proprietary binary telemetry from Septentrio receivers; embeds satellite geometry">SBF</abbr> observables</td>
-<td>~12-18 day lag</td>
-<td><code>validate_dirs → {check_sbf, wait_for_sp3} → fetch_aux_data → process_sbf → validate_ingest → calculate_vod → cleanup</code></td>
-</tr>
-<tr>
-<td><code>canvod_backfill</code></td>
-<td>Whichever branch is selected at trigger time</td>
-<td>Manual</td>
-<td><code>resolve_dates → process_day</code> (dynamically mapped, one task per date in the range)</td>
-</tr>
-</tbody>
-</table>
-<p>Choose <code>sbf</code> for the fastest same-day results at broadcast-ephemeris
-precision, <code>rinex</code>/<code>sbf_agency</code> for the highest geometric quality once
-agency orbit/clock products are published.</p>
-<h2 id="retry-driven-scheduling">Retry-driven scheduling<a class="headerlink" href="#retry-driven-scheduling" title="Permanent link">&para;</a></h2>
-<p><code>wait_for_rinex</code> and <code>wait_for_sp3</code> are sensors (<code>mode="reschedule"</code>,
-6-hour poke interval, 21-day timeout) — they wait for <abbr title="Receiver Independent Exchange Format — standard ASCII format for GNSS observations, defined by IGS (Navipedia: RINEX)">RINEX</abbr> files and
-<abbr title="Standard Product 3 — precise satellite orbit (position ± ~2 cm) file format, produced by IGS analysis centres (Navipedia: SP3)">SP3</abbr>/<abbr title="Clock — precise satellite and station clock correction file (30 s intervals), companion to SP3 orbits">CLK</abbr> products to become available rather than failing outright. This
-handles the natural lag between same-day <abbr title="Septentrio Binary Format — proprietary binary telemetry from Septentrio receivers; embeds satellite geometry">SBF</abbr> data and delayed agency
-products without any manual re-triggering.</p>
-<h2 id="concurrency-safety">Concurrency safety<a class="headerlink" href="#concurrency-safety" title="Permanent link">&para;</a></h2>
-<p><abbr title="Version-controlled cloud-native tensor storage engine — git-like snapshots over Zarr v3 chunks">Icechunk</abbr> stores require serialized commits per branch. Every task that
-writes to the store (<code>calculate_vod</code>, <code>process_sbf</code>, <code>process_rinex</code>, and
-backfill's <code>process_day</code>) uses a shared <code>canvod_store_write</code> pool with one
-slot, serializing writes across all DAGs and backfill runs simultaneously.
-Create the pool once:</p>
-<div class="highlight"><pre><span></span><code>airflow<span class="w"> </span>pools<span class="w"> </span><span class="nb">set</span><span class="w"> </span>canvod_store_write<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="s2">&quot;Serialise Icechunk commits&quot;</span>
+<p><code>canvod-airflow</code> turns canvodpy's task functions into Airflow DAGs. One
+daily <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr> per site runs the site's processing, and one backfill <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr>
+covers a date range. Every task calls <code>canvodpy.workflows.tasks</code>, so no
+pipeline logic lives here.</p>
+<h2 id="when-you-need-it">When you need it<a class="headerlink" href="#when-you-need-it" title="Permanent link">&para;</a></h2>
+<p>You need it when a site's processing runs on a schedule you don't want to
+start by hand, or when you want to reprocess a date range you already
+ran. You don't need it when you run <code>canvodpy run</code> yourself, or when you
+process one batch once.</p>
+<h2 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;canvod-airflow[airflow] @ git+https://github.com/nfb2021/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-airflow&quot;</span>
 </code></pre></div>
-<p>Backfill additionally sets <code>max_active_tis_per_dagrun=1</code> on its dynamically
-mapped <code>process_day</code> task, so dates within a single backfill run process
-one at a time.</p>
-<h2 id="manual-backfill">Manual backfill<a class="headerlink" href="#manual-backfill" title="Permanent link">&para;</a></h2>
-<p><code>canvod_backfill</code> reprocesses a historical date range for one site and
-branch. Each date becomes an independent mapped task instance — a failure
-on one date retries only that date, the rest of the batch continues.</p>
+<p>The package lives on GitHub only. <code>apache-airflow</code> is an optional
+dependency, installed by the <code>[airflow]</code> extra: install the Airflow
+version your deployment uses.</p>
+<h2 id="a-minimal-example">A minimal example<a class="headerlink" href="#a-minimal-example" title="Permanent link">&para;</a></h2>
+<p>Point a <code>dags_folder</code> at a shim module that imports both <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr> modules, so
+Airflow's DagBag finds them. Airflow's pre-filter scans the folder for
+<abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr> files. Give the shim a name that holds the keywords, for example
+<code>canvod_dags.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># &lt;dags_folder&gt;/canvod_dags.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">canvod.airflow.daily_processing</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>  <span class="c1"># noqa: F403  (Airflow DAG scan)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">canvod.airflow.backfill</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>  <span class="c1"># noqa: F403</span>
+</code></pre></div>
+<p>Importing the module builds the DAGs. For each site in
+canvodpy's settings file, the package builds a daily <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr> named
+<code>canvod_{site}</code>:</p>
+<div class="highlight"><pre><span></span><code>validate_dirs → wait_for_data → (wait_for_sp3) → process_day → validate_ingest → calculate_vod
+</code></pre></div>
+<p><code>validate_dirs</code> checks the receiver directories. <code>wait_for_data</code> and
+<code>wait_for_sp3</code> are sensors: they wait until the files of the receiver and
+the satellite products are there, holding up to 21 days. <code>process_day</code>
+reads the files and stores the observations, <code>validate_ingest</code> checks
+them, and <code>calculate_vod</code> computes the <abbr title="Vegetation Optical Depth — dimensionless measure of microwave attenuation through vegetation canopy (τ = −ln(T)·cos θ)">VOD</abbr>.</p>
+<p>To reprocess a date range, trigger <code>canvod_backfill</code> by hand with the site
+and the range:</p>
 <div class="highlight"><pre><span></span><code>airflow<span class="w"> </span>dags<span class="w"> </span>trigger<span class="w"> </span>canvod_backfill<span class="w"> </span>--conf<span class="w"> </span><span class="s1">&#39;{</span>
 <span class="s1">    &quot;site&quot;: &quot;Rosalia&quot;,</span>
-<span class="s1">    &quot;branch&quot;: &quot;sbf&quot;,</span>
 <span class="s1">    &quot;start_date&quot;: &quot;2025-001&quot;,</span>
 <span class="s1">    &quot;end_date&quot;: &quot;2025-010&quot;</span>
 <span class="s1">}&#39;</span>
 </code></pre></div>
-<p><code>branch</code> selects which ephemeris/reader combination to use for the range:
-<code>sbf</code> (broadcast, same-day), <code>rinex</code> (agency <abbr title="Standard Product 3 — precise satellite orbit (position ± ~2 cm) file format, produced by IGS analysis centres (Navipedia: SP3)">SP3</abbr>/<abbr title="Clock — precise satellite and station clock correction file (30 s intervals), companion to SP3 orbits">CLK</abbr>), or <code>sbf_agency</code>
-(<abbr title="Septentrio Binary Format — proprietary binary telemetry from Septentrio receivers; embeds satellite geometry">SBF</abbr> observables + agency geometry).</p>
-<h2 id="task-functions">Task functions<a class="headerlink" href="#task-functions" title="Permanent link">&para;</a></h2>
-<p>All tasks call into <code>canvodpy.workflows.tasks</code>, which accepts only
-primitives (<code>str</code>, <code>dict</code>, <code>list</code>, <code>None</code>) and returns JSON-serializable
-dicts suitable for Airflow XCom:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">canvodpy.workflows.tasks</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">validate_data_dirs</span><span class="p">,</span>
-    <span class="n">check_sbf</span><span class="p">,</span>
-    <span class="n">check_rinex</span><span class="p">,</span>
-    <span class="n">check_sp3_availability</span><span class="p">,</span>
-    <span class="n">fetch_aux_data</span><span class="p">,</span>
-    <span class="n">process_sbf</span><span class="p">,</span>
-    <span class="n">process_rinex</span><span class="p">,</span>
-    <span class="n">validate_ingest</span><span class="p">,</span>
-    <span class="n">calculate_vod</span><span class="p">,</span>
-    <span class="n">cleanup</span><span class="p">,</span>
-<span class="p">)</span>
-</code></pre></div>
-<p>These functions have no Airflow dependency of their own — use them
-directly for scripting or debugging without running Airflow at all.</p>
-<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;canvod-airflow[airflow] @ git+https://github.com/nfb2021/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-airflow&quot;</span>
-</code></pre></div>
-<p><code>apache-airflow</code> is an optional extra, not a hard dependency — install it
-alongside whatever Airflow version your deployment environment provides.</p>
-<h2 id="deployment">Deployment<a class="headerlink" href="#deployment" title="Permanent link">&para;</a></h2>
-<p>Point your Airflow <code>dags_folder</code> at a shim module that imports both <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr>
-modules (the words "airflow" and "dag" must appear in the shim file for
-Airflow's DagBag keyword pre-filter):</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># &lt;dags_folder&gt;/canvod_dags.py</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">canvod.airflow.daily_processing</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>  <span class="c1"># noqa: F403  (airflow dag)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">canvod.airflow.backfill</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>  <span class="c1"># noqa: F403</span>
-</code></pre></div>
-<p>Ensure <code>canvodpy</code>'s config (<code>canvod-settings.yaml</code>) is accessible from the
-Airflow worker — DAGs are generated per configured site at parse time via
-<code>canvod.config.load_config()</code>.</p>
-<p>See the <a href="../../../api/canvod-airflow/">API Reference</a> for the full public API.</p>
+<p>Each date becomes one mapped task. A failure on one date retries only
+that date; the rest of the range continues.</p>
+<h2 id="how-it-fits-into-a-run">How it fits into a run<a class="headerlink" href="#how-it-fits-into-a-run" title="Permanent link">&para;</a></h2>
+<p>The tasks call canvodpy's task functions directly: <code>validate_data_dirs</code>,
+<code>check_day</code>, <code>check_sp3_availability</code>, <code>process_day</code>, <code>validate_ingest</code>,
+and <code>calculate_vod</code>. These functions are stateless and accept only
+primitives, so they carry dates and settings to and from Airflow. Use
+them in a script or a notebook without Airflow if you want.</p>
+<p>The daily <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr> waits for <abbr title="Standard Product 3 — precise satellite orbit (position ± ~2 cm) file format, produced by IGS analysis centres (Navipedia: SP3)">SP3</abbr>/<abbr title="Clock — precise satellite and station clock correction file (30 s intervals), companion to SP3 orbits">CLK</abbr> products only when a run uses agency
+ephemerides, that is when <code>processing.params.ephemeris_source</code> is not
+<code>broadcast</code>. With <code>broadcast</code>, the satellite angles come from the <abbr title="Septentrio Binary Format — proprietary binary telemetry from Septentrio receivers; embeds satellite geometry">SBF</abbr>
+files themselves and the results are available the same day. See
+<a href="https://canvodpy.eu/guides/configuration/">Configuration</a>, and for how
+the runs scale and write, <a href="https://canvodpy.eu/guides/parallel-processing/">Parallel
+processing</a> and
+<a href="https://canvodpy.eu/packages/store/icechunk/"><abbr title="Version-controlled cloud-native tensor storage engine — git-like snapshots over Zarr v3 chunks">Icechunk</abbr> stores</a>.</p>
+<h2 id="limits-and-known-issues">Limits and known issues<a class="headerlink" href="#limits-and-known-issues" title="Permanent link">&para;</a></h2>
+<ul>
+<li>An <abbr title="Version-controlled cloud-native tensor storage engine — git-like snapshots over Zarr v3 chunks">Icechunk</abbr> store takes one commit at a time. Every task that writes to
+  a store uses the pool <code>canvod_store_write</code> with one slot, which
+  serializes the writes across the DAGs and the backfill runs. Create the
+  pool once:
+  <div class="highlight"><pre><span></span><code>airflow<span class="w"> </span>pools<span class="w"> </span><span class="nb">set</span><span class="w"> </span>canvod_store_write<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="s2">&quot;Serialise Icechunk commits&quot;</span>
+</code></pre></div></li>
+<li>Within one backfill run, the dates process one at a time
+  (<code>max_active_tis_per_dagrun=1</code>).</li>
+<li>The settings file must be reachable from the Airflow worker. If it is
+  not, no DAGs are generated.</li>
+</ul>
+<h2 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h2>
+<p>See the <a href="../../../api/canvod-airflow/">API reference</a> for the full public
+API.</p>
 <!-- Glossary: hover any abbreviation to see its definition -->
 
 <!-- GNSS fundamentals — see Navipedia (navipedia.net) for detailed articles -->
@@ -1572,9 +1251,7 @@ Airflow worker — DAGs are generated per configured site at parse time via
 <!-- Observation data -->
 <!-- VOD and transmissometry -->
 <!-- Ephemerides and orbits -->
-<!-- Data standards -->
 <!-- Infrastructure -->
-<!-- Coordinate systems -->
 <!-- Signal bands -->
 <!-- Software tools -->
 
@@ -1616,7 +1293,7 @@ Airflow worker — DAGs are generated per configured site at parse time via
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../filemap/overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+          <a href="../../filemap/overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Non-canonical file names (canvod-filemap)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
@@ -1626,20 +1303,20 @@ Airflow worker — DAGs are generated per configured site at parse time via
                 Previous
               </span>
               <div class="md-ellipsis">
-                Overview
+                Non-canonical file names (canvod-filemap)
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../adapters/overview/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
+          <a href="../../adapters/overview/" class="md-footer__link md-footer__link--next" aria-label="Next: Exchange with other GNSS-T software (canvod-adapters)">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Overview
+                Exchange with other GNSS-T software (canvod-adapters)
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1659,8 +1336,9 @@ Airflow worker — DAGs are generated per configured site at parse time via
       Copyright &copy; 2026 Nicolas François Bader, TU Wien. This documentation is provided &ldquo;as is&rdquo; without warranty of any kind, express or implied, including but not limited to warranties of correctness, completeness, or fitness for a particular purpose.
     </div>
   
+  <a href="https://canvodpy.eu/impressum/">Impressum and AI disclosure</a>
   
-    Made with
+    · Made with
     <a href="https://zensical.org/" target="_blank" rel="noopener">
       Zensical
     </a>
@@ -1702,7 +1380,7 @@ Airflow worker — DAGs are generated per configured site at parse time via
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["content.code.copy","content.code.annotate","content.tooltips","content.tabs.link","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.sections","navigation.tabs","navigation.top","navigation.tracking","search.highlight","search.suggest","toc.follow"],"redirect":null,"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["content.code.copy","content.code.annotate","content.footnote.tooltips","content.tooltips","content.tabs.link","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","search.highlight","toc.follow"],"redirect":null,"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.67a597eb.min.js"></script>
