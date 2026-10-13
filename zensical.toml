@@ -37,24 +37,19 @@ extra_javascript = [
 nav = [
   { "Home" = "index.md" },
 
-  { "Packages" = [
-    { "canvod-filemap" = [
-      { "Overview" = "packages/filemap/overview.md" },
-    ]},
-    { "canvod-airflow" = [
-      { "Overview" = "packages/airflow/overview.md" },
-    ]},
-    { "canvod-adapters" = [
-      { "Overview" = "packages/adapters/overview.md" },
-    ]},
+  { "Use the extensions" = [
+    { "Start here" = "users/index.md" },
+    { "Non-canonical file names (canvod-filemap)" = "packages/filemap/overview.md" },
+    { "Scheduled runs with Airflow (canvod-airflow)" = "packages/airflow/overview.md" },
+    { "Exchange with other GNSS-T software (canvod-adapters)" = "packages/adapters/overview.md" },
   ]},
 
-  { "Development" = [
+  { "Contribute" = [
     { "Contributing" = "CONTRIBUTING.md" },
-    { "Security Policy" = "../SECURITY.md" },
+    { "Security policy" = "../SECURITY.md" },
   ]},
 
-  { "API Reference" = [
+  { "Reference" = [
     { "canvod.filemap" = "api/canvod-filemap.md" },
     { "canvod.airflow" = "api/canvod-airflow.md" },
     { "canvod.adapters" = "api/canvod-adapters.md" },
@@ -66,8 +61,8 @@ nav = [
 # --------------------------------------------------------------------------
 [project.plugins.mkdocstrings.handlers.python]
 [project.plugins.mkdocstrings.handlers.python.options]
-docstring_style = "google"
-show_source = true
+docstring_style = "numpy"
+show_source = false
 show_bases = true
 members_order = "source"
 
@@ -99,7 +94,7 @@ emoji_index = "zensical.extensions.emoji.twemoji"
 [project.markdown_extensions.pymdownx.mark]
 [project.markdown_extensions.pymdownx.smartsymbols]
 [project.markdown_extensions.pymdownx.snippets]
-auto_append = ["docs/includes/abbreviations.md"]
+auto_append = ["includes/abbreviations.md"]
 [project.markdown_extensions.pymdownx.superfences]
 custom_fences = [
   { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
@@ -122,11 +117,12 @@ language = "en"
 # dark one).
 logo = "https://raw.githubusercontent.com/nfb2021/canvodpy/main/docs/assets/logo/canvodpy_logo_dark_mode.svg"
 favicon = "https://raw.githubusercontent.com/nfb2021/canvodpy/main/docs/assets/logo/canvodpy_favicon_bright_mode.svg"
-custom_dir = "docs/overrides"
+custom_dir = "overrides"
 
 features = [
   "content.code.copy",
   "content.code.annotate",
+  "content.footnote.tooltips",
   "content.tooltips",
   "content.tabs.link",
   "navigation.footer",
@@ -137,25 +133,26 @@ features = [
   "navigation.path",
   "navigation.sections",
   "navigation.tabs",
+  "navigation.tabs.sticky",
   "navigation.top",
   "navigation.tracking",
   "search.highlight",
-  "search.suggest",
   "toc.follow",
 ]
 
 [project.theme.icon]
 repo = "fontawesome/brands/github"
 
-[[project.theme.palette]]
-scheme = "default"
-toggle.icon = "lucide/sun"
-toggle.name = "Switch to dark mode"
-
+# The first palette is the default: dark mode.
 [[project.theme.palette]]
 scheme = "slate"
 toggle.icon = "lucide/moon"
 toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
 
 # --------------------------------------------------------------------------
 # Social links (footer)

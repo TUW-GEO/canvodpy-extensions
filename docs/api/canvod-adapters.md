@@ -1,4 +1,4 @@
-# canvod.adapters API Reference
+# canvod.adapters API reference
 
 ## Interfaces
 

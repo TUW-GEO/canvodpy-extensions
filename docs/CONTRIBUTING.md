@@ -2,11 +2,11 @@
 
 Contributions are welcome. This guide covers the development setup and contribution workflow.
 
-## Required Tools
+## Required tools
 
 Two external tools must be installed separately (not managed by `uv sync`):
 
-### uv (Python Package Manager)
+### uv
 
 ```bash
 # macOS/Linux
@@ -18,7 +18,7 @@ brew install uv
 
 [uv documentation](https://docs.astral.sh/uv/)
 
-### just (Command Runner)
+### just
 
 ```bash
 # macOS/Linux
@@ -30,26 +30,27 @@ brew install just
 
 [just documentation](https://github.com/casey/just)
 
-## Types of Contributions
+## Ways to contribute
 
-### Report Bugs
+### Report bugs
 
-Report bugs at https://github.com/nfb2021/canvodpy-extensions/issues. Include operating
-system, local setup details, and steps to reproduce.
+Report bugs at https://github.com/nfb2021/canvodpy-extensions/issues. Include
+your operating system, your setup, and the steps to reproduce.
 
-### Fix Bugs / Implement Features
+### Fix bugs and implement features
 
 Issues tagged "bug"/"enhancement" and "help wanted" are open for contributions.
 
-### Add a New Package
+### Add a new package
 
-New extension packages live under `packages/<name>/` and are picked up automatically
-by the uv workspace (`packages/*`). Each package is independently versioned.
-canvodpy-extensions is GitHub-only by design (see "Releasing" below) — packages
-install via git-subdirectory sources, not PyPI. See `packages/canvod-filemap`
-for the expected layout (`pyproject.toml`, `src/`, `tests/`, `README.md`).
+New extension packages live under `packages/<name>/` and are picked up
+automatically by the uv workspace (`packages/*`). Each package is versioned
+on its own. canvodpy-extensions is GitHub-only by design (see Releasing
+below). Packages install via git-subdirectory sources, not PyPI. See
+`packages/canvod-filemap` for the expected layout (`pyproject.toml`, `src/`,
+`tests/`, `README.md`).
 
-## Development Workflow
+## Development workflow
 
 1. Install required tools (uv and just).
 
@@ -89,7 +90,7 @@ for the expected layout (`pyproject.toml`, `src/`, `tests/`, `README.md`).
    branch and open the pull request, but never merge, push `main` or tags,
    or bypass a check (`AGENTS.md`, Git and GitHub).
 
-### Commit Message Format
+### Commit message format
 
 ```
 <type>(<scope>): <subject>
@@ -108,7 +109,7 @@ git commit -m "docs: update installation instructions"
 
 See [Conventional Commits](https://www.conventionalcommits.org/) for the full specification.
 
-## Common Commands
+## Common commands
 
 ```bash
 just --list                    # Show all commands
@@ -124,11 +125,11 @@ agents; the `CLAUDE.md` files import it. Task guides for agents are in
 `.claude/skills/`. Keep them correct when you change what they describe;
 `just check-agent-docs` checks that the paths and recipes they name exist.
 
-## Pull Request Guidelines
+## Pull request guidelines
 
-1. Include tests for new functionality — new code must not reduce test coverage.
+1. Include tests for new features. New code must not reduce test coverage.
 2. Update the package's `README.md` and the Zensical documentation in `docs/` if
-   adding or changing public API or behaviour.
+   adding or changing public API or behavior.
 3. Ensure compatibility with Python 3.14+.
 4. Add yourself to `CONTRIBUTORS.md` if this is your first contribution.
 
@@ -139,7 +140,7 @@ By submitting a pull request, you agree that your contribution is licensed under
 the same terms. The `LICENSE` and `NOTICE` files at the repository root apply to
 all source files. Per-file license headers are not required.
 
-## Code Quality
+## Code quality
 
 - **ruff** for linting and formatting
 - **ty** for type checking
@@ -147,18 +148,18 @@ all source files. Per-file license headers are not required.
 
 Run `just check` before committing.
 
-## Releasing (Maintainers)
+## Releasing
 
 Releases are cut by a maintainer, never by a coding agent; only
 maintainers can create release tags.
 
 Each package is versioned and released on its own. A release is the git tag
-`<package>-v<version>`, e.g. `canvod-filemap-v0.2.0`, on `main`.
+`<package>-v<version>`, for example `canvod-filemap-v0.2.0`, on `main`.
 
 ```bash
 just versions                         # current version of every package
 just changelog canvod-filemap         # changes since its last release
-just release canvod-filemap minor     # or major, patch, or e.g. 0.2.0
+just release canvod-filemap minor     # or major, patch, or for example 0.2.0
 ```
 
 `just release` runs the package's tests and makes one commit that
@@ -168,7 +169,7 @@ just release canvod-filemap minor     # or major, patch, or e.g. 0.2.0
   `packages/<package>/` ([git-cliff](https://git-cliff.org), `cliff.toml`),
 - pins the package's install snippets in the READMEs and docs to the new tag.
 
-Commit messages become the changelog, so follow the commit convention above
+Commit messages become the changelog, so follow the commit convention here
 and mark breaking changes (`feat!:` or a `BREAKING CHANGE:` footer).
 
 `main` requires a PR (branch protection), so the tag is set after the merge:
@@ -186,12 +187,12 @@ just tag canvod-filemap                # tags main and pushes the tag
 (Don't tag before the PR merges: a merge can produce a different commit SHA
 than the one you tagged, orphaning the tag.)
 
-Pushing the tag runs [`release.yml`](.github/workflows/release.yml), which
+Pushing the tag runs [`release.yml`](https://github.com/nfb2021/canvodpy-extensions/blob/main/.github/workflows/release.yml), which
 checks that the tag matches the package version and drafts a GitHub Release
 with the package's changes. Publish the draft by hand. Publishing archives the
 repository on Zenodo, versioned by the tag: `.zenodo.json` and `CITATION.cff`
 carry no version, since the packages have different ones. Then update the pin in
-downstream `[tool.uv.sources]`, e.g. canvodpy's root `pyproject.toml`.
+downstream `[tool.uv.sources]`, for example canvodpy's root `pyproject.toml`.
 
 canvodpy-extensions is deliberately GitHub-only. It is where logic for
 specific needs, workflows and data realities lives, looser than the canvodpy

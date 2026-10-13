@@ -1,6 +1,9 @@
 ---
 title: canvodpy-extensions
-description: Optional extension packages for the canVODpy ecosystem
+description: Optional packages for the canVODpy ecosystem
+hide:
+  - navigation
+  - toc
 ---
 
 <div class="hero" markdown>
@@ -11,16 +14,17 @@ description: Optional extension packages for the canVODpy ecosystem
   <span class="hero-lockup__word">extensions</span>
 </h1>
 
-**Optional extension packages for the [canVODpy](https://github.com/nfb2021/canvodpy) ecosystem**
+**Optional packages for the [canVODpy](https://canvodpy.eu/) ecosystem**
 
-canvodpy-extensions hosts packages that are useful alongside canVODpy but don't
-belong in the core monorepo — non-canonical filename handling, orchestration glue,
-and other slot-in components. Install only what you need.
+Each of these packages does one job alongside canVODpy. Install only the
+one you need: a naming recipe for the files your receiver writes, an
+Airflow DAG for a site's daily runs, or an adapter to exchange data with
+another GNSS-T program.
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![REUSE](https://img.shields.io/badge/REUSE-3.3-blue)](https://reuse.software/)
 
-[Browse packages :fontawesome-solid-arrow-right:](packages/filemap/overview.md){ .md-button .md-button--primary }
+[Start here :fontawesome-solid-arrow-right:](users/index.md){ .md-button .md-button--primary }
 [Contribute :fontawesome-solid-arrow-right:](CONTRIBUTING.md){ .md-button }
 
 </div>
@@ -35,48 +39,37 @@ and other slot-in components. Install only what you need.
 
     ---
 
-    Recipe-based filename mapping for non-canonical GNSS filenames. Virtualises
-    physical filenames to canonical canVOD names without renaming anything on disk.
-    Slots in for canvodpy >= 0.3.0.
+    Maps the files your receiver writes to their canVOD file names, so a
+    run finds your data without you renaming anything on disk.
 
-    [:octicons-arrow-right-24: Overview](packages/filemap/overview.md)
+    [:octicons-arrow-right-24: Naming recipes](packages/filemap/overview.md)
 
 -   :fontawesome-solid-diagram-project: &nbsp; **canvod-airflow**
 
     ---
 
-    Airflow DAG definitions for canvodpy pipelines — daily SBF, RINEX, and
-    SBF+agency-ephemeris DAGs plus a manually-triggered backfill DAG.
+    One daily DAG per site, plus one to backfill a date range. The tasks
+    run the code of `canvodpy run`.
 
-    [:octicons-arrow-right-24: Overview](packages/airflow/overview.md)
+    [:octicons-arrow-right-24: Airflow DAGs](packages/airflow/overview.md)
 
 -   :fontawesome-solid-arrows-turn-to-dots: &nbsp; **canvod-adapters**
 
     ---
 
-    Data exchange between canvodpy and other GNSS-T programs: observations
-    and VOD to and from gnssvod, checked against canvodpy's contracts.
+    Reads and writes observations and VOD for another GNSS-T program, for
+    example gnssvod, and checks each import against canvodpy's contracts.
 
-    [:octicons-arrow-right-24: Overview](packages/adapters/overview.md)
+    [:octicons-arrow-right-24: Data exchange](packages/adapters/overview.md)
 
 </div>
 
 ---
 
-## Installation
-
-GitHub-only by design — install via git-subdirectory sources, not PyPI:
-
-```bash
-uv add "canvod-filemap @ git+https://github.com/nfb2021/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-filemap"
-```
-
-## Why a separate repo?
-
-Packages here are optional: not every canVODpy deployment needs them, and they
-evolve on their own release cadence. Keeping them out of the core monorepo keeps
-`canvodpy` lean while still giving these packages the same tooling, licensing, and
-publishing pipeline.
+canVODpy is a lean core that works fully without any of these packages.
+Each one is optional, installs on its own, and follows its own release
+cadence. For the packages canVODpy ships and how to set a site up,
+see [canVODpy](https://canvodpy.eu/).
 
 ---
 
