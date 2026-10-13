@@ -6,10 +6,10 @@ Airflow DAGs that run canvodpy: thin TaskFlow wrappers around
 Before changing it, read the canvodpy side: root `AGENTS.md`, section
 "canvodpy: read it before changing an extension".
 
-## Where things are
+## Where things live
 
 - `src/canvod/airflow/daily_processing.py`: one `@daily` DAG per site in
-  the canvodpy configuration, `canvod_<site>`, made by `create_daily_dag`:
+  the canvodpy settings, `canvod_<site>`, made by `create_daily_dag`:
   `validate_dirs → wait_for_data (→ wait_for_sp3) → process_day →
   validate_ingest → calculate_vod`. `wait_for_sp3` is only added when
   `processing.params.ephemeris_source` is not `broadcast`.
@@ -17,13 +17,13 @@ Before changing it, read the canvodpy side: root `AGENTS.md`, section
   with `site`, `start_date`, `end_date` params; one mapped `process_day`
   per day.
 
-## Rules
+## Invariants
 
 - **No pipeline logic here.** Add it to `canvodpy.workflows.tasks`; the
   DAGs only call those functions and pass the day as `YYYYDOY`.
 - **Parse-time safety:** import canvodpy inside tasks, not at module top.
   `_get_configured_sites` returns no sites, with a warning, when the
-  configuration cannot load, so the scheduler can still parse the file.
+  settings cannot load, so the scheduler can still parse the file.
   `airflow` itself is a top-level import: the modules need the `airflow`
   extra.
 - **One store writer at a time:** tasks that write a store use

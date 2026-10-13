@@ -6,7 +6,7 @@ Data exchange between canvodpy and other GNSS-T programs. Today: gnssvod
 Before changing it, read the canvodpy side: root `AGENTS.md`, section
 "canvodpy: read it before changing an extension".
 
-## Where things are
+## Where things live
 
 - `src/canvod/adapters/base.py`: the interfaces, one ABC per kind of data
   (`ObservationsAdapter`, `VodAdapter`). Their concrete methods
@@ -22,7 +22,7 @@ Before changing it, read the canvodpy side: root `AGENTS.md`, section
   observation files, `src/canvod/adapters/gnssvod/adapter.py` the two
   adapters.
 
-## Design
+## Invariants
 
 - One subpackage per program. It implements only the interfaces of the
   data it exchanges, and only converts. Checks, provenance and store I/O are

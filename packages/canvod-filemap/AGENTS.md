@@ -1,14 +1,14 @@
 # canvod-filemap
 
-Naming recipes: a recipe maps the file names one receiver writes to the
-canonical canVOD name, without renaming files on disk. canvodpy does the
-file discovery; this package only answers "which canonical name does this
+Naming recipes: a recipe translates the file names one receiver writes to
+canVOD file names, without renaming files on disk. canvodpy does the file
+discovery; this package only answers "which canVOD file name does this
 file have?" and "where is the recipe file?".
 
 Before changing it, read the canvodpy side: root `AGENTS.md`, section
 "canvodpy: read it before changing an extension".
 
-## Where things are
+## Where things live
 
 - `src/canvod/filemap/recipe.py`: `NamingRecipe`, the recipe model and the
   left-to-right field walk over a file name.
@@ -16,8 +16,8 @@ Before changing it, read the canvodpy side: root `AGENTS.md`, section
   `<config dir>/recipes/<site>/<name>.yaml`, and creating one from
   `src/canvod/filemap/templates/recipe.yaml`.
 - `src/canvod/filemap/mapping.py`: `VirtualFile`, a physical file with its
-  canonical name.
-- The canonical name itself (`CanVODFilename`) is canvod-preflight's
+  canVOD file name.
+- The canVOD file name itself (`CanVODFilename`) is canvod-preflight's
   (`canvod.preflight.convention`). Never redefine it here.
 
 ## How canvodpy uses it
@@ -47,9 +47,11 @@ name here breaks canvodpy: search the canvodpy repo for it first.
 `SiteNamingConfig`/`ReceiverNamingConfig`, the convention module (now in
 canvod-preflight) and the recipe field `layout` were removed, not
 deprecated. An old recipe with `layout:` still loads; the field is
-ignored.
+ignored. This was before the extensions took canvodpy's rule
+"deprecate, don't delete" (`CODING_STANDARDS.md`); public code that goes
+away from now on is deprecated first.
 
 ## Tests
 
 `just test-package canvod-filemap`. Test files in `tests/test_data/` use
-canonical names; non-canonical cases are built in `tmp_path`.
+canVOD file names; other names are built in `tmp_path`.
