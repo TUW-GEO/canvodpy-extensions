@@ -120,6 +120,26 @@ docs:
 docs-build:
     uv run zensical build
 
+# check the language of the docs pages (Vale, Google style)
+docs-lint *FILES="docs":
+    uvx --from vale vale sync
+    uvx --from vale vale {{ FILES }}
+
+# check the language of the docs pages changed since BASE (Vale; what CI runs)
+docs-lint-changed BASE="origin/main":
+    #!/usr/bin/env bash
+    set -euo pipefail
+    files=$(git diff --name-only --diff-filter=d "{{ BASE }}...HEAD" -- 'docs/*.md' 'docs/**/*.md')
+    if [ -z "$files" ]; then echo "No docs pages changed since {{ BASE }}."; exit 0; fi
+    uvx --from vale vale sync
+    uvx --from vale vale $files
+
+# check every link of the built docs site (lychee; brew install lychee)
+docs-links:
+    @command -v lychee >/dev/null || { echo "lychee is not installed: brew install lychee" >&2; exit 1; }
+    uv run zensical build --clean
+    lychee --root-dir "$(pwd)/site" 'site/**/*.html'
+
 # deploy the documentation via GitHub Actions
 docs-deploy:
     gh workflow run "Deploy Docs"
