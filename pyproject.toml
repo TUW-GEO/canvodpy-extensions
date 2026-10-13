@@ -34,14 +34,14 @@ canvod-utils = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory =
 
 [dependency-groups]
 dev = [
-    "commitizen>=4.19.0",
+    "commitizen>=4.19.2",
     "mkdocstrings-python>=2.0.9",
     "pre-commit>=4.6.2",
     "pytest>=9.1.1",
     "pytest-cov>=7.1.0",
-    "ruff>=0.16.10",
-    "ty>=0.0.84",
-    "zensical>=0.0.67",
+    "ruff>=0.17.0",
+    "ty>=0.0.86",
+    "zensical>=0.0.69",
 ]
 
 # ============================================================================
