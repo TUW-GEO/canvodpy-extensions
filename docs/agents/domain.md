@@ -1,16 +1,16 @@
-# Domain Docs
+# Domain docs
 
-How the engineering skills should consume this repo's domain documentation when exploring the codebase.
+How the engineering skills should consume this repository's domain documentation when exploring the codebase.
 
 canvodpy-extensions shares canvodpy's domain (GNSS-T, sites, files, stores). So its words are canvodpy's: there is no second glossary here.
 
 ## Before exploring, read these
 
 - **`canvodpy:GLOSSARY.md`**: the project's words, in canvodpy at the locked commit (`just canvodpy-ref`).
-- **`canvodpy:docs/adr/index.md`**: canvodpy's decisions. Read the ones that touch the area you're about to work in.
+- **`canvodpy:docs/adr/index.md`**: canvodpy's decisions. Read the ones about the area you're about to work in.
 - **`docs/adr/`** in this repository, once it exists: decisions that concern only the extensions.
 - **`CODING_STANDARDS.md`**: the rules every change follows.
-- The **`AGENTS.md`** of every package you touch: where things live, invariants, tests.
+- The **`AGENTS.md`** of every package you change: where things live, invariants, tests.
 
 ## Where new terms and decisions go
 
@@ -24,7 +24,7 @@ When your output names a domain concept (in an issue title, a refactor proposal,
 
 If the concept you need isn't in the glossary yet, that's a signal: either you're inventing language the project doesn't use (reconsider) or there's a real gap (note it for `/mattpocock-skills:domain-modeling`, and add the term in canvodpy).
 
-## Flag ADR conflicts
+## Flag conflicts with an ADR
 
 If your output contradicts an existing ADR, here or in canvodpy, surface it explicitly rather than silently overriding:
 
