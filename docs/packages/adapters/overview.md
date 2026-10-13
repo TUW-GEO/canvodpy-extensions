@@ -34,7 +34,9 @@ Import a gnssvod VOD file into the VOD store, and export one back:
 from canvod.adapters.gnssvod import GnssvodVod
 from canvod.adapters.store import export_vod, import_vod
 
-adapter = GnssvodVod(bands={"VOD_L1": ["S1C", "S1W", "S1X"], "VOD_L2": ["S2W"]})
+adapter = GnssvodVod(
+    bands={"VOD_L1": ["S1C", "S1W", "S1X"], "VOD_L2": ["S2W"]}, time_system="GPS"
+)
 
 import_vod(adapter, "vod_rosalia.nc", site.vod_store, "canopy_01_vs_reference_01")
 
@@ -89,8 +91,10 @@ and the time in the dataset attributes (`conversion_*`), read back with
   angles.
 - The VOD store keeps imported VOD under the program's name, apart from
   the VOD canvodpy computed. Importing the same file again is skipped.
-- gnssvod keeps the epochs of the RINEX file, so the file's time scale is
-  a required setting.
+- gnssvod keeps the epochs of the RINEX files it read, in observation
+  and in VOD files, so the files' time scale is a required setting
+  (`time_system`). canvodpy stores every epoch in GPS time, so a file in
+  another time scale is refused rather than converted.
 
 ## Another program
 

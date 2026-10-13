@@ -14,6 +14,7 @@ from canvod.adapters.gnssvod.convert import (
 )
 from canvod.adapters.gnssvod.reader import GnssvodObsReader
 from canvod.adapters.provenance import Tool
+from canvod.readers.gnss_specs.metadata import epoch_coord_attrs
 from pydantic import field_validator
 
 GNSSVOD = Tool(
@@ -38,7 +39,7 @@ class GnssvodObservations(ObservationsAdapter):
     ----------
     time_system : str
         Time scale of the epochs of the gnssvod files to import, as in the
-        RINEX files they came from (e.g. ``"GPS"``); see
+        RINEX files they came from; only ``"GPS"`` is accepted; see
         :class:`~canvod.adapters.gnssvod.reader.GnssvodObsReader`.
 
     Examples
@@ -81,6 +82,12 @@ class GnssvodVod(VodAdapter):
         whose tracking code is not known). Exporting merges canvodpy's VOD
         the same way as ``calc_vod``, a merged band also taking the sids
         an import gives it, so imported VOD exports unchanged.
+    time_system : str
+        Time scale of the epochs, as in the RINEX files gnssvod read (their
+        ``TIME OF FIRST OBS`` record). canvodpy stores every epoch in GPS
+        time, so only ``"GPS"`` is accepted; files in another time scale
+        are refused when imported. Recorded on the epoch coordinate, like
+        the readers do.
 
     Notes
     -----
@@ -90,13 +97,14 @@ class GnssvodVod(VodAdapter):
 
     Examples
     --------
-    >>> adapter = GnssvodVod(bands={"VOD_L1": ["S1C", "S1W"]})
+    >>> adapter = GnssvodVod(bands={"VOD_L1": ["S1C", "S1W"]}, time_system="GPS")
     >>> vod = adapter.import_file("vod_canopy_vs_reference.nc")
     """
 
     tool: ClassVar[Tool] = GNSSVOD
 
     bands: dict[str, list[str]]
+    time_system: str
 
     @field_validator("bands")
     @classmethod
@@ -133,10 +141,12 @@ class GnssvodVod(VodAdapter):
         tool_ds.to_netcdf(path)
 
     def convert_to_canvodpy(self, tool_ds: xr.Dataset) -> xr.Dataset:
-        return from_gnssvod_vod(
+        ds = from_gnssvod_vod(
             tool_ds,
             {band: self._import_code(codes) for band, codes in self.bands.items()},
         )
+        ds["epoch"].attrs.update(epoch_coord_attrs(self.time_system))
+        return ds
 
     def convert_from_canvodpy(self, vod_ds: xr.Dataset) -> xr.Dataset:
         # A merged band also takes the sids an import gives it ("S1" ->
