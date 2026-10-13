@@ -37,24 +37,19 @@ extra_javascript = [
 nav = [
   { "Home" = "index.md" },
 
-  { "Packages" = [
-    { "canvod-filemap" = [
-      { "Overview" = "packages/filemap/overview.md" },
-    ]},
-    { "canvod-airflow" = [
-      { "Overview" = "packages/airflow/overview.md" },
-    ]},
-    { "canvod-adapters" = [
-      { "Overview" = "packages/adapters/overview.md" },
-    ]},
+  { "Use the extensions" = [
+    { "Start here" = "users/index.md" },
+    { "Non-canonical file names (canvod-filemap)" = "packages/filemap/overview.md" },
+    { "Scheduled runs with Airflow (canvod-airflow)" = "packages/airflow/overview.md" },
+    { "Exchange with other GNSS-T software (canvod-adapters)" = "packages/adapters/overview.md" },
   ]},
 
-  { "Development" = [
+  { "Contribute" = [
     { "Contributing" = "CONTRIBUTING.md" },
-    { "Security Policy" = "../SECURITY.md" },
+    { "Security policy" = "../SECURITY.md" },
   ]},
 
-  { "API Reference" = [
+  { "Reference" = [
     { "canvod.filemap" = "api/canvod-filemap.md" },
     { "canvod.airflow" = "api/canvod-airflow.md" },
     { "canvod.adapters" = "api/canvod-adapters.md" },
