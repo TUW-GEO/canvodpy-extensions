@@ -1,8 +1,6 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21359005.svg)](https://doi.org/10.5281/zenodo.21359005)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21359005-blue)](https://doi.org/10.5281/zenodo.21359005)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python](https://img.shields.io/badge/python-3.14-blue.svg)](https://www.python.org/)
-[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
 [![REUSE](https://img.shields.io/badge/REUSE-3.3-blue)](https://reuse.software/)
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B-orange)](https://fair-software.eu)
 
