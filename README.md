@@ -84,7 +84,5 @@ This software is provided "as is" without warranty of any kind.
 
 ## Affiliation
 
-Founded by **Nicolas François Bader**
-
 [Climate and Environmental Remote Sensing Research Unit (CLIMERS)](https://www.tuwien.at/en/mg/geo/climers)
 Department of Geodesy and Geoinformation, TU Wien
