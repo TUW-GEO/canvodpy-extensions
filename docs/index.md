@@ -21,6 +21,7 @@ one you need: a naming recipe for the files your receiver writes, an
 Airflow DAG for a site's daily runs, or an adapter to exchange data with
 another GNSS-T program.
 
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21359005-blue)](https://doi.org/10.5281/zenodo.21359005)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![REUSE](https://img.shields.io/badge/REUSE-3.3-blue)](https://reuse.software/)
 
