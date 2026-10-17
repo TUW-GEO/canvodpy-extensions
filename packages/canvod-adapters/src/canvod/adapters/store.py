@@ -56,19 +56,22 @@ def import_vod(
     ValueError
         If the converted data does not meet the VOD dataset contract.
     """
+    from canvod.store.store import VodWriteItem
+
     path = Path(path)
     ds = adapter.import_file(path)
     tool = adapter.tool.name
-    return store.write_or_append_vod_group(
-        ds,
-        f"{tool}/{analysis_name}",
+    group_name = f"{tool}/{analysis_name}"
+    item = VodWriteItem(
+        group_name=group_name,
+        dataset=ds,
         source_file_hashes={tool: file_hash(path)},
         source_gnss_stores={tool: str(path)},
         calculator_name=tool,
-        branch=branch,
         commit_message=f"Imported {tool} VOD from {path.name}",
-        dedup=dedup,
     )
+    results = store.write_or_append_vod_groups_batch([item], branch=branch, dedup=dedup)
+    return results[group_name].written
 
 
 def export_vod(
