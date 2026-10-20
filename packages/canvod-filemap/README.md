@@ -16,7 +16,7 @@ file on disk.
 ```
 {SIT}{T}{NN}{AGC}_R_{YYYY}{DOY}{HHMM}_{PERIOD}_{SAMPLING}_{CONTENT}.{TYPE}
 ```
-Example: `ROSA01TUW_R_20250010000_15M_05S_AA.rnx`
+Example: `FANA01INK_R_20250010000_15M_05S_AA.rnx`
 
 ## Key components
 
@@ -44,7 +44,7 @@ from pathlib import Path
 
 from canvod.filemap import NamingRecipe
 
-recipe = NamingRecipe.load(Path("config/recipes/rosalia/rosalia_reference.yaml"))
+recipe = NamingRecipe.load(Path("config/recipes/fangorn/fangorn_reference.yaml"))
 vf = recipe.to_virtual_file(Path("rref001a15.25o"))
 print(vf.conventional_name)  # canonical canVOD name; the file keeps its name
 ```

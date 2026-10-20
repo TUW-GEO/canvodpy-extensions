@@ -33,7 +33,7 @@ from pathlib import Path
 
 from canvod.filemap import NamingRecipe
 
-recipe = NamingRecipe.load(Path("config/recipes/rosalia/rosalia_reference.yaml"))
+recipe = NamingRecipe.load(Path("config/recipes/fangorn/fangorn_reference.yaml"))
 vf = recipe.to_virtual_file(Path("rref001a15.25o"))
 print(vf.canonical_str)  # the canVOD filename; the file on disk keeps its name
 ```
@@ -44,7 +44,7 @@ from the receiver's own filename and writes them as a canVOD filename.
 same class a run uses. Before a run, check which files it would process:
 
 ```bash
-canvodpy config validate --site rosalia
+canvodpy config validate --site fangorn
 ```
 
 ## How it fits into a run
