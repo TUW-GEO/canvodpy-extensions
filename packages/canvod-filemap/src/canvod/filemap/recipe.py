@@ -24,11 +24,11 @@ Example recipe (YAML)
 ---------------------
 ::
 
-    name: rosalia_reference
-    description: Rosalia forest, reference receiver
+    name: fangorn_reference
+    description: Orthanc, reference receiver
 
-    site: ROS
-    agency: TUW
+    site: FAN
+    agency: INK
     receiver_number: 1
     receiver_type: reference
     sampling: "05S"
@@ -110,7 +110,7 @@ class NamingRecipe(BaseModel):
 
     model_config = ConfigDict(extra="ignore")
 
-    name: str = Field(description="Recipe identifier (e.g. 'rosalia_reference')")
+    name: str = Field(description="Recipe identifier (e.g. 'fangorn_reference')")
     description: str = ""
 
     # Canonical identity
