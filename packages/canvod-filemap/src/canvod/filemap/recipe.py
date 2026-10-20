@@ -67,6 +67,7 @@ Example recipe for exotic filenames
 
 from __future__ import annotations
 
+import hashlib
 from pathlib import Path
 from typing import Literal
 
@@ -368,3 +369,19 @@ class NamingRecipe(BaseModel):
         if not isinstance(data, dict):
             return []
         return [str(key) for key in data if key not in cls.model_fields]
+
+
+def recipe_sha256(path: Path) -> str:
+    """The sha256 of a recipe file, as recorded in a store's metadata.
+
+    Parameters
+    ----------
+    path : Path
+        A recipe file, local or cached.
+
+    Returns
+    -------
+    str
+        The hexadecimal sha256 of the file's bytes.
+    """
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()

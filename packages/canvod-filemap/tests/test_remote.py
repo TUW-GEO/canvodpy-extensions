@@ -343,12 +343,12 @@ def test_refused_replace_without_a_copy_is_a_fetch_error(
 def test_parallel_fetches_leave_one_complete_copy(server: RecipeServer) -> None:
     server.serve(COMMIT_URL, RECIPE)
     paths: list[Path] = []
-    errors: list[BaseException] = []
+    errors: list[Exception] = []
 
     def fetch() -> None:
         try:
             paths.append(fetch_recipe(COMMIT_URL))
-        except BaseException as exc:
+        except Exception as exc:
             errors.append(exc)
 
     threads = [threading.Thread(target=fetch) for _ in range(8)]

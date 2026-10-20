@@ -38,8 +38,7 @@ from urllib.parse import urlsplit
 import yaml
 from pydantic import ValidationError
 
-from .recipe import NamingRecipe
-from .recipe_files import recipe_sha256
+from .recipe import NamingRecipe, recipe_sha256
 
 #: The only host recipes are read from.
 RECIPE_HOST = "raw.githubusercontent.com"

@@ -3,13 +3,12 @@
 __version__ = "0.1.0"
 
 from .mapping import VirtualFile
-from .recipe import NamingRecipe
+from .recipe import NamingRecipe, recipe_sha256
 from .recipe_files import (
     RecipeNotFoundError,
     create_recipe,
     find_recipe,
     recipe_path,
-    recipe_sha256,
 )
 from .remote import (
     RecipeFetchError,
