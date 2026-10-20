@@ -80,7 +80,7 @@ from canvod.preflight.convention import (
     ReceiverType,
     SiteId,
 )
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from .mapping import VirtualFile
 from .patterns import hour_letter_to_int, resolve_year_from_yy
@@ -104,8 +104,11 @@ KNOWN_FIELDS = frozenset(
 class NamingRecipe(BaseModel):
     """A user-defined mapping from arbitrary filenames to canVOD names.
 
-    Serialize to YAML for sharing, to JSON for API transport.
+    Serialize to YAML for sharing, to JSON for API transport. Fields it
+    does not know are ignored; :meth:`unrecognized_fields` names them.
     """
+
+    model_config = ConfigDict(extra="ignore")
 
     name: str = Field(description="Recipe identifier (e.g. 'rosalia_reference')")
     description: str = ""
@@ -343,3 +346,25 @@ class NamingRecipe(BaseModel):
         """Load from a YAML file."""
         text = path.read_text(encoding="utf-8")
         return cls.from_yaml(text)
+
+    @classmethod
+    def unrecognized_fields(cls, path: Path) -> list[str]:
+        """Top-level fields of a recipe file that the recipe does not know.
+
+        They are ignored when the recipe is loaded, for example a misspelled
+        field or one a later version of canvod-filemap reads.
+
+        Parameters
+        ----------
+        path : Path
+            A recipe file.
+
+        Returns
+        -------
+        list[str]
+            The unknown field names, in file order; empty if there are none.
+        """
+        data = yaml.safe_load(path.read_text(encoding="utf-8"))
+        if not isinstance(data, dict):
+            return []
+        return [str(key) for key in data if key not in cls.model_fields]
