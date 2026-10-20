@@ -17,8 +17,8 @@ description: ""
 # -----------------------------------------------------------------------
 # Receiver identity: the first 9 characters of the canonical name
 # -----------------------------------------------------------------------
-site: CHANGEME                 # 3-character site code, e.g. ROS
-agency: CHANGEME               # 3-character agency code, e.g. TUW
+site: CHANGEME                 # 3-character site code, e.g. FAN
+agency: CHANGEME               # 3-character agency code, e.g. INK
 receiver_number: 1             # 1-99, unique per receiver role at the site
 receiver_type: reference       # reference or canopy
 

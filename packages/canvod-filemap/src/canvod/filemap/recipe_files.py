@@ -13,6 +13,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from .remote import fetch_recipe, is_recipe_url
+
 #: The recipe template shipped with this package.
 TEMPLATE_PATH = Path(__file__).parent / "templates" / "recipe.yaml"
 
@@ -56,14 +58,21 @@ def find_recipe(config_dir: Path, site: str, name: str) -> Path:
     Returns
     -------
     Path
-        ``<config_dir>/recipes/<site>/<name>.yaml``.
+        ``<config_dir>/recipes/<site>/<name>.yaml``, or, if ``name`` is a
+        URL, the cached file of the fetched recipe
+        (:func:`canvod.filemap.remote.fetch_recipe`).
 
     Raises
     ------
     RecipeNotFoundError
         If that file does not exist. If the recipe is found directly in
         ``<config_dir>/recipes/``, the message says where to move it.
+    RemoteRecipeError
+        If ``name`` is a URL that is not pinned, or the recipe cannot be
+        fetched or is not valid.
     """
+    if is_recipe_url(name):
+        return fetch_recipe(name)
     path = recipe_path(config_dir, site, name)
     if path.is_file():
         return path
