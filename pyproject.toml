@@ -18,15 +18,16 @@ members = ["packages/*"]
 # is not on PyPI yet; canvod-adapters uses the observation code mapping and
 # the dataset contracts of canvod-readers and the VOD store's contract check,
 # which are not released yet; canvod-airflow calls canvodpy.workflows.tasks,
-# which is not released yet either. Branch until canvodpy is released with
-# them. All canvodpy packages come from the same branch, so the extensions
-# are tested against one canvodpy state.
+# which is not released yet either. A commit of canvodpy's release/v1.0.0
+# (the branch they were written against is merged and deleted) until
+# canvodpy is released with them. All canvodpy packages come from the same
+# commit, so the extensions are tested against one canvodpy state.
 [tool.uv.sources]
-canvodpy = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "canvodpy", branch = "fix/gnssgeodesy-upstream-bugs" }
-canvod-preflight = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "packages/canvod-preflight", branch = "fix/gnssgeodesy-upstream-bugs" }
-canvod-readers = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "packages/canvod-readers", branch = "fix/gnssgeodesy-upstream-bugs" }
-canvod-store = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "packages/canvod-store", branch = "fix/gnssgeodesy-upstream-bugs" }
-canvod-utils = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "packages/canvod-utils", branch = "fix/gnssgeodesy-upstream-bugs" }
+canvodpy = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "canvodpy", rev = "c3019b6bf3a5cc958a412004e00d4821156b49a4" }
+canvod-preflight = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "packages/canvod-preflight", rev = "c3019b6bf3a5cc958a412004e00d4821156b49a4" }
+canvod-readers = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "packages/canvod-readers", rev = "c3019b6bf3a5cc958a412004e00d4821156b49a4" }
+canvod-store = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "packages/canvod-store", rev = "c3019b6bf3a5cc958a412004e00d4821156b49a4" }
+canvod-utils = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "packages/canvod-utils", rev = "c3019b6bf3a5cc958a412004e00d4821156b49a4" }
 
 # ============================================================================
 # Development Dependencies (Workspace-wide)
