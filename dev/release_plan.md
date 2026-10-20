@@ -32,8 +32,9 @@ canvod-preflight not published):
 | canvod-airflow | `canvodpy.workflows.tasks`: `check_day` / `process_day` (A14) |
 | canvod-adapters | `validate_dataset`, `validate_vod_dataset`, `sid_coords` (canvod-readers), `deprecated` (canvod-utils), VOD store contract check (canvod-store; A19) |
 
-Until then `[tool.uv.sources]` takes canvod-preflight, -readers, -store and
--utils from the canvodpy branch `fix/gnssgeodesy-upstream-bugs`.
+Until then `[tool.uv.sources]` takes the canvodpy packages from a pinned
+commit on the canvodpy branch `release/v1.0.0` (`rev` in the root
+`pyproject.toml`).
 
 ## Steps
 
