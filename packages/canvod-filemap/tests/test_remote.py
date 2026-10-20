@@ -84,7 +84,9 @@ class RecipeServer:
             def log_message(self, format: str, *args: object) -> None:
                 pass
 
-        self.httpd = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+        # A larger backlog than the default 5: the parallel-fetch test connects 8 at once.
+        server_class = type("Server", (ThreadingHTTPServer,), {"request_queue_size": 64})
+        self.httpd = server_class(("127.0.0.1", 0), Handler)
         self.origin = f"http://127.0.0.1:{self.httpd.server_address[1]}"
         self.thread = threading.Thread(target=self.httpd.serve_forever, args=(0.05,), daemon=True)
         self.thread.start()
