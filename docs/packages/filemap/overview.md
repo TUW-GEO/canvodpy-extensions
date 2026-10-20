@@ -92,7 +92,7 @@ same one. Set the raw link of the file, pinned to a commit or a tag:
   or `GITHUB_TOKEN`; a fine-grained, read-only token for that one
   repository is enough. canvodpy never stores the token, sends it only to
   `raw.githubusercontent.com`, and refuses a link that holds a user name,
-  password or query. Keep the token where you keep other secrets (the
+  password, query or fragment. Keep the token where you keep other secrets (the
   system keychain, a password manager, the secrets store of your
   scheduler), and start the run with it in the environment.
 
