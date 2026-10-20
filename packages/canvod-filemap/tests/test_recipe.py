@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import pytest
 from canvod.filemap.recipe import KNOWN_FIELDS, NamingRecipe
+from canvod.utils import testing
 
 # ---------------------------------------------------------------------------
 # Fixtures
@@ -14,10 +15,10 @@ from canvod.filemap.recipe import KNOWN_FIELDS, NamingRecipe
 def septentrio_v2_recipe() -> NamingRecipe:
     """Recipe for Septentrio RINEX v2 with minute: rref001a15.25o"""
     return NamingRecipe(
-        name="rosalia_reference",
-        description="Rosalia reference receiver",
-        site="ROS",
-        agency="TUW",
+        name="fangorn_reference",
+        description=f"{testing.REFERENCE_SITE} reference receiver",
+        site=testing.SITE_ID,
+        agency=testing.AGENCY,
         receiver_number=1,
         receiver_type="reference",
         sampling="05S",
@@ -166,7 +167,7 @@ class TestToVirtualFile:
         f.touch()
         vf = septentrio_v2_recipe.to_virtual_file(f)
         cn = vf.conventional_name
-        assert cn.site == "ROS"
+        assert cn.site == testing.SITE_ID
         assert cn.receiver_type.value == "R"
         assert cn.year == 2025
         assert cn.doy == 1
@@ -198,8 +199,8 @@ class TestToVirtualFile:
     def test_rinex2_session_letter(self, filename, hour, period, tmp_path):
         recipe = NamingRecipe(
             name="rinex2_short",
-            site="ROS",
-            agency="TUW",
+            site=testing.SITE_ID,
+            agency=testing.AGENCY,
             receiver_number=1,
             period="01H",
             glob="*.??o",
@@ -246,7 +247,7 @@ class TestToVirtualFile:
         f = tmp_path / "rref001a15.25o"
         f.touch()
         vf = septentrio_v2_recipe.to_virtual_file(f)
-        assert vf.canonical_str == "ROSR01TUW_R_20250010015_15M_05S_AA.rnx"
+        assert vf.canonical_str == "FANR01INK_R_20250010015_15M_05S_AA.rnx"
 
 
 # ---------------------------------------------------------------------------
@@ -286,8 +287,8 @@ class TestSerialization:
 
     def test_yaml_is_human_readable(self, septentrio_v2_recipe):
         yaml_str = septentrio_v2_recipe.to_yaml()
-        assert "rosalia_reference" in yaml_str
-        assert "ROS" in yaml_str
+        assert "fangorn_reference" in yaml_str
+        assert testing.SITE_ID in yaml_str
         assert "fields:" in yaml_str
 
 

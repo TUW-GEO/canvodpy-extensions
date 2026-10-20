@@ -2,6 +2,7 @@
 
 from canvod.filemap.mapping import VirtualFile
 from canvod.preflight.convention import CanVODFilename, ReceiverType
+from canvod.utils import testing
 
 
 class TestVirtualFile:
@@ -10,25 +11,25 @@ class TestVirtualFile:
         p.write_bytes(b"data")
 
         cn = CanVODFilename(
-            site="ROS",
+            site=testing.SITE_ID,
             receiver_type=ReceiverType.REFERENCE,
             receiver_number=1,
-            agency="TUW",
+            agency=testing.AGENCY,
             year=2025,
             doy=1,
         )
         vf = VirtualFile(physical_path=p, conventional_name=cn)
-        assert vf.canonical_str == "ROSR01TUW_R_20250010000_01D_05S_AA.rnx"
+        assert vf.canonical_str == "FANR01INK_R_20250010000_01D_05S_AA.rnx"
 
     def test_open(self, tmp_path):
         p = tmp_path / "test.rnx"
         p.write_bytes(b"hello")
 
         cn = CanVODFilename(
-            site="ROS",
+            site=testing.SITE_ID,
             receiver_type=ReceiverType.REFERENCE,
             receiver_number=1,
-            agency="TUW",
+            agency=testing.AGENCY,
             year=2025,
             doy=1,
         )
