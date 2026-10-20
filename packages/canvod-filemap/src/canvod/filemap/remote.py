@@ -239,13 +239,15 @@ def fetch_recipe(url: str, *, timeout: float = 30.0) -> Path:
         with os.fdopen(fd, "wb") as f:
             f.write(data)
         os.replace(tmp, path)
-    except PermissionError:
+    except OSError as exc:
+        Path(tmp).unlink(missing_ok=True)
         # Windows refuses to replace a file another process has open. The
         # name holds the content's sha256, so an existing file is the same
         # recipe, written by a parallel fetch.
-        Path(tmp).unlink(missing_ok=True)
-        if not path.exists():
-            raise
+        if isinstance(exc, PermissionError) and path.exists():
+            return path
+        msg = f"Cannot write the cached recipe {path}: {exc}"
+        raise RecipeFetchError(msg) from exc
     except BaseException:
         Path(tmp).unlink(missing_ok=True)
         raise

@@ -310,6 +310,36 @@ def test_urls_are_cached_apart(server: RecipeServer) -> None:
     assert len(_cache_files()) == 2
 
 
+def test_refused_replace_keeps_a_parallel_copy(
+    server: RecipeServer, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    # What Windows does when a parallel fetch holds the cached file open.
+    server.serve(COMMIT_URL, RECIPE)
+
+    def replace(src: str, dst: str) -> None:
+        Path(dst).write_bytes(RECIPE)  # the parallel fetch's copy
+        raise PermissionError(13, "Access is denied")
+
+    monkeypatch.setattr(remote.os, "replace", replace)
+    path = fetch_recipe(COMMIT_URL)
+    assert path.read_bytes() == RECIPE
+    assert _cache_files() == [path]
+
+
+def test_refused_replace_without_a_copy_is_a_fetch_error(
+    server: RecipeServer, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    server.serve(COMMIT_URL, RECIPE)
+
+    def replace(src: str, dst: str) -> None:
+        raise PermissionError(13, "Access is denied")
+
+    monkeypatch.setattr(remote.os, "replace", replace)
+    with pytest.raises(RecipeFetchError, match="Cannot write the cached recipe"):
+        fetch_recipe(COMMIT_URL)
+    assert _cache_files() == []
+
+
 def test_parallel_fetches_leave_one_complete_copy(server: RecipeServer) -> None:
     server.serve(COMMIT_URL, RECIPE)
     paths: list[Path] = []
