@@ -239,6 +239,13 @@ def fetch_recipe(url: str, *, timeout: float = 30.0) -> Path:
         with os.fdopen(fd, "wb") as f:
             f.write(data)
         os.replace(tmp, path)
+    except PermissionError:
+        # Windows refuses to replace a file another process has open. The
+        # name holds the content's sha256, so an existing file is the same
+        # recipe, written by a parallel fetch.
+        Path(tmp).unlink(missing_ok=True)
+        if not path.exists():
+            raise
     except BaseException:
         Path(tmp).unlink(missing_ok=True)
         raise
