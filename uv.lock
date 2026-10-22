@@ -408,9 +408,9 @@ store = [
 
 [package.metadata]
 requires-dist = [
-    { name = "canvod-readers", git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-readers&rev=4913f39d91b0219b6b26780f784a9c326cf458a0" },
-    { name = "canvod-store", marker = "extra == 'store'", git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-store&rev=4913f39d91b0219b6b26780f784a9c326cf458a0" },
-    { name = "canvod-utils", git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-utils&rev=4913f39d91b0219b6b26780f784a9c326cf458a0" },
+    { name = "canvod-readers", git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-readers&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af" },
+    { name = "canvod-store", marker = "extra == 'store'", git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-store&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af" },
+    { name = "canvod-utils", git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-utils&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af" },
     { name = "h5netcdf", specifier = ">=1.3.0" },
     { name = "h5py", specifier = ">=3.10.0" },
     { name = "numpy", specifier = ">=1.26.0" },
@@ -437,7 +437,7 @@ airflow = [
 [package.metadata]
 requires-dist = [
     { name = "apache-airflow", marker = "extra == 'airflow'", specifier = ">=3.0" },
-    { name = "canvodpy", git = "https://github.com/nfb2021/canvodpy.git?subdirectory=canvodpy&rev=4913f39d91b0219b6b26780f784a9c326cf458a0" },
+    { name = "canvodpy", git = "https://github.com/nfb2021/canvodpy.git?subdirectory=canvodpy&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af" },
     { name = "structlog", specifier = ">=23.0" },
 ]
 provides-extras = ["airflow"]
@@ -445,7 +445,7 @@ provides-extras = ["airflow"]
 [[package]]
 name = "canvod-auxiliary"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-auxiliary&rev=4913f39d91b0219b6b26780f784a9c326cf458a0#4913f39d91b0219b6b26780f784a9c326cf458a0" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-auxiliary&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
 dependencies = [
     { name = "canvod-config" },
     { name = "canvod-readers" },
@@ -465,7 +465,7 @@ dependencies = [
 [[package]]
 name = "canvod-config"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-config&rev=4913f39d91b0219b6b26780f784a9c326cf458a0#4913f39d91b0219b6b26780f784a9c326cf458a0" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-config&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
 dependencies = [
     { name = "canvod-utils" },
     { name = "email-validator" },
@@ -489,8 +489,8 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "canvod-preflight", git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-preflight&rev=4913f39d91b0219b6b26780f784a9c326cf458a0" },
-    { name = "canvod-utils", git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-utils&rev=4913f39d91b0219b6b26780f784a9c326cf458a0" },
+    { name = "canvod-preflight", git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-preflight&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af" },
+    { name = "canvod-utils", git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-utils&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af" },
     { name = "natsort", specifier = ">=8.4.0" },
     { name = "pydantic", specifier = ">=2.5.0" },
     { name = "pyyaml", specifier = ">=6.0" },
@@ -499,7 +499,7 @@ requires-dist = [
 [[package]]
 name = "canvod-grids"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-grids&rev=4913f39d91b0219b6b26780f784a9c326cf458a0#4913f39d91b0219b6b26780f784a9c326cf458a0" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-grids&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
 dependencies = [
     { name = "canvod-utils" },
     { name = "dask" },
@@ -517,7 +517,7 @@ dependencies = [
 [[package]]
 name = "canvod-ops"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-ops&rev=4913f39d91b0219b6b26780f784a9c326cf458a0#4913f39d91b0219b6b26780f784a9c326cf458a0" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-ops&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
 dependencies = [
     { name = "canvod-config" },
     { name = "canvod-grids" },
@@ -530,7 +530,7 @@ dependencies = [
 [[package]]
 name = "canvod-preflight"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-preflight&rev=4913f39d91b0219b6b26780f784a9c326cf458a0#4913f39d91b0219b6b26780f784a9c326cf458a0" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-preflight&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
 dependencies = [
     { name = "canvod-utils" },
     { name = "natsort" },
@@ -541,7 +541,7 @@ dependencies = [
 [[package]]
 name = "canvod-readers"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-readers&rev=4913f39d91b0219b6b26780f784a9c326cf458a0#4913f39d91b0219b6b26780f784a9c326cf458a0" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-readers&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
 dependencies = [
     { name = "canvod-config" },
     { name = "canvod-utils" },
@@ -561,7 +561,7 @@ dependencies = [
 [[package]]
 name = "canvod-store"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-store&rev=4913f39d91b0219b6b26780f784a9c326cf458a0#4913f39d91b0219b6b26780f784a9c326cf458a0" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-store&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
 dependencies = [
     { name = "canvod-auxiliary" },
     { name = "canvod-config" },
@@ -583,7 +583,7 @@ dependencies = [
 [[package]]
 name = "canvod-store-metadata"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-store-metadata&rev=4913f39d91b0219b6b26780f784a9c326cf458a0#4913f39d91b0219b6b26780f784a9c326cf458a0" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-store-metadata&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
 dependencies = [
     { name = "canvod-config" },
     { name = "canvod-utils" },
@@ -601,7 +601,7 @@ dependencies = [
 [[package]]
 name = "canvod-utils"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-utils&rev=4913f39d91b0219b6b26780f784a9c326cf458a0#4913f39d91b0219b6b26780f784a9c326cf458a0" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-utils&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
 dependencies = [
     { name = "pydantic" },
     { name = "structlog" },
@@ -610,7 +610,7 @@ dependencies = [
 [[package]]
 name = "canvod-viz"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-viz&rev=4913f39d91b0219b6b26780f784a9c326cf458a0#4913f39d91b0219b6b26780f784a9c326cf458a0" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-viz&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
 dependencies = [
     { name = "canvod-grids" },
     { name = "matplotlib" },
@@ -621,7 +621,7 @@ dependencies = [
 [[package]]
 name = "canvod-vod"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-vod&rev=4913f39d91b0219b6b26780f784a9c326cf458a0#4913f39d91b0219b6b26780f784a9c326cf458a0" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=packages%2Fcanvod-vod&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
 dependencies = [
     { name = "canvod-utils" },
     { name = "numpy" },
@@ -633,7 +633,7 @@ dependencies = [
 [[package]]
 name = "canvodpy"
 version = "0.4.0"
-source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=canvodpy&rev=4913f39d91b0219b6b26780f784a9c326cf458a0#4913f39d91b0219b6b26780f784a9c326cf458a0" }
+source = { git = "https://github.com/nfb2021/canvodpy.git?subdirectory=canvodpy&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
 dependencies = [
     { name = "altair" },
     { name = "canvod-auxiliary" },
