@@ -2,7 +2,7 @@
 
 Downloads go to a local HTTP server, never to the network: the recipe URLs
 stay ``https://raw.githubusercontent.com/...`` links and
-``remote._DOWNLOAD_ORIGIN`` sends the request to the server instead.
+``canvod.utils.pinned._DOWNLOAD_ORIGIN`` sends the request to the server instead.
 """
 
 from __future__ import annotations
@@ -29,7 +29,7 @@ from canvod.filemap import (
     recipe_sha256,
     remote,
 )
-from canvod.utils import testing
+from canvod.utils import pinned, testing
 
 COMMIT = "0123456789abcdef0123456789abcdef01234567"
 REPO = "the-inklings/red-book"
@@ -122,7 +122,7 @@ def _isolated(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
 @pytest.fixture
 def server(monkeypatch: pytest.MonkeyPatch):
     srv = RecipeServer()
-    monkeypatch.setattr(remote, "_DOWNLOAD_ORIGIN", srv.origin)
+    monkeypatch.setattr(pinned, "_DOWNLOAD_ORIGIN", srv.origin)
     yield srv
     srv.close()
 
@@ -272,13 +272,13 @@ def test_find_recipe_never_falls_back_to_a_local_recipe(
 def test_cache_hit_needs_no_network(server: RecipeServer, monkeypatch: pytest.MonkeyPatch) -> None:
     server.serve(COMMIT_URL, RECIPE)
     first = fetch_recipe(COMMIT_URL)
-    monkeypatch.setattr(remote, "_DOWNLOAD_ORIGIN", _closed_origin())
+    monkeypatch.setattr(pinned, "_DOWNLOAD_ORIGIN", _closed_origin())
     assert fetch_recipe(COMMIT_URL) == first
     assert len(server.requests) == 1
 
 
 def test_cache_miss_without_network_names_the_url(monkeypatch: pytest.MonkeyPatch) -> None:
-    monkeypatch.setattr(remote, "_DOWNLOAD_ORIGIN", _closed_origin())
+    monkeypatch.setattr(pinned, "_DOWNLOAD_ORIGIN", _closed_origin())
     with pytest.raises(RecipeFetchError, match="not in the cache") as excinfo:
         fetch_recipe(COMMIT_URL)
     assert COMMIT_URL in str(excinfo.value)
@@ -320,7 +320,7 @@ def test_refused_replace_keeps_a_parallel_copy(
         Path(dst).write_bytes(RECIPE)  # the parallel fetch's copy
         raise PermissionError(13, "Access is denied")
 
-    monkeypatch.setattr(remote.os, "replace", replace)
+    monkeypatch.setattr(pinned.os, "replace", replace)
     path = fetch_recipe(COMMIT_URL)
     assert path.read_bytes() == RECIPE
     assert _cache_files() == [path]
@@ -334,7 +334,7 @@ def test_refused_replace_without_a_copy_is_a_fetch_error(
     def replace(src: str, dst: str) -> None:
         raise PermissionError(13, "Access is denied")
 
-    monkeypatch.setattr(remote.os, "replace", replace)
+    monkeypatch.setattr(pinned.os, "replace", replace)
     with pytest.raises(RecipeFetchError, match="Cannot write the cached recipe"):
         fetch_recipe(COMMIT_URL)
     assert _cache_files() == []

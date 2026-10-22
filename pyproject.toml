@@ -23,11 +23,11 @@ members = ["packages/*"]
 # canvodpy is released with them. All canvodpy packages come from the same
 # commit, so the extensions are tested against one canvodpy state.
 [tool.uv.sources]
-canvodpy = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "canvodpy", rev = "c3019b6bf3a5cc958a412004e00d4821156b49a4" }
-canvod-preflight = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "packages/canvod-preflight", rev = "c3019b6bf3a5cc958a412004e00d4821156b49a4" }
-canvod-readers = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "packages/canvod-readers", rev = "c3019b6bf3a5cc958a412004e00d4821156b49a4" }
-canvod-store = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "packages/canvod-store", rev = "c3019b6bf3a5cc958a412004e00d4821156b49a4" }
-canvod-utils = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "packages/canvod-utils", rev = "c3019b6bf3a5cc958a412004e00d4821156b49a4" }
+canvodpy = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "canvodpy", rev = "8c0de2523c4fe8ae9bf45e5018f1718ef00e9870" }
+canvod-preflight = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "packages/canvod-preflight", rev = "8c0de2523c4fe8ae9bf45e5018f1718ef00e9870" }
+canvod-readers = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "packages/canvod-readers", rev = "8c0de2523c4fe8ae9bf45e5018f1718ef00e9870" }
+canvod-store = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "packages/canvod-store", rev = "8c0de2523c4fe8ae9bf45e5018f1718ef00e9870" }
+canvod-utils = { git = "https://github.com/nfb2021/canvodpy.git", subdirectory = "packages/canvod-utils", rev = "8c0de2523c4fe8ae9bf45e5018f1718ef00e9870" }
 
 # ============================================================================
 # Development Dependencies (Workspace-wide)
