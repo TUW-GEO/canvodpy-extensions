@@ -1,16 +1,14 @@
-"""Tests for recipes read from a pinned URL (canvod.filemap.remote).
+"""Tests for recipes read from a URL (canvod.filemap.remote).
 
 Downloads go to a local HTTP server, never to the network: the recipe URLs
 stay ``https://raw.githubusercontent.com/...`` links and
-``canvod.utils.pinned._DOWNLOAD_ORIGIN`` sends the request to the server instead.
+``canvod.utils.remote_file._DOWNLOAD_ORIGIN`` sends the request to the server instead.
 """
 
 from __future__ import annotations
 
 import hashlib
-import os
 import socket
-import stat
 import tempfile
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -29,7 +27,7 @@ from canvod.filemap import (
     recipe_sha256,
     remote,
 )
-from canvod.utils import pinned, testing
+from canvod.utils import remote_file, testing
 
 COMMIT = "0123456789abcdef0123456789abcdef01234567"
 REPO = "the-inklings/red-book"
@@ -37,6 +35,7 @@ NAME = f"{testing.SITE_KEY}_canopy"
 FILE = f"recipes/{testing.SITE_KEY}/{NAME}.yaml"
 COMMIT_URL = f"https://raw.githubusercontent.com/{REPO}/{COMMIT}/{FILE}"
 TAG_URL = f"https://raw.githubusercontent.com/{REPO}/refs/tags/v1/{FILE}"
+BRANCH_URL = f"https://raw.githubusercontent.com/{REPO}/main/{FILE}"
 TOKEN = "ghp_madeUpTokenOfTheInklings"
 
 RECIPE = f"""\
@@ -113,22 +112,33 @@ def _closed_origin() -> str:
 
 @pytest.fixture(autouse=True)
 def _isolated(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
-    """Cache in tmp_path, no token from the user's environment."""
+    """A new run with its folders in tmp_path, no token from the environment."""
     monkeypatch.setattr(tempfile, "tempdir", str(tmp_path))
+    _new_run(monkeypatch)
     for name in remote.TOKEN_VARIABLES:
         monkeypatch.delenv(name, raising=False)
+
+
+def _new_run(monkeypatch: pytest.MonkeyPatch) -> None:
+    """A new run: a new run folder, nothing fetched yet.
+
+    The variable is set (empty) through monkeypatch, so the value the run
+    folder writes into it is undone after the test.
+    """
+    monkeypatch.setattr(remote_file, "_FOLDER", None)
+    monkeypatch.setenv("CANVODPY_RUN_FOLDER", "")
 
 
 @pytest.fixture
 def server(monkeypatch: pytest.MonkeyPatch):
     srv = RecipeServer()
-    monkeypatch.setattr(pinned, "_DOWNLOAD_ORIGIN", srv.origin)
+    monkeypatch.setattr(remote_file, "_DOWNLOAD_ORIGIN", srv.origin)
     yield srv
     srv.close()
 
 
-def _cache_files() -> list[Path]:
-    return sorted(remote.recipe_cache_dir().iterdir())
+def _fetched_files() -> list[Path]:
+    return sorted(p for p in remote_file.run_folder().rglob("*") if p.is_file())
 
 
 # ---------------------------------------------------------------------------
@@ -150,29 +160,18 @@ def test_is_recipe_url(value: str, expected: bool) -> None:
     assert is_recipe_url(value) is expected
 
 
-@pytest.mark.parametrize("url", [COMMIT_URL, TAG_URL, TAG_URL.replace(".yaml", ".yml")])
-def test_pinned_urls_are_accepted(url: str) -> None:
-    check_recipe_url(url)
-
-
 @pytest.mark.parametrize(
-    ("url", "named"),
+    "url",
     [
-        (f"https://raw.githubusercontent.com/{REPO}/main/{FILE}", "'main'"),
-        (f"https://raw.githubusercontent.com/{REPO}/master/{FILE}", "'master'"),
-        (f"https://raw.githubusercontent.com/{REPO}/v1/{FILE}", "'v1'"),
-        (f"https://raw.githubusercontent.com/{REPO}/refs/heads/main/{FILE}", "'main'"),
-        # a short commit hash could also be a branch name
-        (f"https://raw.githubusercontent.com/{REPO}/{COMMIT[:7]}/{FILE}", f"'{COMMIT[:7]}'"),
+        COMMIT_URL,
+        TAG_URL,
+        TAG_URL.replace(".yaml", ".yml"),
+        BRANCH_URL,
+        f"https://raw.githubusercontent.com/{REPO}/refs/heads/main/{FILE}",
     ],
 )
-def test_branch_urls_are_refused_with_the_pinned_forms(url: str, named: str) -> None:
-    with pytest.raises(RecipeURLError) as excinfo:
-        check_recipe_url(url)
-    message = str(excinfo.value)
-    assert named in message
-    assert f"https://raw.githubusercontent.com/{REPO}/<40-character commit>/" in message
-    assert f"https://raw.githubusercontent.com/{REPO}/refs/tags/<tag>/" in message
+def test_commit_tag_and_branch_links_are_accepted(url: str) -> None:
+    check_recipe_url(url)
 
 
 def test_blob_link_is_refused_with_the_raw_link() -> None:
@@ -189,7 +188,6 @@ def test_blob_link_is_refused_with_the_raw_link() -> None:
         (f"https://gitlab.com/{REPO}/{COMMIT}/{FILE}", "raw file link"),
         (f"https://raw.githubusercontent.com/{REPO}/{COMMIT}/recipe.txt", r"\.yaml or \.yml"),
         (f"https://raw.githubusercontent.com/{REPO}/{COMMIT}", "<account>/<repo>"),
-        (f"https://raw.githubusercontent.com/{REPO}/refs/tags/v1", "pinned"),
         (COMMIT_URL + "#L3", "fragment"),
     ],
 )
@@ -221,21 +219,22 @@ def test_url_errors_are_value_errors() -> None:
 
 def test_a_refused_url_is_never_requested(server: RecipeServer) -> None:
     with pytest.raises(RecipeURLError):
-        fetch_recipe(f"https://raw.githubusercontent.com/{REPO}/main/{FILE}")
+        fetch_recipe(f"https://raw.githubusercontent.com/{REPO}/main/recipe.txt")
     assert server.requests == []
 
 
 # ---------------------------------------------------------------------------
-# Fetch and cache
+# Fetch: once per run, again in every new run
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.parametrize("url", [COMMIT_URL, TAG_URL])
-def test_fetched_recipe_is_cached_and_loads(server: RecipeServer, url: str) -> None:
+@pytest.mark.parametrize("url", [COMMIT_URL, TAG_URL, BRANCH_URL])
+def test_fetched_recipe_loads(server: RecipeServer, url: str) -> None:
     server.serve(url, RECIPE)
     path = fetch_recipe(url)
     assert path.read_bytes() == RECIPE
-    assert path.parent == remote.recipe_cache_dir()
+    assert path.name == f"{NAME}.yaml"
+    assert remote_file.run_folder() in path.parents
     recipe = NamingRecipe.load(path)
     assert recipe.name == NAME
     assert recipe.to_virtual_file(Path("rref001a15.25o")).canonical_str == (
@@ -249,7 +248,6 @@ def test_recipe_sha256_is_that_of_the_served_bytes(server: RecipeServer) -> None
     path = fetch_recipe(COMMIT_URL)
     expected = hashlib.sha256(RECIPE).hexdigest()
     assert recipe_sha256(path) == expected
-    assert expected in path.name
 
 
 def test_find_recipe_fetches_a_url(server: RecipeServer, tmp_path: Path) -> None:
@@ -269,61 +267,54 @@ def test_find_recipe_never_falls_back_to_a_local_recipe(
         find_recipe(tmp_path, testing.SITE_KEY, COMMIT_URL)
 
 
-def test_cache_hit_needs_no_network(server: RecipeServer, monkeypatch: pytest.MonkeyPatch) -> None:
-    server.serve(COMMIT_URL, RECIPE)
-    first = fetch_recipe(COMMIT_URL)
-    monkeypatch.setattr(pinned, "_DOWNLOAD_ORIGIN", _closed_origin())
-    assert fetch_recipe(COMMIT_URL) == first
+def test_a_run_fetches_a_recipe_once(server: RecipeServer) -> None:
+    server.serve(BRANCH_URL, RECIPE)
+    first = fetch_recipe(BRANCH_URL)
+    assert fetch_recipe(BRANCH_URL) == first
     assert len(server.requests) == 1
 
 
-def test_cache_miss_without_network_names_the_url(monkeypatch: pytest.MonkeyPatch) -> None:
-    monkeypatch.setattr(pinned, "_DOWNLOAD_ORIGIN", _closed_origin())
-    with pytest.raises(RecipeFetchError, match="not in the cache") as excinfo:
+def test_every_run_fetches_the_recipe_again(
+    server: RecipeServer, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    server.serve(BRANCH_URL, RECIPE)
+    fetch_recipe(BRANCH_URL)
+    moved = RECIPE.replace(b"receiver_number: 1", b"receiver_number: 2")
+    server.serve(BRANCH_URL, moved)
+    _new_run(monkeypatch)
+    assert fetch_recipe(BRANCH_URL).read_bytes() == moved
+    assert len(server.requests) == 2
+
+
+def test_a_run_without_network_names_the_url(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(remote_file, "_DOWNLOAD_ORIGIN", _closed_origin())
+    with pytest.raises(RecipeFetchError, match="needs network access") as excinfo:
         fetch_recipe(COMMIT_URL)
     assert COMMIT_URL in str(excinfo.value)
-    assert _cache_files() == []
+    assert _fetched_files() == []
 
 
-def test_cached_copy_that_changed_is_refused(server: RecipeServer) -> None:
-    server.serve(COMMIT_URL, RECIPE)
-    path = fetch_recipe(COMMIT_URL)
-    path.write_bytes(RECIPE.replace(b"receiver_number: 1", b"receiver_number: 2"))
-    with pytest.raises(RecipeFetchError, match="changed"):
-        fetch_recipe(COMMIT_URL)
-
-
-def test_two_cached_copies_of_one_url_are_refused(server: RecipeServer) -> None:
-    server.serve(TAG_URL, RECIPE)
-    path = fetch_recipe(TAG_URL)
-    moved = RECIPE.replace(b"receiver_number: 1", b"receiver_number: 2")
-    key = path.name.split("-")[0]
-    (path.parent / f"{key}-{hashlib.sha256(moved).hexdigest()}.yaml").write_bytes(moved)
-    with pytest.raises(RecipeFetchError, match="more than one cached copy"):
-        fetch_recipe(TAG_URL)
-
-
-def test_urls_are_cached_apart(server: RecipeServer) -> None:
+def test_urls_are_kept_apart(server: RecipeServer) -> None:
     server.serve(COMMIT_URL, RECIPE)
     server.serve(TAG_URL, RECIPE)
     assert fetch_recipe(COMMIT_URL) != fetch_recipe(TAG_URL)
-    assert len(_cache_files()) == 2
+    assert len(_fetched_files()) == 2
 
 
 def test_refused_replace_keeps_a_parallel_copy(
     server: RecipeServer, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    # What Windows does when a parallel fetch holds the cached file open.
+    # What Windows does when a parallel fetch holds the file open.
     server.serve(COMMIT_URL, RECIPE)
 
     def replace(src: str, dst: str) -> None:
         Path(dst).write_bytes(RECIPE)  # the parallel fetch's copy
         raise PermissionError(13, "Access is denied")
 
-    monkeypatch.setattr(pinned.os, "replace", replace)
+    monkeypatch.setattr(remote_file.os, "replace", replace)
     path = fetch_recipe(COMMIT_URL)
     assert path.read_bytes() == RECIPE
-    assert _cache_files() == [path]
+    assert _fetched_files() == [path]
 
 
 def test_refused_replace_without_a_copy_is_a_fetch_error(
@@ -334,13 +325,13 @@ def test_refused_replace_without_a_copy_is_a_fetch_error(
     def replace(src: str, dst: str) -> None:
         raise PermissionError(13, "Access is denied")
 
-    monkeypatch.setattr(pinned.os, "replace", replace)
-    with pytest.raises(RecipeFetchError, match="Cannot write the cached recipe"):
+    monkeypatch.setattr(remote_file.os, "replace", replace)
+    with pytest.raises(RecipeFetchError, match="Cannot write the fetched recipe"):
         fetch_recipe(COMMIT_URL)
-    assert _cache_files() == []
+    assert _fetched_files() == []
 
 
-def test_parallel_fetches_leave_one_complete_copy(server: RecipeServer) -> None:
+def test_parallel_fetches_give_one_complete_file(server: RecipeServer) -> None:
     server.serve(COMMIT_URL, RECIPE)
     paths: list[Path] = []
     errors: list[Exception] = []
@@ -358,12 +349,11 @@ def test_parallel_fetches_leave_one_complete_copy(server: RecipeServer) -> None:
         t.join()
     assert errors == []
     assert len(set(paths)) == 1
-    assert [p.name for p in _cache_files()] == [paths[0].name]
     assert paths[0].read_bytes() == RECIPE
 
 
 # ---------------------------------------------------------------------------
-# Content checks: nothing is cached unless it is a valid recipe
+# Content checks: nothing is kept unless it is a valid recipe
 # ---------------------------------------------------------------------------
 
 
@@ -372,7 +362,7 @@ def test_name_that_does_not_match_the_file_is_refused(server: RecipeServer) -> N
     with pytest.raises(RecipeFetchError, match="orthanc_reference") as excinfo:
         fetch_recipe(COMMIT_URL)
     assert f"'{NAME}'" in str(excinfo.value)
-    assert _cache_files() == []
+    assert _fetched_files() == []
 
 
 @pytest.mark.parametrize(
@@ -389,14 +379,14 @@ def test_invalid_recipe_is_refused(server: RecipeServer, body: bytes, match: str
     with pytest.raises(RecipeFetchError, match=match) as excinfo:
         fetch_recipe(COMMIT_URL)
     assert COMMIT_URL in str(excinfo.value)
-    assert _cache_files() == []
+    assert _fetched_files() == []
 
 
 def test_too_large_file_is_refused(server: RecipeServer) -> None:
     server.serve(COMMIT_URL, RECIPE + b"#" * remote.MAX_RECIPE_BYTES)
     with pytest.raises(RecipeFetchError, match="larger than"):
         fetch_recipe(COMMIT_URL)
-    assert _cache_files() == []
+    assert _fetched_files() == []
 
 
 # ---------------------------------------------------------------------------
@@ -482,38 +472,6 @@ def test_refused_requests_say_why(
     server.serve(COMMIT_URL, b"no", status=status)
     with pytest.raises(RecipeFetchError, match="try again later"):
         fetch_recipe(COMMIT_URL)
-
-
-# ---------------------------------------------------------------------------
-# Cache folder
-# ---------------------------------------------------------------------------
-
-posix_only = pytest.mark.skipif(not hasattr(os, "getuid"), reason="owner check is POSIX only")
-
-
-@posix_only
-def test_cache_folder_is_private_to_the_user(tmp_path: Path) -> None:
-    folder = remote.recipe_cache_dir()
-    assert folder == tmp_path / f"canvodpy-recipes-{os.getuid()}"
-    assert stat.S_IMODE(folder.stat().st_mode) == 0o700
-
-
-@posix_only
-def test_cache_folder_others_can_read_is_refused(tmp_path: Path) -> None:
-    folder = remote.recipe_cache_dir()
-    folder.chmod(0o755)
-    with pytest.raises(RecipeFetchError, match=r"Remove it") as excinfo:
-        remote.recipe_cache_dir()
-    assert str(folder) in str(excinfo.value)
-
-
-@posix_only
-def test_cache_folder_that_is_a_link_is_refused(tmp_path: Path) -> None:
-    elsewhere = tmp_path / "elsewhere"
-    elsewhere.mkdir(mode=0o700)
-    (tmp_path / f"canvodpy-recipes-{os.getuid()}").symlink_to(elsewhere)
-    with pytest.raises(RecipeFetchError, match="only you can"):
-        remote.recipe_cache_dir()
 
 
 # ---------------------------------------------------------------------------

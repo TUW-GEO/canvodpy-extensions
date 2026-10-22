@@ -59,7 +59,7 @@ def find_recipe(config_dir: Path, site: str, name: str) -> Path:
     -------
     Path
         ``<config_dir>/recipes/<site>/<name>.yaml``, or, if ``name`` is a
-        URL, the cached file of the fetched recipe
+        URL, the file of the recipe this run fetched
         (:func:`canvod.filemap.remote.fetch_recipe`).
 
     Raises
@@ -68,8 +68,8 @@ def find_recipe(config_dir: Path, site: str, name: str) -> Path:
         If that file does not exist. If the recipe is found directly in
         ``<config_dir>/recipes/``, the message says where to move it.
     RemoteRecipeError
-        If ``name`` is a URL that is not pinned, or the recipe cannot be
-        fetched or is not valid.
+        If ``name`` is a URL that is not a raw file link, or the recipe
+        cannot be fetched or is not valid.
     """
     if is_recipe_url(name):
         return fetch_recipe(name)

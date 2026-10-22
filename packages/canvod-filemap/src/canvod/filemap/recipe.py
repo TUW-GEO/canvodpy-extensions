@@ -377,7 +377,7 @@ def recipe_sha256(path: Path) -> str:
     Parameters
     ----------
     path : Path
-        A recipe file, local or cached.
+        A recipe file, local or fetched by this run.
 
     Returns
     -------
