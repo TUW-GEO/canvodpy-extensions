@@ -18,8 +18,8 @@
 | packages/canvod-filemap/src/canvod/filemap/patterns.py               |       12 |        0 |    100% |           |
 | packages/canvod-filemap/src/canvod/filemap/recipe.py                 |      130 |        8 |     94% |229-233, 239-243, 264, 320-321, 370 |
 | packages/canvod-filemap/src/canvod/filemap/recipe\_files.py          |       29 |        0 |    100% |           |
-| packages/canvod-filemap/src/canvod/filemap/remote.py                 |      153 |        6 |     96% |172-174, 250-252 |
-| **TOTAL**                                                            |  **698** |   **14** | **98%** |           |
+| packages/canvod-filemap/src/canvod/filemap/remote.py                 |       46 |        0 |    100% |           |
+| **TOTAL**                                                            |  **591** |    **8** | **99%** |           |
 
 
 ## Setup coverage badge
