@@ -90,7 +90,9 @@ same one. Set the raw link of the file, pinned to a commit or a tag:
 - **Private repositories.** Public recipes need nothing more. A recipe in a
   private repository needs a GitHub token that can read it, in `GH_TOKEN`
   or `GITHUB_TOKEN`; a fine-grained, read-only token for that one
-  repository is enough. canvodpy never stores the token, sends it only to
+  repository is enough. A variable that holds no valid token stops the
+  run with a message that names the variable, not its value. canvodpy
+  never stores the token, sends it only to
   `raw.githubusercontent.com`, and refuses a link that holds a user name,
   password, query or fragment. Keep the token where you keep other secrets (the
   system keychain, a password manager, the secrets store of your

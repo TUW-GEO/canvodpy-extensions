@@ -18,7 +18,9 @@ Before changing it, read the canvodpy side: root `AGENTS.md`, section
 - `src/canvod/filemap/remote.py`: a recipe read from a pinned raw GitHub
   URL (commit or `refs/tags/<tag>`), the cache in the system temp folder,
   the token from `GH_TOKEN`/`GITHUB_TOKEN`. `find_recipe` calls it when
-  the `recipe:` setting is a URL.
+  the `recipe:` setting is a URL. The fetch, the cache and the token are
+  canvod-utils' (`canvod.utils.pinned`, shared with canvodpy's settings
+  from a URL); this module adds the recipe checks and its own errors.
 - `src/canvod/filemap/mapping.py`: `VirtualFile`, a physical file with its
   canVOD file name.
 - The canVOD file name itself (`CanVODFilename`) is canvod-preflight's
