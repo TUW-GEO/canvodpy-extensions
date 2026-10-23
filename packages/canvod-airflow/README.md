@@ -39,8 +39,8 @@ agency orbit and clock products instead of broadcast ephemerides.
 uv add canvod-airflow
 ```
 
-This installs `apache-airflow>=3.0` too; an Airflow 3 that is already
-installed is used as it is. canVODpy requires Python 3.14.
+This installs `apache-airflow>=3.3.2` too, the first release without
+known vulnerabilities; an installed Airflow older than that is upgraded. canVODpy requires Python 3.14.
 Airflow runs on POSIX systems (Linux, macOS); on Windows, run it in WSL2
 ([Airflow's prerequisites](https://airflow.apache.org/docs/apache-airflow/stable/installation/prerequisites.html)).
 
