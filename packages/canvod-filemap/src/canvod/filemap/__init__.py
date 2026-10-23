@@ -1,6 +1,8 @@
 """canvod-filemap: naming recipes for non-canonical GNSS filenames."""
 
-__version__ = "0.1.0"
+from importlib.metadata import version
+
+__version__ = version("canvod-filemap")
 
 from .mapping import VirtualFile
 from .recipe import NamingRecipe, recipe_sha256

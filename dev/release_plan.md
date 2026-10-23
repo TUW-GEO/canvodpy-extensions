@@ -33,9 +33,9 @@ canvod-preflight not published):
 | canvod-airflow | `canvodpy.workflows.tasks`: `check_day` / `process_day` (A14) |
 | canvod-adapters | `validate_dataset`, `validate_vod_dataset`, `sid_coords` (canvod-readers), `deprecated` (canvod-utils), VOD store contract check (canvod-store; A19) |
 
-Until then `[tool.uv.sources]` takes the canvodpy packages from a pinned
-commit on the canvodpy branch `release/v1.0.0` (`rev` in the root
-`pyproject.toml`).
+canvodpy 1.0.0 is on PyPI since 2026-10-24; the workspace takes every
+canvodpy package from PyPI (before: a pinned commit of the canvodpy branch
+`release/v1.0.0` in root `[tool.uv.sources]`).
 
 ## Steps
 
@@ -44,17 +44,17 @@ commit on the canvodpy branch `release/v1.0.0` (`rev` in the root
 - [x] filemap recipes, airflow one DAG per site, adapters restructure
 - [x] CI: relock after merging `main`, Windows path in a test regex (142ea77)
 - [x] per-package release tooling (7102c8d)
-- [ ] After canvodpy 1.0.0 is on PyPI: drop the canvodpy git sources from
+- [x] After canvodpy 1.0.0 is on PyPI: drop the canvodpy git sources from
       the root `[tool.uv.sources]` and relock against PyPI. Check that no
       canvodpy git URL is left: `grep -c "TUW-GEO/canvodpy.git" uv.lock` is 0.
-- [ ] Lower bounds on canvodpy 1.0.0 in the package `pyproject.toml`s:
+- [x] Lower bounds on canvodpy 1.0.0 in the package `pyproject.toml`s:
   - canvod-filemap: `canvod-preflight>=1.0.0`
   - canvod-airflow: `canvodpy>=1.0.0`
   - canvod-adapters: `canvod-readers>=1.0.0`, `canvod-utils>=1.0.0`,
     `canvod-store>=1.0.0`
-- [ ] "slots in for canvodpy >= 0.3.0" -> 1.0.0 in `README.md`,
+- [x] "slots in for canvodpy >= 0.3.0" -> 1.0.0 in `README.md`,
       `CLAUDE.md`, `docs/index.md`
-- [ ] `CLAUDE.md`: drop `just build-all` (no such recipe)
+- [x] `CLAUDE.md`: drop `just build-all` (no such recipe)
 - [ ] CI green, merge PR #45
 
 ### 2. Release commits (one PR)

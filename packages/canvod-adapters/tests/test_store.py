@@ -16,12 +16,13 @@ BANDS = {"VOD_L2": ["S2W"], "VOD_E5a": ["S5Q"]}
 def store(tmp_path):
     # Opening a store never creates one (canvodpy#236): create it the way a
     # run does, with the made-up site's metadata and settings, never the
-    # user's own settings file
+    # user's own settings file. The folder is the name its id ends in
+    # (fangorn-vod); another folder name reads as a renamed store
     from canvod.config import load_config
     from canvod.store_metadata.testing import give_test_metadata
     from canvod.utils import testing
 
-    path = give_test_metadata(tmp_path / "vod_store", "vod_store")
+    path = give_test_metadata(tmp_path / "vod", "vod_store")
     testing.write_settings(tmp_path / "settings")
     settings = load_config(config_dir=tmp_path / "settings")
     return store_module.MyIcechunkStore(path, store_type="vod_store", config=settings)

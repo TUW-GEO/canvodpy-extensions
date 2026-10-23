@@ -32,8 +32,8 @@ classifiers = [
 ]
 
 dependencies = [
-    "canvod-preflight>=0.4.0",
-    "canvod-utils>=0.4.0",
+    "canvod-preflight>=1.0.0",
+    "canvod-utils>=1.0.0",
     "pydantic>=2.5.0",
     "pyyaml>=6.0",
     "natsort>=8.4.0",

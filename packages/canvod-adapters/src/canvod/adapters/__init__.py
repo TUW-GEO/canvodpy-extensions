@@ -12,10 +12,12 @@ Shared by all programs:
 One subpackage per program, e.g. :mod:`canvod.adapters.gnssvod`.
 """
 
+from importlib.metadata import version
+
 from canvod.adapters.base import ObservationsAdapter, VodAdapter
 from canvod.adapters.provenance import Provenance, Tool
 
-__version__ = "0.1.0"
+__version__ = version("canvod-adapters")
 
 __all__ = [
     "ObservationsAdapter",

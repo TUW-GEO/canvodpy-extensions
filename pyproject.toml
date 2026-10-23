@@ -6,28 +6,13 @@
 #
 # Packages:
 #   canvod-filemap  — recipe-based filename mapping for non-canonical
-#                              GNSS filenames; slot-in for canvodpy >= 0.3.0
+#                              GNSS filenames; slot-in for canvodpy >= 1.0.0
 #   canvod-airflow           — Airflow DAG definitions for canvodpy pipelines
 #   canvod-adapters          — bidirectional data adapters between canvodpy
 #                              and third-party GNSS-VOD tools (gnssvod, ...)
 
 [tool.uv.workspace]
 members = ["packages/*"]
-
-# canvod-filemap uses the canVOD naming convention of canvod-preflight, which
-# is not on PyPI yet; canvod-adapters uses the observation code mapping and
-# the dataset contracts of canvod-readers and the VOD store's contract check,
-# which are not released yet; canvod-airflow calls canvodpy.workflows.tasks,
-# which is not released yet either. A commit of canvodpy's release/v1.0.0
-# (the branch they were written against is merged and deleted) until
-# canvodpy is released with them. All canvodpy packages come from the same
-# commit, so the extensions are tested against one canvodpy state.
-[tool.uv.sources]
-canvodpy = { git = "https://github.com/TUW-GEO/canvodpy.git", subdirectory = "canvodpy", rev = "03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
-canvod-preflight = { git = "https://github.com/TUW-GEO/canvodpy.git", subdirectory = "packages/canvod-preflight", rev = "03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
-canvod-readers = { git = "https://github.com/TUW-GEO/canvodpy.git", subdirectory = "packages/canvod-readers", rev = "03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
-canvod-store = { git = "https://github.com/TUW-GEO/canvodpy.git", subdirectory = "packages/canvod-store", rev = "03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
-canvod-utils = { git = "https://github.com/TUW-GEO/canvodpy.git", subdirectory = "packages/canvod-utils", rev = "03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
 
 # ============================================================================
 # Development Dependencies (Workspace-wide)
