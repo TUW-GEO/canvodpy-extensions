@@ -1,4 +1,4 @@
-# canvod.adapters API reference
+# `canvod.adapters` API reference
 
 ## Interfaces
 
@@ -8,7 +8,7 @@
 
 ::: canvod.adapters.provenance
 
-## VOD store I/O
+## Reading and writing VOD stores
 
 ::: canvod.adapters.store
 

@@ -1,4 +1,4 @@
-# canvod.airflow API reference
+# `canvod.airflow` API reference
 
 ## Package
 

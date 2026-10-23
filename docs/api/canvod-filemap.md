@@ -1,4 +1,4 @@
-# canvod.filemap API reference
+# `canvod.filemap` API reference
 
 ## Package
 
