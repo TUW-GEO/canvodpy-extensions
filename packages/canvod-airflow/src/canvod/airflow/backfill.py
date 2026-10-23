@@ -21,12 +21,6 @@ both ``YYYYDDD``. Usage (Airflow UI or CLI)::
         "start_date": "2025001",
         "end_date": "2025010"
     }'
-
-Or via ``af``::
-
-    af runs trigger canvod_backfill \\
-        -F site=fangorn \\
-        -F start_date=2025001 -F end_date=2025010
 """
 
 from __future__ import annotations
