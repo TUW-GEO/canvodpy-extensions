@@ -1,7 +1,7 @@
 """Manual backfill DAG for reprocessing historical GNSS-T data.
 
 Triggered manually with parameters.  Each date in the range becomes an
-independent Airflow task instance via dynamic task mapping (Airflow 2.7+).
+independent Airflow task instance via dynamic task mapping.
 A failure on one date retries that date only — the rest of the batch
 continues unaffected.
 
@@ -13,19 +13,20 @@ runs and the daily DAGs::
 
     airflow pools set canvod_store_write 1 "Serialise Icechunk commits"
 
-Usage (Airflow UI or CLI)::
+All three parameters are required: the site and the first and last day,
+both ``YYYYDDD``. Usage (Airflow UI or CLI)::
 
     airflow dags trigger canvod_backfill --conf '{
-        "site": "Rosalia",
-        "start_date": "2025-001",
-        "end_date": "2025-010"
+        "site": "fangorn",
+        "start_date": "2025001",
+        "end_date": "2025010"
     }'
 
 Or via ``af``::
 
     af runs trigger canvod_backfill \\
-        -F site=Rosalia \\
-        -F start_date=2025-001 -F end_date=2025-010
+        -F site=fangorn \\
+        -F start_date=2025001 -F end_date=2025010
 """
 
 from __future__ import annotations
@@ -68,16 +69,18 @@ def _task_failure_callback(context):
     },
     tags=["canvod", "gnss", "backfill"],
     params={
-        "site": Param("Rosalia", type="string", description="Site name from sites.yaml"),
+        # No defaults: a trigger without site and days fails instead of
+        # processing a range nobody asked for.
+        "site": Param(type="string", description="Site name in the canvodpy settings"),
         "start_date": Param(
-            "2025-001",
             type="string",
-            description="Start date in YYYYDDD format",
+            pattern=r"^\d{7}$",
+            description="First day, YYYYDDD (e.g. 2025001)",
         ),
         "end_date": Param(
-            "2025-010",
             type="string",
-            description="End date in YYYYDDD format (inclusive)",
+            pattern=r"^\d{7}$",
+            description="Last day, YYYYDDD (e.g. 2025010), inclusive",
         ),
     },
     doc_md=__doc__,
