@@ -30,7 +30,7 @@ messages. The messages become the changelog, so mark breaking changes
 |--------|--------------|
 | `just versions` | Prints the version of every package |
 | `just changelog canvod-filemap` | Prints the package's changes since its last release |
-| `just release canvod-filemap 1.1.0` | Runs the package's tests, sets the version (`major`, `minor`, `patch`, or a version number), writes the package's `CHANGELOG.md`, pins the package's git install snippets in the READMEs and docs to the new tag, and makes one release commit |
+| `just release canvod-filemap 1.1.0` | Runs the package's tests, sets the version (`major`, `minor`, `patch`, or a version number), writes the package's `CHANGELOG.md`, and makes one release commit |
 | `just tag canvod-filemap` | On an up-to-date `main`, tags the package's version and pushes the tag |
 
 **Changelogs.** Every package has a `CHANGELOG.md` in its folder.

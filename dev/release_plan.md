@@ -116,15 +116,13 @@ python -c "import canvod.filemap, canvod.airflow, canvod.adapters.gnssvod, canvo
       Resolves A8 (two URLs for canvod-preflight) since both sides then
       take canvod-preflight from PyPI.
 - [ ] canvodpy demo: notebooks that use filemap install it from PyPI.
-- [ ] Paper: the extensions section says the packages are pinned via Git
-      tag; name the tag form `<package>-v<version>` if the text names one.
 
 ## Decided
 
 - canvodpy's extra `canvodpy[filemap]` is gone: it named a package not on
   PyPI. canvod-filemap is now the canvodpy workspace dependency group
   `filemap` (`uv sync --group filemap`), which is never published (user,
-  2026-10-04; canvodpy 8e059da9). Paper and docs updated.
+  2026-10-04; canvodpy 8e059da9). Docs updated.
 - canvodpy's deprecated `FluentWorkflow` and `DataDirMatcher` no longer use
   removed filemap code (canvodpy 97fd0e84): `FluentWorkflow` finds files as
   `canvodpy run` does.
