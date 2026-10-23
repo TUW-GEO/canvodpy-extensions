@@ -6,14 +6,14 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nfb2021/canvodpy/main/docs/assets/logo/canvodpy_logo_dark_mode.svg">
-    <img alt="canVODpy logo" src="https://raw.githubusercontent.com/nfb2021/canvodpy/main/docs/assets/logo/canvodpy_logo_bright_mode.svg" width="312">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/TUW-GEO/canvodpy/main/docs/assets/logo/canvodpy_logo_dark_mode.svg">
+    <img alt="canVODpy logo" src="https://raw.githubusercontent.com/TUW-GEO/canvodpy/main/docs/assets/logo/canvodpy_logo_bright_mode.svg" width="312">
   </picture>
 </p>
 
 # canvodpy-extensions
 
-Optional extension packages for [canVODpy](https://github.com/nfb2021/canvodpy).
+Optional extension packages for [canVODpy](https://github.com/TUW-GEO/canvodpy).
 Not part of the core monorepo, and GitHub-only by design — install individually
 via git-subdirectory sources, not PyPI (see each package's README for the exact
 command).
@@ -34,7 +34,7 @@ its own, under the tag `<package>-v<version>`. Pin to a release tag, not the
 default branch, so installs stay reproducible. For `canvod-filemap`:
 
 ```bash
-uv add "canvod-filemap @ git+https://github.com/nfb2021/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-filemap"
+uv add "canvod-filemap @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-filemap"
 ```
 
 The other packages follow the same pattern: swap `canvod-filemap` for
@@ -50,7 +50,7 @@ release; downstream consumers' `[tool.uv.sources]` (e.g. canvodpy's root
 ## Development Setup
 
 ```bash
-git clone https://github.com/nfb2021/canvodpy-extensions.git
+git clone https://github.com/TUW-GEO/canvodpy-extensions.git
 cd canvodpy-extensions
 
 uv sync

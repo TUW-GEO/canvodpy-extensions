@@ -12,7 +12,7 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 """
 body = """
 {% if version %}\
-## [{{ version }}](https://github.com/nfb2021/canvodpy-extensions/releases/tag/{{ version }}) - {{ timestamp | date(format="%Y-%m-%d") }}
+## [{{ version }}](https://github.com/TUW-GEO/canvodpy-extensions/releases/tag/{{ version }}) - {{ timestamp | date(format="%Y-%m-%d") }}
 {% else %}\
 ## Unreleased
 {% endif %}\
@@ -21,7 +21,7 @@ body = """
 {% for commit in commits %}
 - {% if commit.breaking %}**Breaking:** {% endif %}\
 {{ commit.message | split(pat="\n") | first | upper_first | trim }} \
-([{{ commit.id | truncate(length=7, end="") }}](https://github.com/nfb2021/canvodpy-extensions/commit/{{ commit.id }}))\
+([{{ commit.id | truncate(length=7, end="") }}](https://github.com/TUW-GEO/canvodpy-extensions/commit/{{ commit.id }}))\
 {% endfor %}
 {% endfor %}\n
 """

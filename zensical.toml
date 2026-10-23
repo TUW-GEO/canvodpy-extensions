@@ -19,8 +19,8 @@ site_author = "Nicolas Bader"
 site_url = "https://extensions.canvodpy.eu/"
 copyright = "Copyright &copy; 2026 Nicolas François Bader, TU Wien. This documentation is provided &ldquo;as is&rdquo; without warranty of any kind, express or implied, including but not limited to warranties of correctness, completeness, or fitness for a particular purpose."
 
-repo_url = "https://github.com/nfb2021/canvodpy-extensions"
-repo_name = "nfb2021/canvodpy-extensions"
+repo_url = "https://github.com/TUW-GEO/canvodpy-extensions"
+repo_name = "TUW-GEO/canvodpy-extensions"
 edit_uri = "edit/main/docs/"
 
 extra_css = ["assets/canvod-nordic.css"]
@@ -115,8 +115,8 @@ language = "en"
 # both color schemes, so it takes the light (dark mode) logo. The favicon
 # follows the browser's color scheme (docs/overrides/main.html adds the
 # dark one).
-logo = "https://raw.githubusercontent.com/nfb2021/canvodpy/main/docs/assets/logo/canvodpy_logo_dark_mode.svg"
-favicon = "https://raw.githubusercontent.com/nfb2021/canvodpy/main/docs/assets/logo/canvodpy_favicon_bright_mode.svg"
+logo = "https://raw.githubusercontent.com/TUW-GEO/canvodpy/main/docs/assets/logo/canvodpy_logo_dark_mode.svg"
+favicon = "https://raw.githubusercontent.com/TUW-GEO/canvodpy/main/docs/assets/logo/canvodpy_favicon_bright_mode.svg"
 custom_dir = "overrides"
 
 features = [
@@ -159,4 +159,4 @@ toggle.name = "Switch to dark mode"
 # --------------------------------------------------------------------------
 [[project.extra.social]]
 icon = "fontawesome/brands/github"
-link = "https://github.com/nfb2021/canvodpy-extensions"
+link = "https://github.com/TUW-GEO/canvodpy-extensions"

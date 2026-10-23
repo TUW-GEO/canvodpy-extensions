@@ -90,9 +90,9 @@ just tag canvod-adapters
 ```bash
 uv venv /tmp/ext-check && source /tmp/ext-check/bin/activate
 uv pip install \
-  "canvod-filemap @ git+https://github.com/nfb2021/canvodpy-extensions.git@canvod-filemap-v1.0.0#subdirectory=packages/canvod-filemap" \
-  "canvod-airflow @ git+https://github.com/nfb2021/canvodpy-extensions.git@canvod-airflow-v1.0.0#subdirectory=packages/canvod-airflow" \
-  "canvod-adapters[store] @ git+https://github.com/nfb2021/canvodpy-extensions.git@canvod-adapters-v1.0.0#subdirectory=packages/canvod-adapters"
+  "canvod-filemap @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@canvod-filemap-v1.0.0#subdirectory=packages/canvod-filemap" \
+  "canvod-airflow @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@canvod-airflow-v1.0.0#subdirectory=packages/canvod-airflow" \
+  "canvod-adapters[store] @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@canvod-adapters-v1.0.0#subdirectory=packages/canvod-adapters"
 python -c "import canvod.filemap, canvod.airflow, canvod.adapters.gnssvod, canvod.adapters.store"
 ```
 

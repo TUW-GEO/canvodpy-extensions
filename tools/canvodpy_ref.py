@@ -13,7 +13,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parent.parent
-REPO_URL = "https://github.com/nfb2021/canvodpy"
+REPO_URL = "https://github.com/TUW-GEO/canvodpy"
 
 
 def locked_packages() -> list[tuple[str, str, str, str]]:

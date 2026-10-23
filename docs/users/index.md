@@ -20,7 +20,7 @@ packages are not on PyPI. The `@v0.1.0` is the tag of the release.
 ### `canvod-filemap`
 
 ```bash
-uv add "canvod-filemap @ git+https://github.com/nfb2021/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-filemap"
+uv add "canvod-filemap @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-filemap"
 ```
 
 ### `canvod-airflow`
@@ -29,7 +29,7 @@ uv add "canvod-filemap @ git+https://github.com/nfb2021/canvodpy-extensions.git@
 DAGs run. The `[airflow]` extra installs `apache-airflow`:
 
 ```bash
-uv add "canvod-airflow[airflow] @ git+https://github.com/nfb2021/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-airflow"
+uv add "canvod-airflow[airflow] @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-airflow"
 ```
 
 ### `canvod-adapters`
@@ -37,7 +37,7 @@ uv add "canvod-airflow[airflow] @ git+https://github.com/nfb2021/canvodpy-extens
 The `[store]` extra adds the VOD store read and write:
 
 ```bash
-uv add "canvod-adapters[store] @ git+https://github.com/nfb2021/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-adapters"
+uv add "canvod-adapters[store] @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-adapters"
 ```
 
 ## If you don't install a package

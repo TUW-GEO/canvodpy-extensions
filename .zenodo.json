@@ -27,7 +27,7 @@
   "language": "eng",
   "related_identifiers": [
     {
-      "identifier": "https://github.com/nfb2021/canvodpy",
+      "identifier": "https://github.com/TUW-GEO/canvodpy",
       "relation": "isSupplementTo",
       "scheme": "url",
       "resource_type": "software"
