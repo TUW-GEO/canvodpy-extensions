@@ -14,11 +14,8 @@ read and write canvodpy's own readers and stores.
 ## Install
 
 ```bash
-uv add "canvod-adapters[store] @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-adapters"
+uv add canvod-adapters
 ```
-
-The package lives on GitHub only. The `[store]` extra adds the VOD store
-read and write.
 
 ## A minimal example
 
@@ -36,7 +33,7 @@ from canvod.adapters.store import export_vod, import_vod
 
 adapter = GnssvodVod(bands={"VOD_L1": ["S1C", "S1W", "S1X"], "VOD_L2": ["S2W"]}, time_system="GPS")
 
-import_vod(adapter, "vod_rosalia.nc", site.vod_store, "canopy_01_vs_reference_01")
+import_vod(adapter, "gnssvod_vod.nc", site.vod_store, "canopy_01_vs_reference_01")
 
 export_vod(
     adapter,

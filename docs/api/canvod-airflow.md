@@ -29,7 +29,7 @@ products before it processes the day.
 
 A manually triggered DAG that accepts `site`, `start_date`, and `end_date`
 (`YYYYDDD` format) as Airflow parameters. It expands the date range into
-one `process_day` task per date. The tasks run with
+one `t_process_day` task per date. The tasks run with
 `max_active_tis_per_dagrun=1`.
 
 See the [Overview](../packages/airflow/overview.md) for the usage

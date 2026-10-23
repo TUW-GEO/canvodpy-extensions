@@ -1,8 +1,7 @@
-"""Guarded DAG-parsing test — only runs when the ``airflow`` extra is installed.
+"""DAG-parsing test with Airflow.
 
-Inert (skipped) without Airflow; activates automatically once ``apache-airflow``
-is available (e.g. a CI job or dev environment with ``canvod-airflow[airflow]``
-installed).
+``apache-airflow`` is a dependency of canvod-airflow, so this test runs in
+the workspace; it is skipped only where Airflow can't be imported.
 """
 
 from __future__ import annotations

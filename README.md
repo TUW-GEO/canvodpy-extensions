@@ -14,38 +14,31 @@
 # canvodpy-extensions
 
 Optional extension packages for [canVODpy](https://github.com/TUW-GEO/canvodpy).
-Not part of the core monorepo, and GitHub-only by design — install individually
-via git-subdirectory sources, not PyPI (see each package's README for the exact
-command).
+They are add-ons to an installed canvodpy, not part of the core monorepo.
+Each package is on PyPI and installs on its own.
 
 ## Packages
 
 | Package | Purpose | Status |
 |---|---|---|
-| [`canvod-filemap`](packages/canvod-filemap) | Recipe-based filename mapping for non-canonical GNSS filenames; slot-in for canvodpy >= 0.3.0 | Available |
+| [`canvod-filemap`](packages/canvod-filemap) | Recipe-based filename mapping for non-canonical GNSS filenames | Available |
 | [`canvod-airflow`](packages/canvod-airflow) | Airflow DAGs for canvodpy: one daily DAG per site, plus backfill | Available |
 | [`canvod-adapters`](packages/canvod-adapters) | Data exchange between canvodpy and other GNSS-T programs (gnssvod) | Available |
 
 ## Installation
 
-Each package installs from this repo directly via a git-subdirectory source —
-there's no PyPI package to `uv add <name>` for. Each package is released on
-its own, under the tag `<package>-v<version>`. Pin to a release tag, not the
-default branch, so installs stay reproducible. For `canvod-filemap`:
+Add a package to the project that uses canvodpy:
 
 ```bash
-uv add "canvod-filemap @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-filemap"
+uv add canvod-filemap
+uv add canvod-airflow
+uv add canvod-adapters
 ```
 
-The other packages follow the same pattern: swap `canvod-filemap` for
-`canvod-airflow` or `canvod-adapters` in the package name and the
-`subdirectory=` path, and use that package's release tag. See each package's own README for extras (e.g.
-`canvod-airflow[airflow]`, `canvod-adapters[store]`).
-
-`just release` keeps the pins in this README and the docs on the latest
-release; downstream consumers' `[tool.uv.sources]` (e.g. canvodpy's root
-`pyproject.toml`) are updated by hand. See "Releasing" in
-[CONTRIBUTING.md](CONTRIBUTING.md).
+Each package brings everything it needs; `canvod-airflow` also installs
+Apache Airflow 3. Each package is released on its own, under the tag
+`<package>-v<version>`, and published to PyPI from that tag. See
+"Releasing" in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Development Setup
 

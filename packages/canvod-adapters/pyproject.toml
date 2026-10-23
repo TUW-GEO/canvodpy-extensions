@@ -33,6 +33,7 @@ classifiers = [
 dependencies = [
     "canvod-readers",
     "canvod-utils",
+    "canvod-store>=0.2.3",
     "pydantic>=2.0",
     "xarray>=2024.1.0",
     "numpy>=1.26.0",
@@ -41,9 +42,6 @@ dependencies = [
     "h5py>=3.10.0",
 ]
 
-[project.optional-dependencies]
-store = ["canvod-store>=0.2.3"]
-
 [project.urls]
 Homepage = "https://github.com/TUW-GEO/canvodpy-extensions"
 Documentation = "https://extensions.canvodpy.eu/packages/adapters/overview/"
@@ -51,7 +49,7 @@ Repository = "https://github.com/TUW-GEO/canvodpy-extensions"
 Issues = "https://github.com/TUW-GEO/canvodpy-extensions/issues"
 
 [build-system]
-requires = ["uv_build>=0.9.17,<0.10.0"]
+requires = ["uv_build>=0.13.0,<0.14.0"]
 build-backend = "uv_build"
 
 [tool.uv.build-backend]

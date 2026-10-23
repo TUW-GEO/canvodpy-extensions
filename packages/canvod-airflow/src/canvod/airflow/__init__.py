@@ -5,9 +5,8 @@ See ``daily_processing.py`` (one daily DAG per site) and
 here; every task wraps a stateless function from ``canvodpy.workflows.tasks``.
 
 ``daily_processing.py`` and ``backfill.py`` import ``airflow`` at module
-level — they require the ``airflow`` extra (``canvod-airflow[airflow]``)
-to import at all, since these modules only ever run inside an Airflow
-scheduler process. ``canvodpy``-side config/task imports are deferred
+level (``apache-airflow`` is a dependency of this package), since these
+modules only ever run inside an Airflow scheduler process. ``canvodpy``-side config/task imports are deferred
 inside each DAG-construction function instead, so a missing or
 misconfigured ``canvodpy`` config doesn't crash DAG parsing.
 """

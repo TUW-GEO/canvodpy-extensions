@@ -26,21 +26,21 @@ Airflow dependency of its own.
 
 | DAG | Trigger | Tasks |
 |---|---|---|
-| `canvod_{site}` | `@daily` | `validate_dirs → wait_for_data (→ wait_for_sp3) → process_day → validate_ingest → calculate_vod` |
-| `canvod_backfill` | manual (params `site`, `start_date`, `end_date`) | `resolve_dates → process_day`, one mapped task per day |
+| `canvod_{site}` | `@daily` | `t_validate_dirs → t_wait_for_data (→ t_wait_for_sp3) → t_process_day → t_validate_ingest → t_calculate_vod` |
+| `canvod_backfill` | manual (params `site`, `start_date`, `end_date`) | `t_resolve_dates → t_process_day`, one mapped task per day |
 
 There is one daily DAG per site of the canvodpy settings, created when
-Airflow parses the DAG file. `wait_for_sp3` runs only when the settings use
+Airflow parses the DAG file. `t_wait_for_sp3` runs only when the settings use
 agency orbit and clock products instead of broadcast ephemerides.
 
 ## Install
 
 ```bash
-uv add "canvod-airflow[airflow]"
+uv add canvod-airflow
 ```
 
-The `airflow` extra installs `apache-airflow>=3.0`. Leave it out to use the
-Airflow your deployment provides. canVODpy requires Python 3.14.
+This installs `apache-airflow>=3.0` too; an Airflow 3 that is already
+installed is used as it is. canVODpy requires Python 3.14.
 
 ## Deployment
 
@@ -54,7 +54,7 @@ from canvod.airflow.backfill import *  # noqa: F403
 ```
 
 Create the `canvod_store_write` pool with one slot. Every task that writes
-to a store (`process_day`, `calculate_vod`) runs in it, so commits to an
+to a store (`t_process_day`, `t_calculate_vod`) runs in it, so commits to an
 Icechunk store happen one at a time across all DAGs and backfill runs:
 
 ```bash

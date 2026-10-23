@@ -31,13 +31,15 @@ own contract for that data, and every conversion records its provenance
 ## Install
 
 ```bash
-uv add canvod-adapters           # conversions
-uv add "canvod-adapters[store]"  # also read and write canVODpy's VOD store
+uv add canvod-adapters
 ```
 
 canVODpy requires Python 3.14.
 
 ## Example
+
+The example writes into the VOD store of a canvodpy site, so it runs
+where canvodpy is installed, as the extensions expect.
 
 ```python
 from canvod.adapters.gnssvod import GnssvodVod

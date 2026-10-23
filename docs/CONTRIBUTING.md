@@ -45,8 +45,8 @@ Issues tagged "bug"/"enhancement" and "help wanted" are open for contributions.
 
 New extension packages live under `packages/<name>/` and are picked up
 automatically by the uv workspace (`packages/*`). Each package is versioned
-on its own. canvodpy-extensions is GitHub-only by design (see Releasing
-below). Packages install via git-subdirectory sources, not PyPI. See
+on its own and published to PyPI (see Releasing below). A package lists
+every dependency it needs, with no extras. See
 `packages/canvod-filemap` for the expected layout (`pyproject.toml`, `src/`,
 `tests/`, `README.md`).
 
