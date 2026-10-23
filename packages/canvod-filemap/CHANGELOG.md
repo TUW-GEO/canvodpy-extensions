@@ -4,10 +4,11 @@ All notable changes to this package are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [canvod-filemap-v1.0.0](https://github.com/TUW-GEO/canvodpy-extensions/releases/tag/canvod-filemap-v1.0.0) - 2026-10-23
+## [canvod-filemap-v1.0.0](https://github.com/TUW-GEO/canvodpy-extensions/releases/tag/canvod-filemap-v1.0.0) - 2026-10-24
 
 ### Features
 
+- **Breaking:** Require canvod-preflight and canvod-utils 1.0.0 from PyPI ([f695940](https://github.com/TUW-GEO/canvodpy-extensions/commit/f695940a09b30042c91811a0cfd8e2a31b4e3620))
 - Find recipe files per site and create them from a template ([753db56](https://github.com/TUW-GEO/canvodpy-extensions/commit/753db564850611e4e43671f10ef51c0e71beb322))
 - Read a naming recipe from a pinned URL ([ecec4ae](https://github.com/TUW-GEO/canvodpy-extensions/commit/ecec4aedc1e2d6b8c608dec787c5ae19bd166fbe))
 - **Breaking:** Fetch recipe URLs in every run, accept branch links ([c5c1d53](https://github.com/TUW-GEO/canvodpy-extensions/commit/c5c1d53f80aadd56a6ffe3dc19e340e98240c9e0))
@@ -21,7 +22,7 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - RINEX 2 daily session "0" gives a daily file ([b61bb75](https://github.com/TUW-GEO/canvodpy-extensions/commit/b61bb75735db4ba54d7996ee45e76a852154b1e1))
 - Keep a parallel fetch's cached recipe on Windows ([deaf1dd](https://github.com/TUW-GEO/canvodpy-extensions/commit/deaf1ddd241f24d5d4e73236bacba6dd94c8e99b))
 - A failed cache write is a RecipeFetchError; test both branches ([2541a37](https://github.com/TUW-GEO/canvodpy-extensions/commit/2541a3720961b718e1ef8d885a2665dc4dae2093))
-- Package versions from metadata, airflow needs canvod-config ([5608804](https://github.com/TUW-GEO/canvodpy-extensions/commit/5608804ef6f69b94dfee2103fa5b6f9fd97d966a))
+- Read `__version__` from the package metadata ([5608804](https://github.com/TUW-GEO/canvodpy-extensions/commit/5608804ef6f69b94dfee2103fa5b6f9fd97d966a))
 
 ### Refactoring
 
@@ -32,7 +33,6 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Documentation
 
-- Pin all install snippets to the v0.1.0 tag, not the default branch ([d8d8c0a](https://github.com/TUW-GEO/canvodpy-extensions/commit/d8d8c0a9b1664e4ade06e4ea1fb7b25241b890e1))
 - AGENTS.md and task guides for coding agents ([92c841d](https://github.com/TUW-GEO/canvodpy-extensions/commit/92c841da32370f84ba4ad1786cbe96310ee7b5f9))
 - Lead agents through canvodpy's trail before changing an extension ([6cbc821](https://github.com/TUW-GEO/canvodpy-extensions/commit/6cbc821fec392972890fe06ddc948f6c7e5b5b4e))
 - Host the documentation at extensions.canvodpy.eu ([3129c54](https://github.com/TUW-GEO/canvodpy-extensions/commit/3129c54fde078723c7620eec53c2756ea48a6f76))
@@ -43,7 +43,3 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - README, overview and recipe template use the Fangorn test site ([a0f9c93](https://github.com/TUW-GEO/canvodpy-extensions/commit/a0f9c93bbf41c45fe0809ae26a2bee502a0767ec))
 - The run folder is removed when its process ends ([124ff82](https://github.com/TUW-GEO/canvodpy-extensions/commit/124ff82471164c108540290be7cb3f389b171335))
 - PyPI pages for the 1.0.0 release ([76fcf9b](https://github.com/TUW-GEO/canvodpy-extensions/commit/76fcf9b20e9305648e48a5c36f79b11370e1af45))
-
-### bump
-
-- Version 0.0.0 → 0.1.0 ([9e24904](https://github.com/TUW-GEO/canvodpy-extensions/commit/9e249047772bcb94d84628b979c800c2b2b5dcd1))
