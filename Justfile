@@ -192,6 +192,9 @@ release PKG VERSION: (test-package PKG)
     fi
     uvx git-cliff --include-path "packages/{{PKG}}/**" --tag-pattern "^{{PKG}}-v[0-9]" \
         --tag "${tag}" --output "packages/{{PKG}}/CHANGELOG.md"
+    # git-cliff ends the file with a blank line, which end-of-file-fixer
+    # would change in the commit below and so stop it
+    perl -0pi -e 's/\n+\z/\n/' "packages/{{PKG}}/CHANGELOG.md"
     # Pin the install snippets of PKG to the new tag
     pin='canvodpy-extensions\.git@[^#]*#subdirectory=packages/{{PKG}}"'
     files=$(grep -rlE "${pin}" README.md docs "packages/{{PKG}}/README.md" || true)
