@@ -207,7 +207,8 @@ release PKG VERSION: (test-package PKG)
     echo "  1. Push this branch, open a PR and merge it"
     echo "  2. git checkout main && git pull, then: just tag {{PKG}}"
     echo "  3. Publish the draft GitHub Release that the tag creates"
-    echo "  4. Update the pin in downstream [tool.uv.sources] (canvodpy's root pyproject.toml)"
+    echo "  4. Publish to PyPI: gh workflow run publish_pypi.yml --ref ${tag}"
+    echo "  5. Update the pin in downstream [tool.uv.sources] (canvodpy's root pyproject.toml)"
 
 # tag the current version of PKG on an up-to-date main and push the tag
 tag PKG:

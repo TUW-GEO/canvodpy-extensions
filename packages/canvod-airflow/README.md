@@ -1,46 +1,51 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/TUW-GEO/canvodpy/main/docs/assets/logo/canvodpy_logo_dark_mode.svg">
+    <img alt="canVODpy" src="https://raw.githubusercontent.com/TUW-GEO/canvodpy/main/docs/assets/logo/canvodpy_logo_bright_mode.svg" width="260">
+  </picture>
+</p>
+
 # canvod-airflow
 
-Airflow DAG definitions for canvodpy GNSS-T pipelines.
+[![PyPI](https://img.shields.io/pypi/v/canvod-airflow.svg)](https://pypi.org/project/canvod-airflow/)
+[![Python](https://img.shields.io/badge/python-3.14-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/TUW-GEO/canvodpy-extensions/blob/main/LICENSE)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21359005-blue)](https://doi.org/10.5281/zenodo.21359005)
 
-Part of the [canVODpy](https://github.com/TUW-GEO/canvodpy) ecosystem.
+**Apache Airflow DAGs that run the canVODpy pipeline every day.** `canvod-airflow` is one of the
+[canVODpy extensions](https://extensions.canvodpy.eu/), optional packages
+for [canVODpy](https://canvodpy.eu/), an open Python ecosystem for
+GNSS-Transmissometry (GNSS-T) canopy VOD retrievals.
 
-## Overview
+## What it does
 
-`canvod-airflow` wraps `canvodpy`'s stateless task functions
-(`canvodpy.workflows.tasks`) into Airflow TaskFlow DAGs: three daily
-per-site DAGs (SBF, RINEX, SBF+agency-ephemeris) and one manually-triggered
-backfill DAG. No pipeline logic lives here — every task is a thin call into
-`canvodpy.workflows.tasks`, which stays in the core `canvodpy` package and
-has zero Airflow dependency of its own.
+`canvod-airflow` wraps the task functions of `canvodpy run`
+(`canvodpy.workflows.tasks`) into Airflow TaskFlow DAGs. No pipeline logic
+lives here: every task calls `canvodpy.workflows.tasks`, which has no
+Airflow dependency of its own.
 
-## DAGs
-
-| DAG | Trigger | Chain |
+| DAG | Trigger | Tasks |
 |---|---|---|
-| `canvod_{site}_sbf` | `@daily` | `validate_dirs → check_sbf → process_sbf → validate_ingest → calculate_vod → cleanup` |
-| `canvod_{site}_rinex` | `@daily` | `validate_dirs → {wait_for_rinex, wait_for_sp3} → fetch_aux_data → process_rinex → validate_ingest → calculate_vod → cleanup` |
-| `canvod_{site}_sbf_agency` | `@daily` | `validate_dirs → {check_sbf, wait_for_sp3} → fetch_aux_data → process_sbf → validate_ingest → calculate_vod → cleanup` |
-| `canvod_backfill` | Manual (Params: site, branch, start_date, end_date) | `resolve_dates → process_day` (dynamically mapped, one task per date) |
+| `canvod_{site}` | `@daily` | `validate_dirs → wait_for_data (→ wait_for_sp3) → process_day → validate_ingest → calculate_vod` |
+| `canvod_backfill` | manual (params `site`, `start_date`, `end_date`) | `resolve_dates → process_day`, one mapped task per day |
 
-One DAG set per site configured in `canvodpy`'s `sites.yaml`, generated
-dynamically at parse time via `canvod.config.load_config()`.
+There is one daily DAG per site of the canvodpy settings, created when
+Airflow parses the DAG file. `wait_for_sp3` runs only when the settings use
+agency orbit and clock products instead of broadcast ephemerides.
 
-## Installation
-
-GitHub-only by design; install via the git-subdirectory pattern:
+## Install
 
 ```bash
-uv add "canvod-airflow[airflow] @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-airflow"
+uv add "canvod-airflow[airflow]"
 ```
 
-`apache-airflow` is an optional extra, not a hard dependency — install it
-alongside whatever Airflow version your deployment environment provides.
+The `airflow` extra installs `apache-airflow>=3.0`. Leave it out to use the
+Airflow your deployment provides. canVODpy requires Python 3.14.
 
 ## Deployment
 
-Point your Airflow `dags_folder` at a shim module that imports both DAG
-modules (the words "airflow" and "dag" must appear in the shim file for
-Airflow's DagBag keyword pre-filter):
+Point Airflow's `dags_folder` at a module that imports both DAG modules
+(Airflow only parses files that contain the words "airflow" and "dag"):
 
 ```python
 # <dags_folder>/canvod_dags.py
@@ -48,31 +53,28 @@ from canvod.airflow.daily_processing import *  # noqa: F403  (airflow dag)
 from canvod.airflow.backfill import *  # noqa: F403
 ```
 
-Create the `canvod_store_write` pool (serializes Icechunk commits across
-all DAGs and backfill runs):
+Create the `canvod_store_write` pool with one slot. Every task that writes
+to a store (`process_day`, `calculate_vod`) runs in it, so commits to an
+Icechunk store happen one at a time across all DAGs and backfill runs:
 
 ```bash
-airflow pools set canvod_store_write 1 "Serialise Icechunk commits"
+airflow pools set canvod_store_write 1 "Serialize Icechunk commits"
 ```
 
-## Concurrency safety
+## Documentation
 
-Icechunk stores require serialized commits per branch. Every task that
-writes to the store (`calculate_vod`, `process_sbf`, `process_rinex`, and
-backfill's `process_day`) uses `pool="canvod_store_write", pool_slots=1`.
-Backfill additionally sets `max_active_tis_per_dagrun=1` on its mapped
-`process_day` task so dates within one backfill run process sequentially.
+[airflow documentation](https://extensions.canvodpy.eu/packages/airflow/overview/)
+and the [canVODpy documentation](https://canvodpy.eu/).
 
-## Testing
+## Citation
 
-```bash
-uv run pytest packages/canvod-airflow/tests/
-```
-
-Structure tests (`test_dag_structure.py`) are AST/string-based and run
-without Airflow installed. A guarded `DagBag`-parsing test runs only when
-the `airflow` extra is installed (`pytest.importorskip("airflow")`).
+Please cite the canVODpy extensions with their Zenodo DOI,
+[10.5281/zenodo.21359005](https://doi.org/10.5281/zenodo.21359005), and
+canVODpy with
+[10.5281/zenodo.18496233](https://doi.org/10.5281/zenodo.18496233).
 
 ## License
 
-Apache License 2.0
+Apache License 2.0. See
+[LICENSE](https://github.com/TUW-GEO/canvodpy-extensions/blob/main/LICENSE)
+and [NOTICE](https://github.com/TUW-GEO/canvodpy-extensions/blob/main/NOTICE).

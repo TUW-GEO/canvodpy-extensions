@@ -1,43 +1,53 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/TUW-GEO/canvodpy/main/docs/assets/logo/canvodpy_logo_dark_mode.svg">
+    <img alt="canVODpy" src="https://raw.githubusercontent.com/TUW-GEO/canvodpy/main/docs/assets/logo/canvodpy_logo_bright_mode.svg" width="260">
+  </picture>
+</p>
+
 # canvod-filemap
 
-Naming recipes for receiver files that don't follow the canVOD filename
-convention.
+[![PyPI](https://img.shields.io/pypi/v/canvod-filemap.svg)](https://pypi.org/project/canvod-filemap/)
+[![Python](https://img.shields.io/badge/python-3.14-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/TUW-GEO/canvodpy-extensions/blob/main/LICENSE)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.21359005-blue)](https://doi.org/10.5281/zenodo.21359005)
 
-Part of the [canVODpy](https://github.com/TUW-GEO/canvodpy) ecosystem.
+**Naming recipes for receiver files that don't follow the canVOD file name convention.** `canvod-filemap` is one of the
+[canVODpy extensions](https://extensions.canvodpy.eu/), optional packages
+for [canVODpy](https://canvodpy.eu/), an open Python ecosystem for
+GNSS-Transmissometry (GNSS-T) canopy VOD retrievals.
 
-## Overview
+## What it does
 
 `canvodpy run` processes files whose names follow the canVOD convention, in
-any folder layout. For a receiver whose files are named differently, a naming
-recipe translates each filename to its canonical name, without renaming any
-file on disk.
+any folder layout. For a receiver whose files are named differently, a
+naming recipe translates each file name to its canonical name, without
+renaming any file on disk.
 
-**Convention format:**
 ```
 {SIT}{T}{NN}{AGC}_R_{YYYY}{DOY}{HHMM}_{PERIOD}_{SAMPLING}_{CONTENT}.{TYPE}
 ```
-Example: `FANA01INK_R_20250010000_15M_05S_AA.rnx`
 
-## Key components
+Example: `FANA01INK_R_20250010000_15M_05S_AA.rnx`
 
 | Component | Purpose |
 |---|---|
-| `NamingRecipe` | Translates a receiver's own filenames to canonical names |
-| `find_recipe`, `create_recipe` | Recipe files at `<config dir>/recipes/<site>/<name>.yaml`, or fetched from a URL by every run; new ones from the template |
+| `NamingRecipe` | Translates a receiver's own file names to canonical names |
+| `find_recipe`, `create_recipe` | Recipe files at `<config dir>/recipes/<site>/<name>.yaml`; new ones from the template |
 | `fetch_recipe`, `check_recipe_url` | Recipes from a raw GitHub link (commit, tag or branch), fetched by every run |
 
 `canvodpy config validate --site <site>` checks before a run which files the
 run would process.
 
-## Installation
-
-GitHub-only by design; install via the git-subdirectory pattern:
+## Install
 
 ```bash
-uv add "canvod-filemap @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-filemap"
+uv add canvod-filemap
 ```
 
-## Quick Start
+canVODpy requires Python 3.14.
+
+## Example
 
 ```python
 from pathlib import Path
@@ -51,8 +61,18 @@ print(vf.conventional_name)  # canonical canVOD name; the file keeps its name
 
 ## Documentation
 
-[Full documentation](https://canvodpy.eu/packages/naming/overview/)
+[filemap documentation](https://extensions.canvodpy.eu/packages/filemap/overview/)
+and the [canVODpy documentation](https://canvodpy.eu/).
+
+## Citation
+
+Please cite the canVODpy extensions with their Zenodo DOI,
+[10.5281/zenodo.21359005](https://doi.org/10.5281/zenodo.21359005), and
+canVODpy with
+[10.5281/zenodo.18496233](https://doi.org/10.5281/zenodo.18496233).
 
 ## License
 
-Apache License 2.0
+Apache License 2.0. See
+[LICENSE](https://github.com/TUW-GEO/canvodpy-extensions/blob/main/LICENSE)
+and [NOTICE](https://github.com/TUW-GEO/canvodpy-extensions/blob/main/NOTICE).
