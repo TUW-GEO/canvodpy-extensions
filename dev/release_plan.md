@@ -69,10 +69,12 @@ git push -u origin chore/release-1.0.0
 gh pr create --fill
 ```
 
-- [ ] Read the three `packages/<package>/CHANGELOG.md`: breaking changes
+- [x] Read the three `packages/<package>/CHANGELOG.md`: breaking changes
       marked, nothing missing (commits outside `packages/<package>/` are not
-      listed).
-- [ ] Install pins in the READMEs and docs point at the 1.0.0 tags.
+      listed). Edited in the PR; the draft release takes its notes from
+      them.
+- [x] Install lines in the READMEs and docs install from PyPI
+      (`uv add <package>`), so there are no tag pins to move.
 - [ ] CI green, merge.
 
 ### 3. Tags and GitHub Releases
@@ -109,12 +111,11 @@ python -c "import canvod.filemap, canvod.airflow, canvod.adapters.gnssvod, canvo
 ### 4. Downstream
 
 - [ ] canvodpy root `pyproject.toml`: group
-      `filemap = ["canvod-filemap>=1.0.0"]`, source
-      `tag = "canvod-filemap-v1.0.0"` (today: branch `feat/filemap-recipes`);
-      canvod-adapters source `tag = "canvod-adapters-v1.0.0"` (today:
-      `v0.1.0`); relock. Resolves A8 (two URLs for canvod-preflight) since both sides
-      then take canvod-preflight from PyPI.
-- [ ] canvodpy demo: notebooks that use filemap install it from the tag.
+      `filemap = ["canvod-filemap>=1.0.0"]` and canvod-adapters from PyPI;
+      drop their git sources and the canvod-preflight override; relock.
+      Resolves A8 (two URLs for canvod-preflight) since both sides then
+      take canvod-preflight from PyPI.
+- [ ] canvodpy demo: notebooks that use filemap install it from PyPI.
 - [ ] Paper: the extensions section says the packages are pinned via Git
       tag; name the tag form `<package>-v<version>` if the text names one.
 
