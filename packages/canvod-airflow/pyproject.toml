@@ -33,7 +33,7 @@ classifiers = [
 dependencies = [
     "structlog>=23.0",
     "canvodpy>=0.3.0",
-    "apache-airflow>=3.0",
+    "apache-airflow>=3.3.2",
 ]
 
 [project.urls]
