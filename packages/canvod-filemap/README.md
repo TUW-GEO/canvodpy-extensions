@@ -23,8 +23,8 @@ Example: `FANA01INK_R_20250010000_15M_05S_AA.rnx`
 | Component | Purpose |
 |---|---|
 | `NamingRecipe` | Translates a receiver's own filenames to canonical names |
-| `find_recipe`, `create_recipe` | Recipe files at `<config dir>/recipes/<site>/<name>.yaml`, or fetched from a pinned URL; new ones from the template |
-| `fetch_recipe`, `check_recipe_url` | Recipes from a pinned raw GitHub link, and their cache |
+| `find_recipe`, `create_recipe` | Recipe files at `<config dir>/recipes/<site>/<name>.yaml`, or fetched from a URL by every run; new ones from the template |
+| `fetch_recipe`, `check_recipe_url` | Recipes from a raw GitHub link (commit, tag or branch), fetched by every run |
 
 `canvodpy config validate --site <site>` checks before a run which files the
 run would process.

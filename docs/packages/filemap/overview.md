@@ -67,26 +67,22 @@ and [Configuration](https://canvodpy.eu/guides/configuration/).
 ## Recipes from a URL
 
 A recipe can live in a GitHub repository, so that every machine uses the
-same one. Set the raw link of the file, pinned to a commit or a tag:
+same one. Set the raw link of the file, at a commit, a tag or a branch:
 
 ```yaml
         recipe: https://raw.githubusercontent.com/<account>/<recipes-repo>/<commit>/my_site/my_site_reference.yaml
 ```
 
-- **Pinned only.** The link names a full 40-character commit, or a tag as
-  `refs/tags/<tag>`. A branch, or a bare name such as `v1` that could be a
-  branch, is refused, and the message shows both pinned forms. A commit is
-  the only pin that never changes: a tag can be moved.
+- **Any raw link.** The link names a commit, a tag (`refs/tags/<tag>`) or
+  a branch. You are responsible for what it points to.
 - **Checked like a local recipe.** The recipe's `name` must match the file
   name at the end of the link. A `github.com/.../blob/...` link is refused,
   and the message names the raw link.
-- **Provenance.** The store records the link and the sha256 of the file it
-  was made with.
-- **Cache.** A fetched recipe is kept in a folder of the system's temporary
-  folder, one per user, and used without a new fetch. A run without network
-  access therefore works once the recipe was fetched; otherwise it stops
-  and names the link. A cached recipe whose tag was moved keeps its old
-  content until the system empties the temporary folder.
+- **Provenance.** The store records the file name at the end of the link,
+  never the link, and the sha256 of the file it was made with.
+- **Fetched by every run.** There is no cache: every run fetches the
+  recipe again, once, into a folder of the run that only you can read. A
+  run without network access stops and names the link.
 - **Private repositories.** Public recipes need nothing more. A recipe in a
   private repository needs a GitHub token that can read it, in `GH_TOKEN`
   or `GITHUB_TOKEN`; a fine-grained, read-only token for that one
