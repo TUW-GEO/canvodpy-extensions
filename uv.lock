@@ -401,9 +401,9 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "canvod-readers", git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=packages%2Fcanvod-readers&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af" },
-    { name = "canvod-store", git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=packages%2Fcanvod-store&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af" },
-    { name = "canvod-utils", git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=packages%2Fcanvod-utils&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af" },
+    { name = "canvod-readers", specifier = ">=1.0.0" },
+    { name = "canvod-store", specifier = ">=1.0.0" },
+    { name = "canvod-utils", specifier = ">=1.0.0" },
     { name = "h5netcdf", specifier = ">=1.3.0" },
     { name = "h5py", specifier = ">=3.10.0" },
     { name = "numpy", specifier = ">=1.26.0" },
@@ -425,14 +425,14 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "apache-airflow", specifier = ">=3.3.2" },
-    { name = "canvodpy", git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=canvodpy&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af" },
+    { name = "canvodpy", specifier = ">=1.0.0" },
     { name = "structlog", specifier = ">=23.0" },
 ]
 
 [[package]]
 name = "canvod-auxiliary"
-version = "0.4.0"
-source = { git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=packages%2Fcanvod-auxiliary&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "canvod-config" },
     { name = "canvod-readers" },
@@ -448,11 +448,15 @@ dependencies = [
     { name = "tqdm" },
     { name = "xarray" },
 ]
+sdist = { url = "https://files.pythonhosted.org/packages/56/19/165c28f68453e58958691d573be2387604e96e244425e50020aa9820fa4a/canvod_auxiliary-1.0.0.tar.gz", hash = "sha256:b76fa471adb1c25b4f60c44401b2e2dc1334157fe19e0b23068c779528c7972b", size = 68310, upload-time = "2026-10-23T23:04:22.822Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/63/09/882b590a6cfa616a3e3781ed0cb1ae560a03673e9616ec53ad96da9f7348/canvod_auxiliary-1.0.0-py3-none-any.whl", hash = "sha256:e40e582bf3b17fd72e7cfa4602c598497a2cfa87c18dec65e8dd4dba4f7aba94", size = 82603, upload-time = "2026-10-23T23:04:08.037Z" },
+]
 
 [[package]]
 name = "canvod-config"
-version = "0.4.0"
-source = { git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=packages%2Fcanvod-config&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "canvod-utils" },
     { name = "email-validator" },
@@ -460,6 +464,10 @@ dependencies = [
     { name = "pydantic" },
     { name = "pydantic-settings" },
     { name = "pyyaml" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ed/9f/b3cb662d0632246f6a44044e46a5820a901c53885042e8a365fa1def6ef7/canvod_config-1.0.0.tar.gz", hash = "sha256:5bf60c0e756f8e42b7d3cc9d80846fb0602eebb524fc0f26909513c4fcbe2c42", size = 52294, upload-time = "2026-10-23T23:04:23.581Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b0/b7/cd733be13551bb5460e8de5ff8a49e1b76efa2eea57fdf92f3faac2951ba/canvod_config-1.0.0-py3-none-any.whl", hash = "sha256:6ccc8ddc9a6a041fde20d24a4be16cc94e9081c4a154998790db2a2cfd831518", size = 62699, upload-time = "2026-10-23T23:04:09.358Z" },
 ]
 
 [[package]]
@@ -476,8 +484,8 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "canvod-preflight", git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=packages%2Fcanvod-preflight&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af" },
-    { name = "canvod-utils", git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=packages%2Fcanvod-utils&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af" },
+    { name = "canvod-preflight", specifier = ">=1.0.0" },
+    { name = "canvod-utils", specifier = ">=1.0.0" },
     { name = "natsort", specifier = ">=8.4.0" },
     { name = "pydantic", specifier = ">=2.5.0" },
     { name = "pyyaml", specifier = ">=6.0" },
@@ -485,8 +493,8 @@ requires-dist = [
 
 [[package]]
 name = "canvod-grids"
-version = "0.4.0"
-source = { git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=packages%2Fcanvod-grids&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "canvod-utils" },
     { name = "dask" },
@@ -500,11 +508,15 @@ dependencies = [
     { name = "tqdm" },
     { name = "xarray" },
 ]
+sdist = { url = "https://files.pythonhosted.org/packages/ac/b1/37e1fdfcae3200a12439c4e9507afbc45b97c215568009961b0c71530b27/canvod_grids-1.0.0.tar.gz", hash = "sha256:ec4691806d6e14cb31a1319f3db40b19d25c5d72cf3dfddc46768d9cd9201a74", size = 76955, upload-time = "2026-10-23T23:04:24.649Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8b/10/456cabeaed9c1a5089495e0e56e80ce7309d58751f6fb461344a2558922a/canvod_grids-1.0.0-py3-none-any.whl", hash = "sha256:468d6305d60c1457ded1d1bec09153b107ee40eb7b261cea1702b4a8444b1ce2", size = 96195, upload-time = "2026-10-23T23:04:10.775Z" },
+]
 
 [[package]]
 name = "canvod-ops"
-version = "0.4.0"
-source = { git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=packages%2Fcanvod-ops&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "canvod-config" },
     { name = "canvod-grids" },
@@ -513,22 +525,30 @@ dependencies = [
     { name = "structlog" },
     { name = "xarray" },
 ]
+sdist = { url = "https://files.pythonhosted.org/packages/3b/30/5dc8efb05a5c05bbd3e6725053254a06a41e7aab092e5eaa26d242526b08/canvod_ops-1.0.0.tar.gz", hash = "sha256:1793d39fd1dc14d54e4c48ad5f7662e5b6c336d8bc352918db7ac3d5865dbbe9", size = 16803, upload-time = "2026-10-23T23:04:25.626Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ba/d0/57552d65f5c550cb8d827a0838dcf32a82f5346f7689d3c5e6709b281a5c/canvod_ops-1.0.0-py3-none-any.whl", hash = "sha256:91d6c2901c784bc2ae8b0cac6a7fceedc073e2f79fadd2ee18167c58d5557a3a", size = 20072, upload-time = "2026-10-23T23:04:12.087Z" },
+]
 
 [[package]]
 name = "canvod-preflight"
-version = "0.4.0"
-source = { git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=packages%2Fcanvod-preflight&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "canvod-utils" },
     { name = "natsort" },
     { name = "pydantic" },
     { name = "typer" },
 ]
+sdist = { url = "https://files.pythonhosted.org/packages/c7/5e/4f37e62a909ee205a8f2385c8a4dfb77e4a652a73fed45f32af5f1c1a3af/canvod_preflight-1.0.0.tar.gz", hash = "sha256:a032ed2663174cb8a4a2b29fb167a8b772a48a7c54c174ecf4ad3894147f3fb3", size = 19820, upload-time = "2026-10-23T23:04:26.353Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ba/52/b9d99fd4df38d50bfca66027dc5a6557147f8b4c7ec7a9b77a50251557e2/canvod_preflight-1.0.0-py3-none-any.whl", hash = "sha256:7a9475b875200e0ebaa8940bfeeef243b9d694b2e42b96fbbf11b86c4d358c68", size = 24522, upload-time = "2026-10-23T23:04:13.349Z" },
+]
 
 [[package]]
 name = "canvod-readers"
-version = "0.4.0"
-source = { git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=packages%2Fcanvod-readers&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "canvod-config" },
     { name = "canvod-utils" },
@@ -544,11 +564,15 @@ dependencies = [
     { name = "structlog" },
     { name = "xarray" },
 ]
+sdist = { url = "https://files.pythonhosted.org/packages/3c/e7/1a7c0af8706b883640673519c26d483edb723fbeef74508647ee1e206d19/canvod_readers-1.0.0.tar.gz", hash = "sha256:9ba401a02874242298f4d61ea8851260bfddf0903d24be20a45525cbf3ef977b", size = 187372, upload-time = "2026-10-23T23:04:27.2Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c0/83/92f68bd54e6b713616f918aed2640b3b0c00cdc0c23a00a7a0927a45b8d2/canvod_readers-1.0.0-py3-none-any.whl", hash = "sha256:bc6cb64c8e7ec975bf1544fa86d45496e0fb0d46fc43069af17757dad779db30", size = 201724, upload-time = "2026-10-23T23:04:14.518Z" },
+]
 
 [[package]]
 name = "canvod-store"
-version = "0.4.0"
-source = { git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=packages%2Fcanvod-store&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "canvod-auxiliary" },
     { name = "canvod-config" },
@@ -566,11 +590,15 @@ dependencies = [
     { name = "xarray" },
     { name = "zarr" },
 ]
+sdist = { url = "https://files.pythonhosted.org/packages/6b/a5/c55da0bdc5746b52c0c117422851a42eb65ed0469131dd46c1789a5f3540/canvod_store-1.0.0.tar.gz", hash = "sha256:12a8c8b28f21c0b66ea1cf59bdfdd426dd370fe5a7c0e78d8886df2da7b7d339", size = 118852, upload-time = "2026-10-23T23:04:28.481Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/04/15/d1a9a171e8a41643b4f3333b6fa39b91f61e405fee3d21e7897f018b1269/canvod_store-1.0.0-py3-none-any.whl", hash = "sha256:dfefd83710f00562ea9723ba6cae928ee82c44b66d79e259f0a96e5eacaa93e2", size = 124919, upload-time = "2026-10-23T23:04:15.707Z" },
+]
 
 [[package]]
 name = "canvod-store-metadata"
-version = "0.4.0"
-source = { git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=packages%2Fcanvod-store-metadata&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "canvod-config" },
     { name = "canvod-utils" },
@@ -584,31 +612,42 @@ dependencies = [
     { name = "zarr" },
     { name = "zarr-cm" },
 ]
+sdist = { url = "https://files.pythonhosted.org/packages/00/92/1a1fc632f7fef86f1d18837bb3a32f61073e11625e15d20f0c57594eac1f/canvod_store_metadata-1.0.0.tar.gz", hash = "sha256:e7807b38bef81470026a7c896ff6d35d2d860db54e2efadbba8210b278b8376b", size = 145885, upload-time = "2026-10-23T23:04:29.721Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/aa/75/96a80342b38fe00feef3088fc2e4e0d7ee5f70817b24fcebddc692737ba6/canvod_store_metadata-1.0.0-py3-none-any.whl", hash = "sha256:1f728536c0a5ecafb72930de496e84a98194b5fbd1379062be92bd24ac5cfeff", size = 157715, upload-time = "2026-10-23T23:04:17.056Z" },
+]
 
 [[package]]
 name = "canvod-utils"
-version = "0.4.0"
-source = { git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=packages%2Fcanvod-utils&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pydantic" },
     { name = "structlog" },
 ]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a6/4b/142348390edc3e8396b39abf71878d7e52b6377618b33307cb6d0dff92cd/canvod_utils-1.0.0-py3-none-any.whl", hash = "sha256:4f4a82fe9891d33574c190e50188a25b9565b619dcaa0c8f1e5b970ba326d29e", size = 32716, upload-time = "2026-10-23T23:04:18.236Z" },
+]
 
 [[package]]
 name = "canvod-viz"
-version = "0.4.0"
-source = { git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=packages%2Fcanvod-viz&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "canvod-grids" },
     { name = "matplotlib" },
     { name = "numpy" },
     { name = "plotly" },
 ]
+sdist = { url = "https://files.pythonhosted.org/packages/8d/73/2ac058b4d990a6e79e3966dc9816fd9eb80243ab877a50cd604479cd5aaf/canvod_viz-1.0.0.tar.gz", hash = "sha256:7348d6fe346ceeb6c343197d701fb17ef6e76decf98a0c4b46653a93b359dd73", size = 31692, upload-time = "2026-10-23T23:04:31.551Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/94/f5/f61c73bc4a9efc02830afb164b406983422547dd03bf50228cd2fe3adb02/canvod_viz-1.0.0-py3-none-any.whl", hash = "sha256:9bfe76751dfdc7e8f52999bc04b409289604dab6629d22f0ea272fd3a5c81b78", size = 36644, upload-time = "2026-10-23T23:04:19.463Z" },
+]
 
 [[package]]
 name = "canvod-vod"
-version = "0.4.0"
-source = { git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=packages%2Fcanvod-vod&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "canvod-utils" },
     { name = "numpy" },
@@ -616,11 +655,15 @@ dependencies = [
     { name = "structlog" },
     { name = "xarray" },
 ]
+sdist = { url = "https://files.pythonhosted.org/packages/ff/8c/576c6b702c73c6322be027d71e0ccbbf70d8f686fcd4e30c0b25bbaca431/canvod_vod-1.0.0.tar.gz", hash = "sha256:ab430d0ebe77d2ed8ff58aef941a3a757f09737b058a326adfc32cc2f053b1e6", size = 10449, upload-time = "2026-10-23T23:04:32.243Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ef/2c/73d3e7aab77881e26ebe26e12feb5e00e0a1a182eb47b9ffa9a37fe3142c/canvod_vod-1.0.0-py3-none-any.whl", hash = "sha256:2a420692e86e6e1a6262003497fdc6a0500b2d6a80eca2a907ea6b6d0504f21e", size = 11187, upload-time = "2026-10-23T23:04:20.456Z" },
+]
 
 [[package]]
 name = "canvodpy"
-version = "0.4.0"
-source = { git = "https://github.com/TUW-GEO/canvodpy.git?subdirectory=canvodpy&rev=03f44dc2135aa980958ccd2d5d7949f8ebec08af#03f44dc2135aa980958ccd2d5d7949f8ebec08af" }
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "altair" },
     { name = "canvod-auxiliary" },
@@ -651,6 +694,10 @@ dependencies = [
     { name = "typer" },
     { name = "xarray" },
     { name = "zarr" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/cd/f4/c1f62a361c27dd756a6dbfc935c0eca8cdc07f7d678e15c009626d6f915f/canvodpy-1.0.0.tar.gz", hash = "sha256:ad54d2c2406523767d7a6506840ff7ff97ede78290ecf8cdcac6598f61e9b97b", size = 290443, upload-time = "2026-10-23T23:04:33.063Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/23/24/b4a1cbe20cd971da7a02cf2c5dee1ae9741e9907d6a8d3481824db81df9e/canvodpy-1.0.0-py3-none-any.whl", hash = "sha256:2081c7cfd9428b992e0b8b9da0424b3e6c13945068d719b16c921bd6e7df9f23", size = 318375, upload-time = "2026-10-23T23:04:21.613Z" },
 ]
 
 [[package]]
