@@ -85,9 +85,18 @@ just tag canvod-adapters
 ```
 
 - [ ] Three draft releases with the right notes; publish them.
-- [ ] PyPI: pending trusted publishers for the three projects (owner
-      TUW-GEO, workflow `publish_pypi.yml`, environment `pypi`), then
-      `gh workflow run publish_pypi.yml --ref <tag>` for each tag.
+- [ ] PyPI, one package at a time: PyPI takes only one pending trusted
+      publisher at a time (user, 2026-10-23). The pending publisher for
+      canvod-filemap is set (owner TUW-GEO, repository
+      canvodpy-extensions, workflow `publish_pypi.yml`, environment
+      `pypi`). For each package in turn:
+      1. check the name is still free (https://pypi.org/project/<name>/
+         is 404); a pending publisher does not reserve it
+      2. add its pending publisher (skip for canvod-filemap)
+      3. `gh workflow run publish_pypi.yml --ref <tag>` and approve the
+         `pypi` environment; the upload turns the pending publisher into
+         the project's publisher
+      Order: canvod-filemap, canvod-airflow, canvod-adapters.
 - [ ] Smoke test from the tags in a fresh environment, outside the
       workspace:
 
