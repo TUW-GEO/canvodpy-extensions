@@ -175,7 +175,7 @@ versions:
 changelog PKG:
     uvx git-cliff --include-path "packages/{{PKG}}/**" --tag-pattern "^{{PKG}}-v[0-9]" --unreleased
 
-# release commit for PKG: bump (major, minor, patch or e.g. 0.2.0), changelog, install pins
+# release commit for PKG: bump (major, minor, patch or e.g. 0.2.0), changelog
 release PKG VERSION: (test-package PKG)
     #!/usr/bin/env bash
     set -euo pipefail
@@ -192,14 +192,10 @@ release PKG VERSION: (test-package PKG)
     fi
     uvx git-cliff --include-path "packages/{{PKG}}/**" --tag-pattern "^{{PKG}}-v[0-9]" \
         --tag "${tag}" --output "packages/{{PKG}}/CHANGELOG.md"
-    # Pin the install snippets of PKG to the new tag
-    pin='canvodpy-extensions\.git@[^#]*#subdirectory=packages/{{PKG}}"'
-    files=$(grep -rlE "${pin}" README.md docs "packages/{{PKG}}/README.md" || true)
-    for f in ${files}; do
-        sed -i.bak -E "s|(canvodpy-extensions\.git@)[^#]*(#subdirectory=packages/{{PKG}}\")|\1${tag}\2|g" "${f}"
-        rm "${f}.bak"
-    done
-    git add "packages/{{PKG}}" uv.lock ${files}
+    # git-cliff ends the file with a blank line, which end-of-file-fixer
+    # would change in the commit below and so stop it
+    perl -0pi -e 's/\n+\z/\n/' "packages/{{PKG}}/CHANGELOG.md"
+    git add "packages/{{PKG}}" uv.lock
     git commit -m "chore(release): {{PKG}} ${version}"
     echo ""
     echo -e "{{GREEN}}{{BOLD}}Release commit for ${tag} created.{{NORMAL}}"
@@ -209,7 +205,7 @@ release PKG VERSION: (test-package PKG)
     echo "  2. git checkout main && git pull, then: just tag {{PKG}}"
     echo "  3. Publish the draft GitHub Release that the tag creates"
     echo "  4. Publish to PyPI: gh workflow run publish_pypi.yml --ref ${tag}"
-    echo "  5. Update the pin in downstream [tool.uv.sources] (canvodpy's root pyproject.toml)"
+    echo "  5. Downstream, raise the lower bound if needed (canvodpy's filemap group)"
 
 # tag the current version of PKG on an up-to-date main and push the tag
 tag PKG:

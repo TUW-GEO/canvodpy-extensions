@@ -166,8 +166,7 @@ just release canvod-filemap minor     # or major, patch, or for example 0.2.0
 
 - sets the version in `packages/<package>/pyproject.toml` (and `uv.lock`),
 - writes `packages/<package>/CHANGELOG.md` from the commits that changed
-  `packages/<package>/` ([git-cliff](https://git-cliff.org), `cliff.toml`),
-- pins the package's install snippets in the READMEs and docs to the new tag.
+  `packages/<package>/` ([git-cliff](https://git-cliff.org), `cliff.toml`).
 
 Commit messages become the changelog, so follow the commit convention here
 and mark breaking changes (`feat!:` or a `BREAKING CHANGE:` footer).
@@ -189,10 +188,11 @@ than the one you tagged, orphaning the tag.)
 
 Pushing the tag runs [`release.yml`](https://github.com/TUW-GEO/canvodpy-extensions/blob/main/.github/workflows/release.yml), which
 checks that the tag matches the package version and drafts a GitHub Release
-with the package's changes. Publish the draft by hand. Publishing archives the
-repository on Zenodo, versioned by the tag: `.zenodo.json` and `CITATION.cff`
-carry no version, since the packages have different ones. Then update the pin in
-downstream `[tool.uv.sources]`, for example canvodpy's root `pyproject.toml`.
+with the tag's section of the package's `CHANGELOG.md`. Publish the draft by
+hand. Publishing archives the repository on Zenodo, versioned by the tag:
+`.zenodo.json` and `CITATION.cff` carry no version, since the packages have
+different ones. Then raise the lower bound downstream (canvodpy's `filemap`
+group) if the release needs it.
 
 Then publish the package to PyPI by running
 [`publish_pypi.yml`](https://github.com/TUW-GEO/canvodpy-extensions/blob/main/.github/workflows/publish_pypi.yml)

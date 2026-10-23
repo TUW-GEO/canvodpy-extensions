@@ -22,8 +22,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 0  # Need full history for changelog
 
       - name: Install uv
         uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
@@ -50,12 +48,21 @@ jobs:
           echo "package=${pkg}" >> "$GITHUB_OUTPUT"
           echo "version=${version}" >> "$GITHUB_OUTPUT"
 
-      - name: Generate release notes from the package's commits
+      - name: Take the release notes from the package's CHANGELOG.md
         env:
           PKG: ${{ steps.tag.outputs.package }}
+          TAG: ${{ github.ref_name }}
         run: |
-          uvx git-cliff --include-path "packages/${PKG}/**" --tag-pattern "^${PKG}-v[0-9]" \
-            --latest --strip all > release-notes.md
+          # The section `just release` wrote and the release PR edited
+          awk -v tag="${TAG}" '
+            index($0, "## [" tag "]") == 1 { found = 1; next }
+            found && /^## / { exit }
+            found { print }
+          ' "packages/${PKG}/CHANGELOG.md" > release-notes.md
+          if [ ! -s release-notes.md ]; then
+            echo "::error::packages/${PKG}/CHANGELOG.md has no section for ${TAG}"
+            exit 1
+          fi
           cat release-notes.md
 
       - name: Create GitHub release (draft)

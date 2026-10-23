@@ -385,7 +385,7 @@ wheels = [
 
 [[package]]
 name = "canvod-adapters"
-version = "0.1.0"
+version = "1.0.0"
 source = { editable = "packages/canvod-adapters" }
 dependencies = [
     { name = "canvod-readers" },
@@ -414,7 +414,7 @@ requires-dist = [
 
 [[package]]
 name = "canvod-airflow"
-version = "0.1.0"
+version = "1.0.0"
 source = { editable = "packages/canvod-airflow" }
 dependencies = [
     { name = "apache-airflow" },
@@ -474,7 +474,7 @@ wheels = [
 
 [[package]]
 name = "canvod-filemap"
-version = "0.1.0"
+version = "1.0.0"
 source = { editable = "packages/canvod-filemap" }
 dependencies = [
     { name = "canvod-preflight" },
@@ -627,6 +627,7 @@ dependencies = [
     { name = "pydantic" },
     { name = "structlog" },
 ]
+sdist = { url = "https://files.pythonhosted.org/packages/e5/f1/4f487a4b6f9a416cdafd013506103f5a363fd8445ea16f72f01fc49fa9ed/canvod_utils-1.0.0.tar.gz", hash = "sha256:b5fef93183e1ca95233671a72c51a3c7465cf4e1cacf93fb3b59b0462336fca2", size = 27153, upload-time = "2026-10-23T23:04:30.528Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a6/4b/142348390edc3e8396b39abf71878d7e52b6377618b33307cb6d0dff92cd/canvod_utils-1.0.0-py3-none-any.whl", hash = "sha256:4f4a82fe9891d33574c190e50188a25b9565b619dcaa0c8f1e5b970ba326d29e", size = 32716, upload-time = "2026-10-23T23:04:18.236Z" },
 ]

@@ -21,7 +21,8 @@ just changelog PKG            # what the release will list
 
 - The changelog only lists conventional commits that touched
   `packages/PKG/`. Missing entries mean commits without a conventional type
-  or outside that path; fix them in a follow-up commit or the release notes.
+  or outside that path; edit the new `CHANGELOG.md` section in the release
+  commit or PR, which the draft release takes its notes from.
 - A breaking change since the last release means a major bump (minor while
   the version is 0.x). Look for `feat!` / `BREAKING CHANGE`.
 - `just canvodpy-ref`: the released package must work with canvodpy from
@@ -39,12 +40,11 @@ just release PKG X.Y.Z                     # or major | minor | patch
 `just release` refuses a dirty tree or an existing tag, runs the package's
 tests, then makes one commit `chore(release): PKG X.Y.Z` that sets the
 version (package `pyproject.toml`, `uv.lock`), writes
-`packages/PKG/CHANGELOG.md` and re-pins the install snippets in
-`README.md`, `docs/` and `packages/PKG/README.md` to the new tag. Several
-packages: run it once per package on the same branch.
+`packages/PKG/CHANGELOG.md`. Several packages: run it once per package on
+the same branch.
 
-Check the commit: `git show --stat HEAD`, read the changelog section,
-`grep -rn "PKG-v" README.md docs packages/PKG/README.md`.
+Check the commit: `git show --stat HEAD`, and read and edit the changelog
+section; the draft release takes its notes from it.
 
 ## 3. PR and merge
 
@@ -89,10 +89,10 @@ python -c "import canvod.<short name>"
 
 ## 6. Downstream
 
-canvodpy pins canvod-filemap and canvod-adapters in its root
-`pyproject.toml` (`[tool.uv.sources]`, `tag = "PKG-vX.Y.Z"`; for filemap
-also the range in the `filemap` dependency group). Update them in a canvodpy
-PR and relock there (`uv lock --upgrade-package PKG`).
+canvodpy takes canvod-filemap (its `filemap` dependency group) and
+canvod-adapters from PyPI. If canvodpy needs the new release, raise the
+lower bound in a canvodpy PR and relock there (`uv lock --upgrade-package
+PKG`).
 
 ## If something went wrong
 
