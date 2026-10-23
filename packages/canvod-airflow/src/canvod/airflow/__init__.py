@@ -11,4 +11,6 @@ inside each DAG-construction function instead, so a missing or
 misconfigured ``canvodpy`` config doesn't crash DAG parsing.
 """
 
-__version__ = "0.3.0"
+from importlib.metadata import version
+
+__version__ = version("canvod-airflow")
