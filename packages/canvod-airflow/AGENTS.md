@@ -24,8 +24,8 @@ Before changing it, read the canvodpy side: root `AGENTS.md`, section
 - **Parse-time safety:** import canvodpy inside tasks, not at module top.
   `_get_configured_sites` returns no sites, with a warning, when the
   settings cannot load, so the scheduler can still parse the file.
-  `airflow` itself is a top-level import: the modules need the `airflow`
-  extra.
+  `airflow` itself is a top-level import (apache-airflow is a required
+  dependency).
 - **One store writer at a time:** tasks that write a store use
   `pool="canvod_store_write", pool_slots=1` (Icechunk commits must not run
   concurrently). The pool is created by the user (see `README.md`).
@@ -35,4 +35,4 @@ Before changing it, read the canvodpy side: root `AGENTS.md`, section
 `just test-package canvod-airflow`. `tests/test_dag_structure.py` checks
 the DAG files as source text and AST, without Airflow installed.
 `tests/test_dagbag.py` loads them into a real `DagBag` and is skipped
-unless the `airflow` extra is installed.
+unless apache-airflow is installed.

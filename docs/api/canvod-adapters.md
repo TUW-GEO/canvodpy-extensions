@@ -10,8 +10,6 @@
 
 ## VOD store I/O
 
-Requires the `store` extra.
-
 ::: canvod.adapters.store
 
 ## gnssvod

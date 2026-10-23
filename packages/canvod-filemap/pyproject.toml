@@ -4,6 +4,32 @@ version = "0.1.0"
 description = "Naming recipes that map non-canonical GNSS-T filenames to canVOD names"
 readme = "README.md"
 requires-python = ">=3.14"
+authors = [
+    {name = "Nicolas François Bader", email = "support@canvodpy.eu"},
+]
+maintainers = [
+    {name = "Climate and Environmental Remote Sensing (CLIMERS)", email = "support@canvodpy.eu"},
+]
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+keywords = [
+    "GNSS",
+    "GNSS-T",
+    "file names",
+    "naming recipes",
+    "RINEX",
+    "SBF",
+    "remote sensing",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering",
+]
 
 dependencies = [
     "canvod-preflight>=0.4.0",
@@ -20,7 +46,7 @@ Repository = "https://github.com/TUW-GEO/canvodpy-extensions"
 Issues = "https://github.com/TUW-GEO/canvodpy-extensions/issues"
 
 [build-system]
-requires = ["uv_build>=0.9.17,<0.10.0"]
+requires = ["uv_build>=0.13.0,<0.14.0"]
 build-backend = "uv_build"
 
 [tool.uv.build-backend]

@@ -15,12 +15,13 @@ process one batch once.
 ## Install
 
 ```bash
-uv add "canvod-airflow[airflow] @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-airflow"
+uv add canvod-airflow
 ```
 
-The package lives on GitHub only. `apache-airflow` is an optional
-dependency, installed by the `[airflow]` extra: install the Airflow
-version your deployment uses.
+This also installs `apache-airflow>=3.0`; an Airflow 3 that is already
+installed is used as it is. Airflow runs on POSIX systems (Linux, macOS);
+on Windows, run it in WSL2
+([Airflow's prerequisites](https://airflow.apache.org/docs/apache-airflow/stable/installation/prerequisites.html)).
 
 ## A minimal example
 
@@ -40,14 +41,14 @@ canvodpy's settings file, the package builds a daily DAG named
 `canvod_{site}`:
 
 ```
-validate_dirs → wait_for_data → (wait_for_sp3) → process_day → validate_ingest → calculate_vod
+t_validate_dirs → t_wait_for_data → (t_wait_for_sp3) → t_process_day → t_validate_ingest → t_calculate_vod
 ```
 
-`validate_dirs` checks the receiver directories. `wait_for_data` and
-`wait_for_sp3` are sensors: they wait until the files of the receiver and
-the satellite products are there, holding up to 21 days. `process_day`
-reads the files and stores the observations, `validate_ingest` checks
-them, and `calculate_vod` computes the VOD.
+`t_validate_dirs` checks the receiver directories. `t_wait_for_data` and
+`t_wait_for_sp3` are sensors: they wait until the files of the receiver and
+the satellite products are there, holding up to 21 days. `t_process_day`
+reads the files and stores the observations, `t_validate_ingest` checks
+them, and `t_calculate_vod` computes the VOD.
 
 To reprocess a date range, trigger `canvod_backfill` by hand with the site
 and the range:

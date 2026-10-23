@@ -1,6 +1,6 @@
 """VOD store I/O through any :class:`~canvod.adapters.base.VodAdapter`.
 
-Requires the ``store`` extra (``canvod-adapters[store]``).
+Uses canvod-store, a dependency of this package.
 """
 
 from __future__ import annotations

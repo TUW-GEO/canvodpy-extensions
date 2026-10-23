@@ -1,15 +1,19 @@
-"""Guarded DAG-parsing test — only runs when the ``airflow`` extra is installed.
+"""DAG-parsing test with Airflow.
 
-Inert (skipped) without Airflow; activates automatically once ``apache-airflow``
-is available (e.g. a CI job or dev environment with ``canvod-airflow[airflow]``
-installed).
+``apache-airflow`` is a dependency of canvod-airflow, so this test runs in
+the workspace; it is skipped where Airflow can't be imported, and on Windows,
+where Airflow doesn't run (only POSIX systems; Windows through WSL2).
 """
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 import pytest
+
+if sys.platform == "win32":
+    pytest.skip("Airflow runs on POSIX systems only", allow_module_level=True)
 
 pytest.importorskip("airflow")
 

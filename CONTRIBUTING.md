@@ -45,8 +45,8 @@ Issues tagged "bug"/"enhancement" and "help wanted" are open for contributions.
 
 New extension packages live under `packages/<name>/` and are picked up
 automatically by the uv workspace (`packages/*`). Each package is versioned
-on its own. canvodpy-extensions is GitHub-only by design (see Releasing
-below). Packages install via git-subdirectory sources, not PyPI. See
+on its own and published to PyPI (see Releasing below). A package lists
+every dependency it needs, with no extras. See
 `packages/canvod-filemap` for the expected layout (`pyproject.toml`, `src/`,
 `tests/`, `README.md`).
 
@@ -194,11 +194,25 @@ repository on Zenodo, versioned by the tag: `.zenodo.json` and `CITATION.cff`
 carry no version, since the packages have different ones. Then update the pin in
 downstream `[tool.uv.sources]`, for example canvodpy's root `pyproject.toml`.
 
-canvodpy-extensions is deliberately GitHub-only. It is where logic for
-specific needs, workflows and data realities lives, looser than the canvodpy
-core, so a PyPI release would imply a stability contract it doesn't make.
-Nothing is published to PyPI or TestPyPI. Users install packages via the
-git-subdirectory pattern, pinned to a release tag (see each package's README).
+Then publish the package to PyPI by running
+[`publish_pypi.yml`](https://github.com/TUW-GEO/canvodpy-extensions/blob/main/.github/workflows/publish_pypi.yml)
+on the tag:
 
-A new package under `packages/` needs nothing else: its first `just release`
-starts its changelog and tags.
+```bash
+gh workflow run publish_pypi.yml --ref canvod-filemap-v0.2.0
+```
+
+It checks that the tag matches the package version, builds the package
+without the workspace's `[tool.uv.sources]`, refuses a dependency on a URL
+(PyPI rejects those) and uploads with PyPI trusted publishing, so no token is
+stored anywhere. The upload waits for a maintainer's approval of the `pypi`
+environment. A package's dependencies must all be on PyPI first.
+
+A new package under `packages/` needs one step on PyPI before its first
+upload: add a pending trusted publisher for the package name (owner
+`TUW-GEO`, repository `canvodpy-extensions`, workflow `publish_pypi.yml`,
+environment `pypi`). The first upload creates the project and turns the
+pending publisher into a normal one. PyPI can refuse a second pending
+publisher while one is pending; then upload that package first.
+In the repository, the package's first `just release` starts its changelog
+and tags.

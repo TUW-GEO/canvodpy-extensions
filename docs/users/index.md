@@ -1,10 +1,9 @@
 # Start here
 
-These packages are optional extras for canVODpy. Start here when canVODpy
+These packages are optional add-ons for canVODpy. Start here when canVODpy
 already works on your data and your setup needs one of them.
 
-They live on GitHub only, not on PyPI, and each installs on its
-own:
+Each is on PyPI and installs on its own:
 
 | You need | Install | Read next |
 |---|---|---|
@@ -14,30 +13,28 @@ own:
 
 ## Install a package
 
-Each package is a `uv` package, installed from a git source because these
-packages are not on PyPI. The `@v0.1.0` is the tag of the release.
+Add the package to the project that uses canvodpy. Each package brings
+everything it needs.
 
 ### `canvod-filemap`
 
 ```bash
-uv add "canvod-filemap @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-filemap"
+uv add canvod-filemap
 ```
 
 ### `canvod-airflow`
 
-`canvod-airflow` depends on canvodpy. Install it directly wherever the
-DAGs run. The `[airflow]` extra installs `apache-airflow`:
+Install it wherever the DAGs run. It also installs Apache Airflow 3; an
+Airflow 3 that is already installed is used as it is:
 
 ```bash
-uv add "canvod-airflow[airflow] @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-airflow"
+uv add canvod-airflow
 ```
 
 ### `canvod-adapters`
 
-The `[store]` extra adds the VOD store read and write:
-
 ```bash
-uv add "canvod-adapters[store] @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-adapters"
+uv add canvod-adapters
 ```
 
 ## If you don't install a package

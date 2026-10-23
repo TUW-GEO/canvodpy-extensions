@@ -17,8 +17,9 @@ PyPI (user, 2026-10-04):
 
 Each package is released on its own from now on (`just release`, `just tag`,
 see "Releasing" in `CONTRIBUTING.md`). 1.0.0 is the first per-package
-release; after it, versions move independently. The packages stay
-GitHub-only (no PyPI).
+release; after it, versions move independently. Each package is published
+to PyPI from its release tag with `publish_pypi.yml` (user, 2026-10-23;
+before: GitHub-only).
 
 ## Precondition: canvodpy 1.0.0 on PyPI
 
@@ -50,7 +51,7 @@ commit on the canvodpy branch `release/v1.0.0` (`rev` in the root
   - canvod-filemap: `canvod-preflight>=1.0.0`
   - canvod-airflow: `canvodpy>=1.0.0`
   - canvod-adapters: `canvod-readers>=1.0.0`, `canvod-utils>=1.0.0`,
-    extra `store = ["canvod-store>=1.0.0"]`
+    `canvod-store>=1.0.0`
 - [ ] "slots in for canvodpy >= 0.3.0" -> 1.0.0 in `README.md`,
       `CLAUDE.md`, `docs/index.md`
 - [ ] `CLAUDE.md`: drop `just build-all` (no such recipe)
@@ -84,15 +85,24 @@ just tag canvod-adapters
 ```
 
 - [ ] Three draft releases with the right notes; publish them.
-- [ ] Smoke test from the tags in a fresh environment, outside the
-      workspace:
+- [ ] PyPI, one package at a time: PyPI takes only one pending trusted
+      publisher at a time (user, 2026-10-23). The pending publisher for
+      canvod-filemap is set (owner TUW-GEO, repository
+      canvodpy-extensions, workflow `publish_pypi.yml`, environment
+      `pypi`). For each package in turn:
+      1. check the name is still free (https://pypi.org/project/<name>/
+         is 404); a pending publisher does not reserve it
+      2. add its pending publisher (skip for canvod-filemap)
+      3. `gh workflow run publish_pypi.yml --ref <tag>` and approve the
+         `pypi` environment; the upload turns the pending publisher into
+         the project's publisher
+      Order: canvod-filemap, canvod-airflow, canvod-adapters.
+- [ ] Smoke test the published files from PyPI in a fresh environment,
+      outside the workspace (what users get):
 
 ```bash
 uv venv /tmp/ext-check && source /tmp/ext-check/bin/activate
-uv pip install \
-  "canvod-filemap @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@canvod-filemap-v1.0.0#subdirectory=packages/canvod-filemap" \
-  "canvod-airflow @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@canvod-airflow-v1.0.0#subdirectory=packages/canvod-airflow" \
-  "canvod-adapters[store] @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@canvod-adapters-v1.0.0#subdirectory=packages/canvod-adapters"
+uv pip install canvod-filemap==1.0.0 canvod-airflow==1.0.0 canvod-adapters==1.0.0
 python -c "import canvod.filemap, canvod.airflow, canvod.adapters.gnssvod, canvod.adapters.store"
 ```
 
