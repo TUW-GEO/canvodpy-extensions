@@ -62,7 +62,7 @@ A run finds the files in any folder layout and takes each file's day from
 its name. See the canVOD [file naming convention](https://canvodpy.eu/packages/naming/overview/)
 and [Configuration](https://canvodpy.eu/guides/configuration/).
 
-## Recipes from a URL
+## Recipes from a link
 
 A recipe can live in a GitHub repository, so that every machine uses the
 same one. Set the raw link of the file, at a commit, a tag or a branch:
@@ -73,10 +73,10 @@ same one. Set the raw link of the file, at a commit, a tag or a branch:
 
 - **Any raw link.** The link names a commit, a tag (`refs/tags/<tag>`) or
   a branch. You are responsible for what it points to.
-- **Checked like a local recipe.** The recipe's `name` must match the file
-  name at the end of the link. A `github.com/.../blob/...` link is refused,
+- **Checked like a local recipe.** The recipe's `name` must match the
+  filename at the end of the link. A `github.com/.../blob/...` link is refused,
   and the message names the raw link.
-- **Provenance.** The store records the file name at the end of the link,
+- **Provenance.** The store records the filename at the end of the link,
   never the link, and the sha256 of the file it was made with.
 - **Fetched by every run.** There is no cache: every run fetches the
   recipe again, once, into a folder of the run that only you can read. A
@@ -88,7 +88,7 @@ same one. Set the raw link of the file, at a commit, a tag or a branch:
   run with a message that names the variable, not its value. canvodpy
   never stores the token, sends it only to
   `raw.githubusercontent.com`, and refuses a link that holds a user name,
-  password, query or fragment. Keep the token where you keep other secrets (the
+  password, query, or fragment. Keep the token where you keep other secrets (the
   system keychain, a password manager, the secrets store of your
   scheduler), and start the run with it in the environment.
 
