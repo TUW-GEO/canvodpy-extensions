@@ -6,7 +6,7 @@ Contributions are welcome. This guide covers the development setup and contribut
 
 Two external tools must be installed separately (not managed by `uv sync`):
 
-### uv
+### The `uv` package manager
 
 ```bash
 # macOS/Linux
@@ -18,7 +18,7 @@ brew install uv
 
 [uv documentation](https://docs.astral.sh/uv/)
 
-### just
+### The `just` command runner
 
 ```bash
 # macOS/Linux

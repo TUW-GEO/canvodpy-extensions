@@ -6,9 +6,8 @@
 # Serve locally with: just docs
 # Build with:         just docs-build
 #
-# Root-level files (CONTRIBUTING.md) are copied into docs/ so zensical can
-# serve them from the default docs_dir. Keep them in sync:
-#   cp CONTRIBUTING.md docs/
+# docs/CONTRIBUTING.md includes the root CONTRIBUTING.md (--8<--), so the
+# guide has one source; edit the root file.
 #
 # ==========================================================================
 
