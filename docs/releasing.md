@@ -35,7 +35,9 @@ messages. The messages become the changelog, so mark breaking changes
 
 **Changelogs.** Every package has a `CHANGELOG.md` in its folder.
 [git-cliff](https://git-cliff.org) (`cliff.toml`) writes it from the commits
-that changed `packages/<package>/`.
+that changed `packages/<package>/`. Edit the new section in the release
+pull request where an entry is wrong or missing: the draft release takes
+its notes from it.
 
 **Tags.** A release is the tag `<package>-v<version>`, for example
 `canvod-filemap-v1.1.0`. `just release` refuses a version whose tag exists
@@ -56,8 +58,9 @@ Tagging before the merge can leave the tag on a commit that never reaches
 
 1. Reads the package and version from the tag and stops if the tag names no
    package under `packages/` or doesn't match the package's version.
-2. Writes the release notes with git-cliff from the package's commits since
-   its previous tag.
+2. Takes the release notes from the tag's section of the package's
+   `CHANGELOG.md`, as edited in the release pull request, and stops if
+   there is none.
 3. Creates a **draft** release titled `<package> <version>` (a pre-release
    for `a`, `b` and `rc` versions).
 

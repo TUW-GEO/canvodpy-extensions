@@ -50,12 +50,21 @@ jobs:
           echo "package=${pkg}" >> "$GITHUB_OUTPUT"
           echo "version=${version}" >> "$GITHUB_OUTPUT"
 
-      - name: Generate release notes from the package's commits
+      - name: Take the release notes from the package's CHANGELOG.md
         env:
           PKG: ${{ steps.tag.outputs.package }}
+          TAG: ${{ github.ref_name }}
         run: |
-          uvx git-cliff --include-path "packages/${PKG}/**" --tag-pattern "^${PKG}-v[0-9]" \
-            --latest --strip all > release-notes.md
+          # The section `just release` wrote and the release PR edited
+          awk -v tag="${TAG}" '
+            index($0, "## [" tag "]") == 1 { found = 1; next }
+            found && /^## / { exit }
+            found { print }
+          ' "packages/${PKG}/CHANGELOG.md" > release-notes.md
+          if [ ! -s release-notes.md ]; then
+            echo "::error::packages/${PKG}/CHANGELOG.md has no section for ${TAG}"
+            exit 1
+          fi
           cat release-notes.md
 
       - name: Create GitHub release (draft)

@@ -21,7 +21,8 @@ just changelog PKG            # what the release will list
 
 - The changelog only lists conventional commits that touched
   `packages/PKG/`. Missing entries mean commits without a conventional type
-  or outside that path; fix them in a follow-up commit or the release notes.
+  or outside that path; edit the new `CHANGELOG.md` section in the release
+  commit or PR, which the draft release takes its notes from.
 - A breaking change since the last release means a major bump (minor while
   the version is 0.x). Look for `feat!` / `BREAKING CHANGE`.
 - `just canvodpy-ref`: the released package must work with canvodpy from
