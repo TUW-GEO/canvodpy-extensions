@@ -94,9 +94,8 @@ source = [
 python-version = "3.14"
 
 [tool.ty.rules]
-# Ignore unresolved imports: canvod-airflow's `apache-airflow` dependency is
-# an optional extra (not installed in a plain dev sync), and workspace
-# packages may not all be installed in isolation.
+# Ignore unresolved imports: workspace packages may not all be installed
+# in isolation.
 unresolved-import = "ignore"
 
 # ============================================================================

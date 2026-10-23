@@ -15,7 +15,7 @@ Before changing it, read the canvodpy side: root `AGENTS.md`, section
 - `src/canvod/adapters/provenance.py`: `Tool`, `Provenance`, written as
   `conversion_*` attributes.
 - `src/canvod/adapters/store.py`: `import_vod` / `export_vod`, VOD store
-  I/O through any `VodAdapter` (needs the `store` extra).
+  I/O through any `VodAdapter`.
 - `src/canvod/adapters/gnssvod/`: the gnssvod adapter.
   `src/canvod/adapters/gnssvod/convert.py` holds pure dataset conversions,
   `src/canvod/adapters/gnssvod/reader.py` a canvodpy reader of gnssvod
@@ -53,4 +53,4 @@ on the Rosalia test files.
 `just test-package canvod-adapters`. `tests/conftest.py` builds synthetic
 datasets that meet the contracts (`obs_ds`, `vod_ds`); gnssvod itself is
 not needed. `tests/test_store.py` is skipped unless canvod-store is
-installed (`store` extra).
+installed.

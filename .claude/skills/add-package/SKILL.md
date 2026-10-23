@@ -36,7 +36,8 @@ build backend `uv_build` with `[tool.uv.build-backend] module-name =
 "canvod.<short>"`, project URLs pointing at this repo and
 `docs/packages/<short>/overview/`. canvodpy packages as dependencies with
 lower bounds of a released version; if unreleased code is needed, see the
-`canvodpy-dependency` guide. Optional heavy dependencies go into extras.
+`canvodpy-dependency` guide. A package lists every dependency it needs,
+with no extras.
 
 ## Register it
 

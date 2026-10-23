@@ -11,7 +11,7 @@ description: Change or update what canvodpy-extensions takes from canvodpy (root
 |---|---|
 | canvod-filemap | canvod-preflight (canonical file name) |
 | canvod-airflow | canvodpy (`canvodpy.workflows.tasks`), canvod-config |
-| canvod-adapters | canvod-readers (contracts, readers, sid coordinates), canvod-utils; canvod-store with the `store` extra |
+| canvod-adapters | canvod-readers (contracts, readers, sid coordinates), canvod-utils, canvod-store |
 
 The package `pyproject.toml`s state version bounds. The root
 `pyproject.toml` `[tool.uv.sources]` decides where the packages come from

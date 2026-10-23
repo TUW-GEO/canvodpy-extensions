@@ -1,6 +1,6 @@
 # Start here
 
-These packages are optional extras for canVODpy. Start here when canVODpy
+These packages are optional add-ons for canVODpy. Start here when canVODpy
 already works on your data and your setup needs one of them.
 
 Each is on PyPI and installs on its own:

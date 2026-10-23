@@ -1,4 +1,4 @@
-"""Tests for VOD store I/O through an adapter (``store`` extra)."""
+"""Tests for VOD store I/O through an adapter (needs canvod-store)."""
 
 import numpy as np
 import pytest
