@@ -23,7 +23,7 @@ from datetime import datetime, timedelta
 
 import structlog
 
-from airflow.decorators import dag, task  # type: ignore[unresolved-import]
+from airflow.sdk import dag, task  # type: ignore[unresolved-import]
 
 logger = structlog.get_logger(__name__)
 
@@ -145,7 +145,7 @@ def create_daily_dag(site_name: str, agency_ephemeris: bool):
             """Wait until every receiver has files for the day (up to 21 days)."""
             from canvodpy.workflows.tasks import check_day
 
-            from airflow.sensors.base import (
+            from airflow.sdk import (
                 PokeReturnValue,  # type: ignore[unresolved-import]
             )
 
@@ -209,13 +209,16 @@ def create_daily_dag(site_name: str, agency_ephemeris: bool):
             _ = ingest_valid
             return calculate_vod(site_name, _ds_to_yyyydoy(ds))
 
+        # Calling a task in the DAG body passes an XComArg, which Airflow
+        # resolves to the upstream task's return value at run time. The
+        # airflow.sdk type hints expect the resolved type, hence the ignores.
         valid_info = t_validate_dirs()
-        ready_info = t_wait_for_data(valid_info=valid_info)
+        ready_info = t_wait_for_data(valid_info=valid_info)  # ty: ignore[invalid-argument-type]
         if agency_ephemeris:
-            ready_info = t_wait_for_sp3(data_info=ready_info)
-        process_info = t_process_day(ready_info=ready_info)
-        ingest_valid = t_validate_ingest(process_info=process_info)
-        t_calculate_vod(ingest_valid=ingest_valid)
+            ready_info = t_wait_for_sp3(data_info=ready_info)  # ty: ignore[invalid-argument-type]
+        process_info = t_process_day(ready_info=ready_info)  # ty: ignore[invalid-argument-type]
+        ingest_valid = t_validate_ingest(process_info=process_info)  # ty: ignore[invalid-argument-type]
+        t_calculate_vod(ingest_valid=ingest_valid)  # ty: ignore[invalid-argument-type]
 
     return daily_dag()
 
