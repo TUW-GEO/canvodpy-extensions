@@ -19,7 +19,9 @@ uv add canvod-airflow
 ```
 
 This also installs `apache-airflow>=3.0`; an Airflow 3 that is already
-installed is used as it is.
+installed is used as it is. Airflow runs on POSIX systems (Linux, macOS);
+on Windows, run it in WSL2
+([Airflow's prerequisites](https://airflow.apache.org/docs/apache-airflow/stable/installation/prerequisites.html)).
 
 ## A minimal example
 
