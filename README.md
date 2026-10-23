@@ -13,15 +13,15 @@
 | packages/canvod-adapters/src/canvod/adapters/provenance.py           |       34 |        0 |    100% |           |
 | packages/canvod-adapters/src/canvod/adapters/store.py                |       16 |        0 |    100% |           |
 | packages/canvod-airflow/src/canvod/airflow/\_\_init\_\_.py           |        1 |        0 |    100% |           |
-| packages/canvod-airflow/src/canvod/airflow/backfill.py               |       43 |       27 |     37% |40-41, 88-115, 132-146 |
-| packages/canvod-airflow/src/canvod/airflow/daily\_processing.py      |       75 |       55 |     27% |53-55, 60-64, 74-75, 119-220, 229-231 |
+| packages/canvod-airflow/src/canvod/airflow/backfill.py               |       42 |       27 |     36% |39-40, 87-114, 131-145 |
+| packages/canvod-airflow/src/canvod/airflow/daily\_processing.py      |       75 |       55 |     27% |53-55, 60-64, 74-75, 119-223, 232-234 |
 | packages/canvod-filemap/src/canvod/filemap/\_\_init\_\_.py           |        6 |        0 |    100% |           |
 | packages/canvod-filemap/src/canvod/filemap/mapping.py                |       13 |        0 |    100% |           |
 | packages/canvod-filemap/src/canvod/filemap/patterns.py               |       12 |        0 |    100% |           |
 | packages/canvod-filemap/src/canvod/filemap/recipe.py                 |      130 |        8 |     94% |229-233, 239-243, 264, 320-321, 370 |
 | packages/canvod-filemap/src/canvod/filemap/recipe\_files.py          |       29 |        0 |    100% |           |
 | packages/canvod-filemap/src/canvod/filemap/remote.py                 |       41 |        0 |    100% |           |
-| **TOTAL**                                                            |  **704** |   **90** | **87%** |           |
+| **TOTAL**                                                            |  **703** |   **90** | **87%** |           |
 
 
 ## Setup coverage badge
