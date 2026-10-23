@@ -45,6 +45,7 @@ nav = [
 
   { "Contribute" = [
     { "Contributing" = "CONTRIBUTING.md" },
+    { "How a release works" = "releasing.md" },
     { "Security policy" = "../SECURITY.md" },
   ]},
 
