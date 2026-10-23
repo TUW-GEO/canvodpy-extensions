@@ -53,9 +53,9 @@ and the range:
 
 ```bash
 airflow dags trigger canvod_backfill --conf '{
-    "site": "Rosalia",
-    "start_date": "2025-001",
-    "end_date": "2025-010"
+    "site": "fangorn",
+    "start_date": "2025001",
+    "end_date": "2025010"
 }'
 ```
 
