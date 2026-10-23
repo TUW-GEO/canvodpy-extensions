@@ -103,7 +103,7 @@ def fetch_recipe(url: str, *, timeout: float = 30.0) -> Path:
     The URL is checked with :func:`check_recipe_url`. The file is fetched,
     read like a local recipe file, and its ``name`` must match the file
     name at the end of the URL. A run fetches a URL once, into a folder
-    of the run that is removed when the run ends
+    of the run that is removed when the process that made it ends
     (:func:`canvod.utils.remote_file.fetch_remote`).
 
     Parameters
