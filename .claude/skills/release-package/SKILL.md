@@ -7,9 +7,9 @@ disable-model-invocation: true
 # Release a package
 
 A release of package `PKG` is the annotated tag `PKG-v<version>` on `main`
-(e.g. `canvod-filemap-v1.0.0`) plus a GitHub Release. Nothing goes to PyPI.
+(e.g. `canvod-filemap-v1.0.0`) plus a GitHub Release and its upload to PyPI.
 Tagging and publishing are visible to everyone: confirm the version with the
-user before step 2 and before step 4.
+user before step 2, before step 4 and before the PyPI upload.
 
 ## 1. Check before releasing
 
@@ -76,11 +76,14 @@ version and drafts a GitHub Release from the changelog.
   record: its version must be the tag `PKG-vX.Y.Z`. `.zenodo.json` and
   `CITATION.cff` carry no version on purpose: the repository holds several
   packages at different versions, so Zenodo takes the version from the tag.
-- Install from the tag outside the workspace:
+- Publish to PyPI: `gh workflow run publish_pypi.yml --ref PKG-vX.Y.Z`.
+  The upload waits for a maintainer to approve the `pypi` environment.
+  Check https://pypi.org/project/PKG/X.Y.Z/.
+- Install from PyPI outside the workspace:
 
 ```bash
 uv venv /tmp/ext-check && source /tmp/ext-check/bin/activate
-uv pip install "PKG @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@PKG-vX.Y.Z#subdirectory=packages/PKG"
+uv pip install "PKG==X.Y.Z"
 python -c "import canvod.<short name>"
 ```
 
@@ -96,3 +99,5 @@ PR and relock there (`uv lock --upgrade-package PKG`).
 - Wrong tag, not yet published: `git push --delete origin PKG-vX.Y.Z`,
   `git tag -d PKG-vX.Y.Z`, delete the draft, fix, tag again.
 - Published release: never move its tag. Release a patch version instead.
+- On PyPI a version can never be uploaded again, not even after deleting
+  it. Release a patch version instead.

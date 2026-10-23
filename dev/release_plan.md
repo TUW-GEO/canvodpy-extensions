@@ -17,8 +17,9 @@ PyPI (user, 2026-10-04):
 
 Each package is released on its own from now on (`just release`, `just tag`,
 see "Releasing" in `CONTRIBUTING.md`). 1.0.0 is the first per-package
-release; after it, versions move independently. The packages stay
-GitHub-only (no PyPI).
+release; after it, versions move independently. Each package is published
+to PyPI from its release tag with `publish_pypi.yml` (user, 2026-10-23;
+before: GitHub-only).
 
 ## Precondition: canvodpy 1.0.0 on PyPI
 
@@ -84,6 +85,9 @@ just tag canvod-adapters
 ```
 
 - [ ] Three draft releases with the right notes; publish them.
+- [ ] PyPI: pending trusted publishers for the three projects (owner
+      TUW-GEO, workflow `publish_pypi.yml`, environment `pypi`), then
+      `gh workflow run publish_pypi.yml --ref <tag>` for each tag.
 - [ ] Smoke test from the tags in a fresh environment, outside the
       workspace:
 

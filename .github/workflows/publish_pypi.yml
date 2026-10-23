@@ -1,0 +1,108 @@
+# Publish to PyPI
+# Manual only, never on a tag push: tagging drafts the GitHub Release
+# (release.yml); publishing a package to PyPI is a separate, explicit
+# decision. Run it on the package's release tag:
+#   gh workflow run publish_pypi.yml --ref canvod-filemap-v1.0.0
+# It builds and publishes exactly the package the tag names, with PyPI
+# trusted publishing (no token).
+
+name: Publish to PyPI
+
+on:
+  workflow_dispatch:
+
+permissions: read-all
+
+jobs:
+  build:
+    name: Build the package of the tag
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      package: ${{ steps.tag.outputs.package }}
+      version: ${{ steps.tag.outputs.version }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+
+      - name: Set up Python
+        run: uv python install 3.14
+
+      - name: Read the package and version from the tag
+        id: tag
+        env:
+          REF_TYPE: ${{ github.ref_type }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          if [ "${REF_TYPE}" != "tag" ]; then
+            echo "::error::Run this workflow on a release tag (--ref <package>-v<version>), not on ${TAG}"
+            exit 1
+          fi
+          pkg="${TAG%-v*}"
+          version="${TAG##*-v}"
+          if [ ! -d "packages/${pkg}" ]; then
+            echo "::error::Tag ${TAG} names no package under packages/"
+            exit 1
+          fi
+          declared=$(uv version --package "${pkg}" --short --frozen)
+          if [ "${declared}" != "${version}" ]; then
+            echo "::error::Tag ${TAG} does not match packages/${pkg} version ${declared}"
+            exit 1
+          fi
+          echo "package=${pkg}" >> "$GITHUB_OUTPUT"
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+
+      - name: Build
+        env:
+          PKG: ${{ steps.tag.outputs.package }}
+        run: |
+          # --no-sources: build as PyPI users get the package, without the
+          # git sources of [tool.uv.sources]
+          uv build --package "${PKG}" --no-sources --out-dir dist/
+          ls -lh dist/
+
+      - name: Refuse dependencies PyPI can't take
+        run: |
+          # PyPI rejects a package whose dependencies name a URL
+          # ("pkg @ git+https://..."); say so before the upload does.
+          for whl in dist/*.whl; do
+            if unzip -p "${whl}" '*.dist-info/METADATA' | grep -E '^Requires-Dist: .* @ '; then
+              echo "::error::${whl} has a dependency on a URL"
+              exit 1
+            fi
+          done
+
+      - name: Upload the distributions
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: dist
+          path: dist/
+          if-no-files-found: error
+
+  publish:
+    name: Publish ${{ needs.build.outputs.package }} ${{ needs.build.outputs.version }}
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi # its protection rules gate the upload
+    permissions:
+      id-token: write # PyPI trusted publishing
+
+    steps:
+      - name: Download the distributions
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: dist
+          path: dist/
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+
+      - name: Publish
+        run: uv publish --trusted-publishing always dist/*

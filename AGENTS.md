@@ -4,8 +4,8 @@ Optional packages for [canvodpy](https://github.com/TUW-GEO/canvodpy).
 canvodpy computes vegetation optical depth (VOD) from GNSS signals: a
 receiver below a canopy and a reference receiver with open sky
 (GNSS-Transmissometry, GNSS-T). Code that serves specific workflows or
-data lives here, not in canvodpy. Its users are scientists. The packages
-are GitHub-only, never on PyPI.
+data lives here, not in canvodpy. Its users are scientists. Each package
+is released on its own and published to PyPI from its release tag.
 
 `CLAUDE.md` files only import this file; edit `AGENTS.md`. Every package
 has its own `AGENTS.md`: read it before changing that package.

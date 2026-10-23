@@ -2,7 +2,7 @@
 # Workspace Configuration — canvodpy-extensions
 # ============================================================================
 # Optional extension packages for canvodpy. Not part of the core monorepo.
-# GitHub-only by design — install via git-subdirectory sources (see READMEs).
+# Each package is released on its own and published to PyPI (CONTRIBUTING.md).
 #
 # Packages:
 #   canvod-filemap  — recipe-based filename mapping for non-canonical
