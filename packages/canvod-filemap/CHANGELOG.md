@@ -17,8 +17,6 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bug fixes
 
-- Resolve ty type errors blocking pre-push hook ([c70aeae](https://github.com/TUW-GEO/canvodpy-extensions/commit/c70aeae9f137cb4d54d8ca597e6678dfb673fef6))
-- Relock after merging main and escape the recipe path in a test ([40975aa](https://github.com/TUW-GEO/canvodpy-extensions/commit/40975aa5f2e33c4c7e25056b8ed62eb44bef2d9e))
 - RINEX 2 daily session "0" gives a daily file ([b61bb75](https://github.com/TUW-GEO/canvodpy-extensions/commit/b61bb75735db4ba54d7996ee45e76a852154b1e1))
 - Keep a parallel fetch's cached recipe on Windows ([deaf1dd](https://github.com/TUW-GEO/canvodpy-extensions/commit/deaf1ddd241f24d5d4e73236bacba6dd94c8e99b))
 - A failed cache write is a RecipeFetchError; test both branches ([2541a37](https://github.com/TUW-GEO/canvodpy-extensions/commit/2541a3720961b718e1ef8d885a2665dc4dae2093))
