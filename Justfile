@@ -136,15 +136,16 @@ docs-build:
     uv run zensical build
 
 # check the language of the docs pages (Vale, Google style)
-docs-lint *FILES="docs":
+docs-lint *FILES="docs CONTRIBUTING.md":
     uvx --from vale vale sync
     uvx --from vale vale {{ FILES }}
 
-# check the language of the docs pages changed since BASE (Vale; what CI runs)
+# check the language of the docs pages and CONTRIBUTING.md changed since
+# BASE (Vale; what CI runs)
 docs-lint-changed BASE="origin/main":
     #!/usr/bin/env bash
     set -euo pipefail
-    files=$(git diff --name-only --diff-filter=d "{{ BASE }}...HEAD" -- 'docs/*.md' 'docs/**/*.md')
+    files=$(git diff --name-only --diff-filter=d "{{ BASE }}...HEAD" -- 'docs/*.md' 'docs/**/*.md' CONTRIBUTING.md)
     if [ -z "$files" ]; then echo "No docs pages changed since {{ BASE }}."; exit 0; fi
     uvx --from vale vale sync
     uvx --from vale vale $files
