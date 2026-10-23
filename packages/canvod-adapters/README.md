@@ -2,7 +2,7 @@
 
 Data exchange between canvodpy and other GNSS-T programs.
 
-Part of the [canVODpy](https://github.com/nfb2021/canvodpy) ecosystem.
+Part of the [canVODpy](https://github.com/TUW-GEO/canvodpy) ecosystem.
 
 ## Overview
 
@@ -30,8 +30,8 @@ import_vod(adapter, "vod_rosalia.nc", site.vod_store, "canopy_01_vs_reference_01
 GitHub-only by design; install via the git-subdirectory pattern:
 
 ```bash
-uv add "canvod-adapters @ git+https://github.com/nfb2021/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-adapters"
-uv add "canvod-adapters[store] @ git+https://github.com/nfb2021/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-adapters"  # for VOD store I/O
+uv add "canvod-adapters @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-adapters"
+uv add "canvod-adapters[store] @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-adapters"  # for VOD store I/O
 ```
 
 ## Documentation

@@ -24,7 +24,7 @@ discussions, or pull requests.
 Report security vulnerabilities via one of these methods:
 
 **Preferred:** Use GitHub's private vulnerability reporting:
-- Go to https://github.com/nfb2021/canvodpy-extensions/security/advisories
+- Go to https://github.com/TUW-GEO/canvodpy-extensions/security/advisories
 - Click "Report a vulnerability"
 - Fill in the details
 
@@ -59,7 +59,7 @@ severity, but we do not guarantee specific response or fix timelines.
 
 ## Dependency Chain
 
-canvodpy-extensions packages are built against [canvodpy](https://github.com/nfb2021/canvodpy)
+canvodpy-extensions packages are built against [canvodpy](https://github.com/TUW-GEO/canvodpy)
 and its dependency chain (NumPy, Pydantic, xarray, Zarr, etc.). Vulnerabilities in
 that chain may affect these packages; we monitor and update dependencies regularly.
 
@@ -71,4 +71,4 @@ For security-related questions or concerns:
 - **Affiliation:** Climate and Environmental Remote Sensing (CLIMERS), TU Wien
 
 For general (non-security) questions, use GitHub Issues:
-https://github.com/nfb2021/canvodpy-extensions/issues
+https://github.com/TUW-GEO/canvodpy-extensions/issues

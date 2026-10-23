@@ -17,7 +17,7 @@ a run already finds them.
 ## Install
 
 ```bash
-uv add "canvod-filemap @ git+https://github.com/nfb2021/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-filemap"
+uv add "canvod-filemap @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-filemap"
 ```
 
 The package lives on GitHub only, not on PyPI.

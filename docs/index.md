@@ -9,8 +9,8 @@ hide:
 <div class="hero" markdown>
 
 <h1 class="hero-lockup">
-  <img src="https://raw.githubusercontent.com/nfb2021/canvodpy/main/docs/assets/logo/canvodpy_logo_bright_mode.svg#only-light" alt="canVODpy">
-  <img src="https://raw.githubusercontent.com/nfb2021/canvodpy/main/docs/assets/logo/canvodpy_logo_dark_mode.svg#only-dark" alt="canVODpy">
+  <img src="https://raw.githubusercontent.com/TUW-GEO/canvodpy/main/docs/assets/logo/canvodpy_logo_bright_mode.svg#only-light" alt="canVODpy">
+  <img src="https://raw.githubusercontent.com/TUW-GEO/canvodpy/main/docs/assets/logo/canvodpy_logo_dark_mode.svg#only-dark" alt="canVODpy">
   <span class="hero-lockup__word">extensions</span>
 </h1>
 

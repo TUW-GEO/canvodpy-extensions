@@ -15,7 +15,7 @@ process one batch once.
 ## Install
 
 ```bash
-uv add "canvod-airflow[airflow] @ git+https://github.com/nfb2021/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-airflow"
+uv add "canvod-airflow[airflow] @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-airflow"
 ```
 
 The package lives on GitHub only. `apache-airflow` is an optional

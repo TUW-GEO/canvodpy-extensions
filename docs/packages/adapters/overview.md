@@ -14,7 +14,7 @@ read and write canvodpy's own readers and stores.
 ## Install
 
 ```bash
-uv add "canvod-adapters[store] @ git+https://github.com/nfb2021/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-adapters"
+uv add "canvod-adapters[store] @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-adapters"
 ```
 
 The package lives on GitHub only. The `[store]` extra adds the VOD store

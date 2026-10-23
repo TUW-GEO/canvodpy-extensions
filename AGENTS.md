@@ -1,6 +1,6 @@
 # canvodpy-extensions: instructions for coding agents
 
-Optional packages for [canvodpy](https://github.com/nfb2021/canvodpy).
+Optional packages for [canvodpy](https://github.com/TUW-GEO/canvodpy).
 canvodpy computes vegetation optical depth (VOD) from GNSS signals: a
 receiver below a canopy and a reference receiver with open sky
 (GNSS-Transmissometry, GNSS-T). Code that serves specific workflows or
@@ -183,7 +183,7 @@ The code is the truth; don't copy these constants into new code.
 
 ### Issue tracker
 
-Issues and specs live in GitHub Issues of nfb2021/canvodpy-extensions
+Issues and specs live in GitHub Issues of TUW-GEO/canvodpy-extensions
 (`gh`). See `docs/agents/issue-tracker.md`.
 
 ### Triage labels

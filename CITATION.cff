@@ -15,8 +15,8 @@ authors:
     email: support@canvodpy.eu
     affiliation: "TU Wien, Department of Geodesy and Geoinformation, Climate and Environmental Remote Sensing CLIMERS Research Unit"
     orcid: "https://orcid.org/0000-0002-9932-1925"
-repository-code: "https://github.com/nfb2021/canvodpy-extensions"
-url: "https://github.com/nfb2021/canvodpy-extensions"
+repository-code: "https://github.com/TUW-GEO/canvodpy-extensions"
+url: "https://github.com/TUW-GEO/canvodpy-extensions"
 keywords:
   - GNSS-Transmissometry
   - GNSS-T
@@ -38,7 +38,7 @@ references:
       - family-names: Bader
         given-names: Nicolas François
         orcid: "https://orcid.org/0000-0002-9932-1925"
-    repository-code: "https://github.com/nfb2021/canvodpy"
-    url: "https://github.com/nfb2021/canvodpy"
+    repository-code: "https://github.com/TUW-GEO/canvodpy"
+    url: "https://github.com/TUW-GEO/canvodpy"
     doi: "10.5281/zenodo.18496233"
     license: Apache-2.0

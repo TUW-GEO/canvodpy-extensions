@@ -3,7 +3,7 @@
 Naming recipes for receiver files that don't follow the canVOD filename
 convention.
 
-Part of the [canVODpy](https://github.com/nfb2021/canvodpy) ecosystem.
+Part of the [canVODpy](https://github.com/TUW-GEO/canvodpy) ecosystem.
 
 ## Overview
 
@@ -34,7 +34,7 @@ run would process.
 GitHub-only by design; install via the git-subdirectory pattern:
 
 ```bash
-uv add "canvod-filemap @ git+https://github.com/nfb2021/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-filemap"
+uv add "canvod-filemap @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@v0.1.0#subdirectory=packages/canvod-filemap"
 ```
 
 ## Quick Start

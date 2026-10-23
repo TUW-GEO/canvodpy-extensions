@@ -80,7 +80,7 @@ version and drafts a GitHub Release from the changelog.
 
 ```bash
 uv venv /tmp/ext-check && source /tmp/ext-check/bin/activate
-uv pip install "PKG @ git+https://github.com/nfb2021/canvodpy-extensions.git@PKG-vX.Y.Z#subdirectory=packages/PKG"
+uv pip install "PKG @ git+https://github.com/TUW-GEO/canvodpy-extensions.git@PKG-vX.Y.Z#subdirectory=packages/PKG"
 python -c "import canvod.<short name>"
 ```
 

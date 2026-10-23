@@ -14,10 +14,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/nfb2021/canvodpy-extensions"
+Homepage = "https://github.com/TUW-GEO/canvodpy-extensions"
 Documentation = "https://extensions.canvodpy.eu/packages/filemap/overview/"
-Repository = "https://github.com/nfb2021/canvodpy-extensions"
-Issues = "https://github.com/nfb2021/canvodpy-extensions/issues"
+Repository = "https://github.com/TUW-GEO/canvodpy-extensions"
+Issues = "https://github.com/TUW-GEO/canvodpy-extensions/issues"
 
 [build-system]
 requires = ["uv_build>=0.9.17,<0.10.0"]
