@@ -14,7 +14,7 @@ also waits for the SP3/CLK products (12-18 days for final products).
 Requirements
 ------------
 * ``canvodpy`` installed in the Airflow worker environment.
-* Apache Airflow >= 3.0 (the ``airflow`` extra).
+* Apache Airflow >= 3.0 (a dependency of canvod-airflow).
 """
 
 from __future__ import annotations
