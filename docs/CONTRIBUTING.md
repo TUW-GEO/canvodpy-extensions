@@ -208,5 +208,11 @@ without the workspace's `[tool.uv.sources]`, refuses a dependency on a URL
 stored anywhere. The upload waits for a maintainer's approval of the `pypi`
 environment. A package's dependencies must all be on PyPI first.
 
-A new package under `packages/` needs nothing else: its first `just release`
-starts its changelog and tags.
+A new package under `packages/` needs one step on PyPI before its first
+upload: add a pending trusted publisher for the package name (owner
+`TUW-GEO`, repository `canvodpy-extensions`, workflow `publish_pypi.yml`,
+environment `pypi`). The first upload creates the project and turns the
+pending publisher into a normal one. PyPI can refuse a second pending
+publisher while one is pending; then upload that package first.
+In the repository, the package's first `just release` starts its changelog
+and tags.
