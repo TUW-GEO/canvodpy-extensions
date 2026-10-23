@@ -29,8 +29,7 @@ from datetime import datetime, timedelta
 
 import structlog
 
-from airflow.decorators import dag, task  # type: ignore[unresolved-import]
-from airflow.models.param import Param  # type: ignore[unresolved-import]
+from airflow.sdk import Param, dag, task  # type: ignore[unresolved-import]
 
 logger = structlog.get_logger(__name__)
 
