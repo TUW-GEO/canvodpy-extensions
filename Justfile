@@ -62,13 +62,13 @@ lock-canvodpy:
     set -euo pipefail
     # uv keeps the locked commit of a git repository while any package from
     # it is not upgraded, so all of them are upgraded together
-    pkgs=$(uv run --no-sync python -c 'import tomllib; lock = tomllib.load(open("uv.lock", "rb")); print(" ".join(p["name"] for p in lock["package"] if "nfb2021/canvodpy.git" in p.get("source", {}).get("git", "")))')
+    pkgs=$(uv run --no-sync python -c 'import tomllib; lock = tomllib.load(open("uv.lock", "rb")); print(" ".join(p["name"] for p in lock["package"] if "TUW-GEO/canvodpy.git" in p.get("source", {}).get("git", "")))')
     test -n "${pkgs}" || { echo "No canvodpy package is taken from git" >&2; exit 0; }
     args=()
     for p in ${pkgs}; do args+=(--upgrade-package "${p}"); done
     uv lock --no-cache "${args[@]}"
     echo "canvodpy commit(s) in uv.lock:"
-    grep -o 'nfb2021/canvodpy.git[^"]*#[0-9a-f]*' uv.lock | sed 's/.*#//' | sort -u
+    grep -o 'TUW-GEO/canvodpy.git[^"]*#[0-9a-f]*' uv.lock | sed 's/.*#//' | sort -u
 
 # lint python code using ruff
 [private]

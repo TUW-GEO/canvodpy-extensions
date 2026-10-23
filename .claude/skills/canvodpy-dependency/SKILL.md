@@ -56,7 +56,7 @@ commit. Then `uv sync` and `just test`.
 - canvodpy released: delete the canvodpy lines from root
   `[tool.uv.sources]`, raise the lower bounds in the package
   `pyproject.toml`s to that release (e.g. `canvod-readers>=1.0.0`), then
-  `uv lock` and check `grep -c "nfb2021/canvodpy.git" uv.lock` is 0.
+  `uv lock` and check `grep -c "TUW-GEO/canvodpy.git" uv.lock` is 0.
 - A branch was deleted after its PR merged: switch to PyPI if released,
   otherwise to `branch = "main"` or a `rev = "<merge commit>"`.
 

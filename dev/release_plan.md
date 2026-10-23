@@ -46,7 +46,7 @@ commit on the canvodpy branch `release/v1.0.0` (`rev` in the root
 - [x] per-package release tooling (7102c8d)
 - [ ] After canvodpy 1.0.0 is on PyPI: drop the canvodpy git sources from
       the root `[tool.uv.sources]` and relock against PyPI. Check that no
-      canvodpy git URL is left: `grep -c "nfb2021/canvodpy.git" uv.lock` is 0.
+      canvodpy git URL is left: `grep -c "TUW-GEO/canvodpy.git" uv.lock` is 0.
 - [ ] Lower bounds on canvodpy 1.0.0 in the package `pyproject.toml`s:
   - canvod-filemap: `canvod-preflight>=1.0.0`
   - canvod-airflow: `canvodpy>=1.0.0`
