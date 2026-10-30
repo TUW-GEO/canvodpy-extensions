@@ -72,10 +72,11 @@ and `calculate_vod`. These functions are stateless and accept only
 primitives, so they carry dates and settings to and from Airflow. Use
 them in a script or a notebook without Airflow if you want.
 
-The daily DAG waits for SP3/CLK products only when a run uses agency
-ephemerides, that is when `processing.params.ephemeris_source` is not
-`broadcast`. With `broadcast`, the satellite angles come from the SBF
-files themselves and the results are available the same day. See
+The daily DAG waits for SP3/CLK products only when a run uses the
+precise ephemeris, that is when `processing.params.ephemeris_source` is
+not `broadcast`. With `broadcast`, the satellite angles come from the
+receiver's own data, the SBF files or the RINEX navigation files, and the
+results are available the same day. See
 [Configuration](https://canvodpy.eu/guides/configuration/).
 [Parallel processing](https://canvodpy.eu/guides/parallel-processing/)
 and [Icechunk stores](https://canvodpy.eu/packages/store/icechunk/)

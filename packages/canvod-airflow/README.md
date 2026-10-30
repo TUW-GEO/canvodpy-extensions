@@ -31,7 +31,8 @@ Airflow dependency of its own.
 
 There is one daily DAG per site of the canvodpy settings, created when
 Airflow parses the DAG file. `t_wait_for_sp3` runs only when the settings use
-agency orbit and clock products instead of broadcast ephemerides.
+the precise ephemeris (orbit and clock products of an analysis center)
+instead of the broadcast ephemeris.
 
 ## Install
 

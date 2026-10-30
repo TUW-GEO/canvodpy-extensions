@@ -129,9 +129,9 @@ class TestDailyDagStructure:
         ):
             assert name not in dag_source
 
-    def test_sp3_wait_only_with_agency_ephemeris(self, dag_source):
-        """The SP3 sensor is wired only if runs use agency ephemerides."""
-        assert "if agency_ephemeris:" in dag_source
+    def test_sp3_wait_only_with_precise_ephemeris(self, dag_source):
+        """The SP3 sensor is wired only if runs use the precise ephemeris."""
+        assert "if precise_ephemeris:" in dag_source
 
     def test_no_streaming_references(self, dag_source):
         """DAG must NOT reference streaming statistics tasks."""
