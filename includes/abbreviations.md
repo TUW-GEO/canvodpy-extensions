@@ -16,7 +16,7 @@
 *[GNSS-T]: GNSS Transmissometry — method using differential SNR between canopy and reference receivers to estimate vegetation properties
 
 <!-- Ephemerides and orbits -->
-*[SP3]: Standard Product 3 — precise satellite orbit (position ± ~2 cm) file format, produced by IGS analysis centres (Navipedia: SP3)
+*[SP3]: Standard Product 3 — precise satellite orbit file format, produced by IGS analysis centres (Navipedia: SP3)
 *[CLK]: Clock — precise satellite and station clock correction file (30 s intervals), companion to SP3 orbits
 
 <!-- Infrastructure -->
