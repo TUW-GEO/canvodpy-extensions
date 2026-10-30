@@ -9,7 +9,7 @@ One DAG per configured site (``canvod_{site}``)::
 (``canvodpy.workflows.tasks``): each receiver is read in the
 ``reader_format`` of its site configuration, with the ephemeris source of
 ``processing.params.ephemeris_source``. With the precise ephemeris the DAG
-also waits for the SP3/CLK products (12-18 days for final products).
+also waits for the SP3/CLK products, for up to 21 days.
 
 Requirements
 ------------

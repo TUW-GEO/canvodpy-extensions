@@ -76,7 +76,7 @@ The daily DAG waits for SP3/CLK products only when a run uses the
 precise ephemeris, that is when `processing.params.ephemeris_source` is
 not `broadcast`. With `broadcast`, the satellite angles come from the
 receiver's own data, the SBF files or the RINEX navigation files, and the
-results are available the same day. See
+results are available as soon as the day's files are there. See
 [Configuration](https://canvodpy.eu/guides/configuration/).
 [Parallel processing](https://canvodpy.eu/guides/parallel-processing/)
 and [Icechunk stores](https://canvodpy.eu/packages/store/icechunk/)
