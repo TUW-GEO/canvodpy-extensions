@@ -26,3 +26,10 @@ def test_dagbag_imports_cleanly():
     bag = DagBag(dag_folder=str(Path(canvod.airflow.__file__).parent))
     assert not bag.import_errors, bag.import_errors
     assert "canvod_backfill" in bag.dags
+
+
+def test_daily_dag_builds_for_a_site():
+    from canvod.airflow.daily_processing import create_daily_dag
+
+    tasks = {task.task_id for task in create_daily_dag("FAN", True).tasks}
+    assert {"t_wait_for_sp3", "t_process_day", "t_calculate_vod"} <= tasks
