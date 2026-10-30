@@ -419,6 +419,7 @@ source = { editable = "packages/canvod-airflow" }
 dependencies = [
     { name = "apache-airflow" },
     { name = "canvod-config" },
+    { name = "canvod-utils" },
     { name = "canvodpy" },
     { name = "structlog" },
 ]
@@ -427,6 +428,7 @@ dependencies = [
 requires-dist = [
     { name = "apache-airflow", specifier = ">=3.3.2" },
     { name = "canvod-config", specifier = ">=1.0.0" },
+    { name = "canvod-utils", specifier = ">=1.0.0" },
     { name = "canvodpy", specifier = ">=1.0.0" },
     { name = "structlog", specifier = ">=23.0" },
 ]

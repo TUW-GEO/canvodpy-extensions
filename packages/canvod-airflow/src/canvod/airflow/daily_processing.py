@@ -8,7 +8,7 @@ One DAG per configured site (``canvod_{site}``)::
 ``process_day`` and ``calculate_vod`` run the code of ``canvodpy run``
 (``canvodpy.workflows.tasks``): each receiver is read in the
 ``reader_format`` of its site configuration, with the ephemeris source of
-``processing.params.ephemeris_source``. With agency ephemerides the DAG
+``processing.params.ephemeris_source``. With the precise ephemeris the DAG
 also waits for the SP3/CLK products (12-18 days for final products).
 
 Requirements
@@ -22,6 +22,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta
 
 import structlog
+from canvod.utils.tools import deprecated_argument
 
 from airflow.sdk import dag, task  # type: ignore[unresolved-import]
 
@@ -48,8 +49,8 @@ def _get_configured_sites() -> dict:
         return {}
 
 
-def _uses_agency_ephemeris() -> bool:
-    """Whether runs use agency SP3/CLK products (``ephemeris_source``)."""
+def _uses_precise_ephemeris() -> bool:
+    """Whether runs use the precise ephemeris, SP3/CLK products (``ephemeris_source``)."""
     from canvod.config import load_config
 
     return load_config().processing.params.ephemeris_source != "broadcast"
@@ -116,17 +117,34 @@ _START_DATE = datetime(2025, 1, 1)
 # ---------------------------------------------------------------------------
 
 
-def create_daily_dag(site_name: str, agency_ephemeris: bool):
+@deprecated_argument(
+    "agency_ephemeris",
+    "The argument 'agency_ephemeris' of create_daily_dag() is now called "
+    "'precise_ephemeris', after canvodpy's ephemeris_source 'precise'. The "
+    "old name will be removed with the next major version. Pass "
+    "precise_ephemeris instead.",
+)
+def create_daily_dag(
+    site_name: str,
+    precise_ephemeris: bool | None = None,
+    *,
+    agency_ephemeris: bool | None = None,
+):
     """Create the daily processing DAG for *site_name*.
 
     Parameters
     ----------
     site_name : str
         Site name in the canvodpy configuration.
-    agency_ephemeris : bool
-        Whether runs use agency SP3/CLK products; the DAG then waits for
-        them before processing.
+    precise_ephemeris : bool
+        Whether runs use the precise ephemeris (SP3/CLK products of an
+        analysis center); the DAG then waits for them before processing.
     """
+    if precise_ephemeris is None:
+        precise_ephemeris = agency_ephemeris
+    if precise_ephemeris is None:
+        msg = "create_daily_dag() needs precise_ephemeris"
+        raise TypeError(msg)
 
     @dag(
         dag_id=f"canvod_{site_name}",
@@ -226,7 +244,7 @@ def create_daily_dag(site_name: str, agency_ephemeris: bool):
         # airflow.sdk type hints expect the resolved type, hence the ignores.
         valid_info = t_validate_dirs()
         ready_info = t_wait_for_data(valid_info=valid_info)  # ty: ignore[invalid-argument-type]
-        if agency_ephemeris:
+        if precise_ephemeris:
             ready_info = t_wait_for_sp3(data_info=ready_info)  # ty: ignore[invalid-argument-type]
         process_info = t_process_day(ready_info=ready_info)  # ty: ignore[invalid-argument-type]
         ingest_valid = t_validate_ingest(process_info=process_info)  # ty: ignore[invalid-argument-type]
@@ -241,6 +259,6 @@ def create_daily_dag(site_name: str, agency_ephemeris: bool):
 
 _SITES = _get_configured_sites()
 if _SITES:
-    _AGENCY_EPHEMERIS = _uses_agency_ephemeris()
+    _PRECISE_EPHEMERIS = _uses_precise_ephemeris()
     for _site_name in _SITES:
-        globals()[f"canvod_{_site_name}"] = create_daily_dag(_site_name, _AGENCY_EPHEMERIS)
+        globals()[f"canvod_{_site_name}"] = create_daily_dag(_site_name, _PRECISE_EPHEMERIS)

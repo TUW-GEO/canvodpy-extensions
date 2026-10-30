@@ -15,13 +15,14 @@
 One factory builds the daily DAG of a site. Importing the module builds
 one DAG for every site in canvodpy's settings file.
 
-### `create_daily_dag(site_name: str, agency_ephemeris: bool)`
+### `create_daily_dag(site_name: str, precise_ephemeris: bool)`
 
 Builds the daily DAG of `site_name`, scheduled daily. Chain:
 `validate_dirs → wait_for_data → (wait_for_sp3) → process_day → validate_ingest → calculate_vod`.
 
-When `agency_ephemeris` is true, the DAG also waits for the SP3/CLK
-products before it processes the day.
+When `precise_ephemeris` is true, the DAG also waits for the SP3/CLK
+products before it processes the day. `agency_ephemeris`, its old name,
+works until the next major version and warns.
 
 ## `backfill`
 
