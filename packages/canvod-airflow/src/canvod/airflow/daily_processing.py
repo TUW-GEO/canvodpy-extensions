@@ -55,11 +55,23 @@ def _uses_agency_ephemeris() -> bool:
     return load_config().processing.params.ephemeris_source != "broadcast"
 
 
-def _ds_to_yyyydoy(ds: str) -> str:
+def _run_date(ds: str | None) -> str:
+    """The ``ds`` Airflow passes to a running task (``YYYY-MM-DD``).
+
+    Tasks declare ``ds`` with the default ``None``, the only default
+    Airflow 3 allows for a context key; it fills in the value at run time.
+    """
+    if ds is None:
+        msg = "Airflow passes ds to a running task; this task got none"
+        raise ValueError(msg)
+    return ds
+
+
+def _ds_to_yyyydoy(ds: str | None) -> str:
     """Convert Airflow ``ds`` (``YYYY-MM-DD``) to ``YYYYDDD``."""
     import datetime as dt
 
-    date = dt.date.fromisoformat(ds)
+    date = dt.date.fromisoformat(_run_date(ds))
     doy = (date - dt.date(date.year, 1, 1)).days + 1
     return f"{date.year}{doy:03d}"
 
@@ -128,7 +140,7 @@ def create_daily_dag(site_name: str, agency_ephemeris: bool):
     )
     def daily_dag():
         @task(retries=0)
-        def t_validate_dirs(ds: str = "{{ ds }}") -> dict:
+        def t_validate_dirs(ds: str | None = None) -> dict:
             from canvodpy.workflows.tasks import validate_data_dirs
 
             return validate_data_dirs(site_name)
@@ -140,7 +152,7 @@ def create_daily_dag(site_name: str, agency_ephemeris: bool):
         )
         def t_wait_for_data(
             valid_info: dict,
-            ds: str = "{{ ds }}",
+            ds: str | None = None,
         ):
             """Wait until every receiver has files for the day (up to 21 days)."""
             from canvodpy.workflows.tasks import check_day
@@ -163,13 +175,13 @@ def create_daily_dag(site_name: str, agency_ephemeris: bool):
         )
         def t_wait_for_sp3(
             data_info: dict,
-            ds: str = "{{ ds }}",
+            ds: str | None = None,
         ):
             """Wait for SP3/CLK products (date-age heuristic, up to 21 days)."""
             from canvodpy.workflows.tasks import check_sp3_availability
 
             _ = data_info
-            return check_sp3_availability(ds)
+            return check_sp3_availability(_run_date(ds))
 
         @task(
             execution_timeout=timedelta(hours=4),
@@ -178,7 +190,7 @@ def create_daily_dag(site_name: str, agency_ephemeris: bool):
         )
         def t_process_day(
             ready_info: dict,
-            ds: str = "{{ ds }}",
+            ds: str | None = None,
         ) -> dict:
             from canvodpy.workflows.tasks import process_day
 
@@ -188,7 +200,7 @@ def create_daily_dag(site_name: str, agency_ephemeris: bool):
         @task(execution_timeout=timedelta(hours=1))
         def t_validate_ingest(
             process_info: dict,
-            ds: str = "{{ ds }}",
+            ds: str | None = None,
         ) -> dict:
             from canvodpy.workflows.tasks import validate_ingest
 
@@ -202,7 +214,7 @@ def create_daily_dag(site_name: str, agency_ephemeris: bool):
         )
         def t_calculate_vod(
             ingest_valid: dict,
-            ds: str = "{{ ds }}",
+            ds: str | None = None,
         ) -> dict:
             from canvodpy.workflows.tasks import calculate_vod
 
