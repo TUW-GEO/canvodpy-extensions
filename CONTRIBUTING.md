@@ -171,6 +171,11 @@ just release canvod-filemap minor     # or major, patch, or for example 0.2.0
 Commit messages become the changelog, so follow the commit convention here
 and mark breaking changes (`feat!:` or a `BREAKING CHANGE:` footer).
 
+A minor or major release also gets a release notebook: a marimo notebook
+`release-notes/<package>-v<version>.py` that shows what is new and how to
+use it. Copy `release-notes/_template.py`, and commit it on the release
+branch ([Release notebooks](https://extensions.canvodpy.eu/releasing/#release-notebooks)).
+
 `main` requires a PR (branch protection), so the tag is set after the merge:
 
 ```bash

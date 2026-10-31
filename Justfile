@@ -92,6 +92,11 @@ check-format-only:
 check-types:
     uv run ty check
 
+# check the format of the release notebooks (release-notes/); they are not
+# run, since some cells only show code that needs the reader's own data
+check-release-notes:
+    uvx marimo@0.25.2 check --strict release-notes/*.py
+
 # check that AGENTS.md files and skills name only existing paths and recipes
 check-agent-docs:
     uv run --no-sync python tools/check_agent_docs.py

@@ -44,6 +44,7 @@ ignore = ["E501"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["S101", "PLR2004"]
+"release-notes/*.py" = ["B018", "F811", "F821", "F401", "E402"]  # marimo notebooks: bare display expressions, cross-cell names
 
 [tool.ruff.format]
 quote-style = "double"
