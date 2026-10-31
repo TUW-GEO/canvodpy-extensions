@@ -61,12 +61,34 @@ Tagging before the merge can leave the tag on a commit that never reaches
 2. Takes the release notes from the tag's section of the package's
    `CHANGELOG.md`, as edited in the release pull request, and stops if
    there is none.
-3. Creates a **draft** release titled `<package> <version>` (a pre-release
+3. Adds a link that opens the release notebook in molab, if the tagged
+   commit has `release-notes/<package>-v<version>.py` (see
+   [Release notebooks](#release-notebooks)).
+4. Creates a **draft** release titled `<package> <version>` (a pre-release
    for `a`, `b` and `rc` versions).
 
 A maintainer reviews the draft and publishes it. Publishing archives the
 repository on Zenodo, versioned by the tag. `.zenodo.json` and
 `CITATION.cff` carry no version, since the packages have different ones.
+
+### Release notebooks
+
+A minor or major release of a package gets a marimo notebook that shows
+what is new and how to use it, next to the changelog. It is
+`release-notes/<package>-v<version>.py`, made from
+`release-notes/_template.py`:
+
+- It pins the release it describes (`"canvod-filemap==1.1.0"`).
+- One section per change that users notice: what it does, a link to its
+  docs page, and the code or command that uses it. A cell runs on
+  canVODpy's demo data (`canvodpy.demo_data()`) where it can; otherwise it
+  shows the code and says what it needs.
+- It doesn't have to run from top to bottom; CI checks its format only
+  (`just check-release-notes`).
+
+Commit it on the release branch, so it is part of the release pull
+request, and add it to the table in `release-notes/README.md`. A patch
+release needs no notebook.
 
 ---
 
@@ -141,6 +163,7 @@ git switch main && git pull origin main
 just changelog canvod-filemap
 git switch -c chore/release-canvod-filemap-1.0.1
 just release canvod-filemap patch
+# a minor or major release: commit release-notes/canvod-filemap-vX.Y.Z.py here
 git push -u origin chore/release-canvod-filemap-1.0.1
 gh pr create --fill
 # merged once CI passes, then on main:

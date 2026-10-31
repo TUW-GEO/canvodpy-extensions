@@ -65,6 +65,19 @@ jobs:
           fi
           cat release-notes.md
 
+      - name: Link the release notebook
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          # Minor and major releases have one (docs/releasing.md); a patch
+          # release usually not, and then the notes get no link.
+          notebook="release-notes/${TAG}.py"
+          if [ -f "${notebook}" ]; then
+            { echo; echo "**What is new, and how to use it:** [open the release notebook in molab](https://molab.marimo.io/github/TUW-GEO/canvodpy-extensions/blob/main/${notebook})"; } >> release-notes.md
+          else
+            echo "No release notebook ${notebook}: the notes get no link."
+          fi
+
       - name: Create GitHub release (draft)
         env:
           GH_TOKEN: ${{ github.token }}
