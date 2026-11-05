@@ -67,16 +67,20 @@ that date; the rest of the range continues.
 ## How it fits into a run
 
 The tasks call canvodpy's task functions directly: `validate_data_dirs`,
-`check_day`, `check_sp3_availability`, `process_day`, `validate_ingest`,
-and `calculate_vod`. These functions are stateless and accept only
-primitives, so they carry dates and settings to and from Airflow. Use
-them in a script or a notebook without Airflow if you want.
+`check_day`, `process_day`, `validate_ingest`, and `calculate_vod`.
+These functions are stateless and accept only primitives, so they carry
+dates and settings to and from Airflow. Use them in a script or a
+notebook without Airflow if you want.
 
 The daily DAG waits for SP3/CLK products only when a run uses the
 precise ephemeris, that is when `processing.params.ephemeris_source` is
 not `broadcast`. With `broadcast`, the satellite angles come from the
 receiver's own data, the SBF files or the RINEX navigation files, and the
-results are available as soon as the day's files are there. See
+results are available as soon as the day's files are there. The SP3/CLK
+wait, `check_sp3_availability` in `canvod.airflow.sensors`, goes by the
+day's age: it continues after 2 days for `rapid` and 14 days for `final`
+products (`processing.aux_data.product_type`), and skips days older than
+30 days. See
 [Configuration](https://canvodpy.eu/guides/configuration/).
 [Parallel processing](https://canvodpy.eu/guides/parallel-processing/)
 and [Icechunk stores](https://canvodpy.eu/packages/store/icechunk/)

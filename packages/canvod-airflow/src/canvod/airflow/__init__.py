@@ -3,6 +3,7 @@
 See ``daily_processing.py`` (one daily DAG per site) and
 ``backfill.py`` (manual date-range backfill DAG). No pipeline logic lives
 here; every task wraps a stateless function from ``canvodpy.workflows.tasks``.
+``sensors.py`` holds the sensor gates, which are orchestration.
 
 ``daily_processing.py`` and ``backfill.py`` import ``airflow`` at module
 level (``apache-airflow`` is a dependency of this package), since these

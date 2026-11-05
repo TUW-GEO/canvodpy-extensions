@@ -13,6 +13,9 @@ Before changing it, read the canvodpy side: root `AGENTS.md`, section
   `validate_dirs → wait_for_data (→ wait_for_sp3) → process_day →
   validate_ingest → calculate_vod`. `wait_for_sp3` is only added when
   `processing.params.ephemeris_source` is not `broadcast`.
+- `src/canvod/airflow/sensors.py`: sensor gates, e.g.
+  `check_sp3_availability` (when the SP3/CLK products of a day count as
+  available).
 - `src/canvod/airflow/backfill.py`: `canvod_backfill`, triggered by hand
   with `site`, `start_date`, `end_date` params; one mapped `process_day`
   per day.
@@ -20,7 +23,9 @@ Before changing it, read the canvodpy side: root `AGENTS.md`, section
 ## Invariants
 
 - **No pipeline logic here.** Add it to `canvodpy.workflows.tasks`; the
-  DAGs only call those functions and pass the day as `YYYYDOY`.
+  DAGs only call those functions and pass the day as `YYYYDOY`. Sensor
+  gating (when to poke again, give up or continue) is orchestration and
+  lives here, in `src/canvod/airflow/sensors.py`.
 - **Parse-time safety:** import canvodpy inside tasks, not at module top.
   `_get_configured_sites` returns no sites, with a warning, when the
   settings cannot load, so the scheduler can still parse the file.

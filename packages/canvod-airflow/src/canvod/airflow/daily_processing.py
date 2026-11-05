@@ -196,7 +196,7 @@ def create_daily_dag(
             ds: str | None = None,
         ):
             """Wait for SP3/CLK products (date-age heuristic, up to 21 days)."""
-            from canvodpy.workflows.tasks import check_sp3_availability
+            from canvod.airflow.sensors import check_sp3_availability
 
             _ = data_info
             return check_sp3_availability(_run_date(ds))
