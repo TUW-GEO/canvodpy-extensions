@@ -14,6 +14,14 @@
 [tool.uv.workspace]
 members = ["packages/*"]
 
+[tool.uv]
+# uv lock takes only package files at least a week on PyPI, so a broken or
+# malicious release is usually withdrawn before it reaches uv.lock.
+exclude-newer = "1 week"
+# The packages released from canvodpy are taken right away
+# (.claude/skills/canvodpy-dependency).
+exclude-newer-package = { canvodpy = false, canvod-auxiliary = false, canvod-config = false, canvod-grids = false, canvod-ops = false, canvod-preflight = false, canvod-readers = false, canvod-store = false, canvod-store-metadata = false, canvod-utils = false, canvod-viz = false, canvod-vod = false }
+
 # ============================================================================
 # Development Dependencies (Workspace-wide)
 # ============================================================================

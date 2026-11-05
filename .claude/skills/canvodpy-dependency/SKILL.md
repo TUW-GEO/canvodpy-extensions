@@ -60,6 +60,16 @@ commit. Then `uv sync` and `just test`.
 - A branch was deleted after its PR merged: switch to PyPI if released,
   otherwise to `branch = "main"` or a `rev = "<merge commit>"`.
 
+## The one-week wait
+
+`uv lock` takes only package files that have been on PyPI for at least a
+week (`exclude-newer = "1 week"` in root `[tool.uv]`). A minimum version
+raised by hand must be a release at least a week old, or `uv lock` fails.
+The packages released from canvodpy are exempt (`exclude-newer-package`),
+so a canvodpy release can be locked right away. A new package in canvodpy
+goes on that list, and on the Dependabot cooldown `exclude` list in
+`.github/dependabot.yml`.
+
 ## The other direction: canvodpy installs canvod-filemap
 
 canvodpy's root `pyproject.toml` installs canvod-filemap from a tag of this

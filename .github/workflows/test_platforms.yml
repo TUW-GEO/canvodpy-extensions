@@ -42,9 +42,6 @@ jobs:
                   enable-cache: true
             - name: Set up Python
               run: uv python install
-            - name: Update lock file (Dependabot only)
-              if: github.actor == 'dependabot[bot]'
-              run: uv lock
             - name: Install the Project
               run: uv sync --locked --dev
             - name: Run Tests
