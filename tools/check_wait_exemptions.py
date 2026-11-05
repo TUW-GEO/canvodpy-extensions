@@ -62,8 +62,10 @@ def pyproject_exemptions() -> set[str]:
 def dependabot_exemptions() -> set[str]:
     """The packages the uv ecosystem's cooldown excludes."""
     config = yaml.safe_load((ROOT / ".github" / "dependabot.yml").read_text())
-    (uv,) = [u for u in config["updates"] if u["package-ecosystem"] == "uv"]
-    return set(uv["cooldown"]["exclude"])
+    for update in config["updates"]:
+        if update["package-ecosystem"] == "uv":
+            return set(update["cooldown"]["exclude"])
+    raise SystemExit(".github/dependabot.yml has no uv entry")
 
 
 def main() -> int:
