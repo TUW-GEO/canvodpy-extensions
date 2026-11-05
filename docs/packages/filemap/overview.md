@@ -16,6 +16,15 @@ a run already finds them.
 
 ## Install
 
+If you run canVODpy from the command line, installed as a uv tool,
+install `canvod-filemap` into that tool with `--with`:
+
+```bash
+uv tool install canvodpy --with canvod-filemap
+```
+
+In a uv project that uses canvodpy from Python:
+
 ```bash
 uv add canvod-filemap
 ```

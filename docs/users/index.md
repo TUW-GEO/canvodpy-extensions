@@ -13,10 +13,20 @@ Each is on PyPI and installs on its own:
 
 ## Install a package
 
-Add the package to the project that uses canvodpy. Each package brings
-everything it needs.
+Each package brings everything it needs. `canvod-airflow` and
+`canvod-adapters` are used from Python: add them to the project that uses
+canvodpy.
 
 ### `canvod-filemap`
+
+If you run canVODpy from the command line, installed as a uv tool,
+install `canvod-filemap` into that tool with `--with`:
+
+```bash
+uv tool install canvodpy --with canvod-filemap
+```
+
+In a uv project that uses canvodpy from Python:
 
 ```bash
 uv add canvod-filemap
