@@ -22,7 +22,8 @@ GNSS-Transmissometry (GNSS-T) canopy VOD retrievals.
 `canvod-airflow` wraps the task functions of `canvodpy run`
 (`canvodpy.workflows.tasks`) into Airflow TaskFlow DAGs. No pipeline logic
 lives here: every task calls `canvodpy.workflows.tasks`, which has no
-Airflow dependency of its own.
+Airflow dependency of its own. Only the sensor gates, which decide when
+the DAG waits, live in canvod-airflow.
 
 | DAG | Trigger | Tasks |
 |---|---|---|

@@ -23,7 +23,9 @@ repeated here: run `just check`.
 - **One implementation per job.** Before writing something, find the code
   that already does it, here or in canvodpy, and reuse it. Processing
   belongs in canvodpy: an extension calls it (canvod-airflow calls
-  `canvodpy.workflows.tasks`) and has no pipeline logic of its own. Two
+  `canvodpy.workflows.tasks`) and has no pipeline logic of its own;
+  orchestration, such as canvod-airflow's sensor gates, stays in the
+  extension. Two
   code paths that do the same job drift apart and give different results.
 - **Composition over inheritance.** Pass collaborators in; inherit only
   from pydantic models and from ABC interfaces. Interfaces are ABCs, not
