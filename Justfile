@@ -97,6 +97,10 @@ check-types:
 check-release-notes:
     uvx marimo@0.25.2 check --strict release-notes/*.py
 
+# check that the one-week-wait exemptions name every canvodpy package
+check-wait-exemptions:
+    uv run --script tools/check_wait_exemptions.py
+
 # check that AGENTS.md files and skills name only existing paths and recipes
 check-agent-docs:
     uv run --no-sync python tools/check_agent_docs.py
