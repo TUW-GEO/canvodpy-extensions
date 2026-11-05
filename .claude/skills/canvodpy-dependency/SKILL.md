@@ -68,7 +68,9 @@ raised by hand must be a release at least a week old, or `uv lock` fails.
 The packages released from canvodpy are exempt (`exclude-newer-package`),
 so a canvodpy release can be locked right away. A new package in canvodpy
 goes on that list, and on the Dependabot cooldown `exclude` list in
-`.github/dependabot.yml`.
+`.github/dependabot.yml`. `just check-wait-exemptions` (weekly in CI)
+fails when a list misses a released canvodpy package or names one that is
+not released.
 
 ## The other direction: canvodpy installs canvod-filemap
 
