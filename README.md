@@ -27,7 +27,14 @@ Each package is on PyPI and installs on its own.
 
 ## Installation
 
-Add a package to the project that uses canvodpy:
+If you run canVODpy from the command line, installed as a uv tool,
+install `canvod-filemap` into that tool with `--with`:
+
+```bash
+uv tool install canvodpy --with canvod-filemap
+```
+
+To use a package from Python, add it to the project that uses canvodpy:
 
 ```bash
 uv add canvod-filemap
