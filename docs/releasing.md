@@ -12,6 +12,11 @@ commit message to PyPI upload. The steps to follow are in
 the extensions differ in one point: **each package is released on its
 own**, with its own version, tag, GitHub release, and PyPI upload.
 
+When canVODpy and extension packages are released together, follow
+canVODpy's [Release process](https://canvodpy.eu/RELEASING/) checklist:
+canVODpy is released first, then the extension packages, each with the
+steps on this page.
+
 ---
 
 ## 1. Conventional commits

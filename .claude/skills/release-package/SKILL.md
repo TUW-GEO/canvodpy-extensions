@@ -11,6 +11,10 @@ A release of package `PKG` is the annotated tag `PKG-v<version>` on `main`
 Tagging and publishing are visible to everyone: confirm the version with the
 user before step 2, before step 4 and before the PyPI upload.
 
+If canvodpy is released in the same round, canvodpy's release skill
+conducts the round and calls this skill for each extension package after
+canvodpy is on PyPI (canvodpy `docs/RELEASING.md`).
+
 ## 1. Check before releasing
 
 ```bash
