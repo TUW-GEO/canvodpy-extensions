@@ -1,16 +1,22 @@
 """Tests of the SP3/CLK sensor gate.
 
 Expected ages come from the product latencies: rapid products after 2
-days, final products after 14 days.
+days, final products after 14 days. Skipped on Windows, where Airflow
+doesn't run (only POSIX systems; Windows through WSL2).
 """
 
 from __future__ import annotations
 
 import datetime as dt
+import sys
 from types import SimpleNamespace
 
-import canvod.config
 import pytest
+
+if sys.platform == "win32":
+    pytest.skip("Airflow runs on POSIX systems only", allow_module_level=True)
+
+import canvod.config
 from airflow.sdk.exceptions import (
     AirflowSkipException,  # type: ignore[unresolved-import]
 )
