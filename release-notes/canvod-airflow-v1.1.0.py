@@ -49,8 +49,7 @@ def _(mo):
     uv add canvod-airflow==1.1.0
     ```
 
-    Nothing changes in what the DAGs do. The full list of changes is in
-    the
+    The full list of changes is in the
     [changelog](https://github.com/TUW-GEO/canvodpy-extensions/blob/canvod-airflow-v1.1.0/packages/canvod-airflow/CHANGELOG.md).
 
     ---
