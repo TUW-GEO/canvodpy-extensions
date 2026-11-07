@@ -199,11 +199,19 @@ release PKG VERSION: (test-package PKG)
     if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
         echo "Tag ${tag} exists already" >&2; exit 1
     fi
-    uvx git-cliff --include-path "packages/{{PKG}}/**" --tag-pattern "^{{PKG}}-v[0-9]" \
-        --tag "${tag}" --output "packages/{{PKG}}/CHANGELOG.md"
+    # add only the new section, so edits to earlier sections stay; a package
+    # without a changelog gets the whole file
+    changelog="packages/{{PKG}}/CHANGELOG.md"
+    if test -f "${changelog}"; then
+        uvx git-cliff --include-path "packages/{{PKG}}/**" --tag-pattern "^{{PKG}}-v[0-9]" \
+            --unreleased --tag "${tag}" --prepend "${changelog}"
+    else
+        uvx git-cliff --include-path "packages/{{PKG}}/**" --tag-pattern "^{{PKG}}-v[0-9]" \
+            --tag "${tag}" --output "${changelog}"
+    fi
     # git-cliff ends the file with a blank line, which end-of-file-fixer
     # would change in the commit below and so stop it
-    perl -0pi -e 's/\n+\z/\n/' "packages/{{PKG}}/CHANGELOG.md"
+    perl -0pi -e 's/\n+\z/\n/' "${changelog}"
     git add "packages/{{PKG}}" uv.lock
     git commit -m "chore(release): {{PKG}} ${version}"
     echo ""
