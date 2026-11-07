@@ -43,8 +43,8 @@ just release PKG X.Y.Z                     # or major | minor | patch
 
 `just release` refuses a dirty tree or an existing tag, runs the package's
 tests, then makes one commit `chore(release): PKG X.Y.Z` that sets the
-version (package `pyproject.toml`, `uv.lock`), writes
-`packages/PKG/CHANGELOG.md`. Several packages: run it once per package on
+version (package `pyproject.toml`, `uv.lock`) and adds the new section at
+the top of `packages/PKG/CHANGELOG.md`; earlier sections stay as they are. Several packages: run it once per package on
 the same branch.
 
 Check the commit: `git show --stat HEAD`, and read and edit the changelog

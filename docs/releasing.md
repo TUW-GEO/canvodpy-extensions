@@ -40,9 +40,10 @@ messages. The messages become the changelog, so mark breaking changes
 
 **Changelogs.** Every package has a `CHANGELOG.md` in its folder.
 [git-cliff](https://git-cliff.org) (`cliff.toml`) writes it from the commits
-that changed `packages/<package>/`. Edit the new section in the release
-pull request where an entry is wrong or missing: the draft release takes
-its notes from it.
+that changed `packages/<package>/`. `just release` adds the new section at
+the top and leaves the earlier sections as they are, so edits to them stay.
+Edit the new section in the release pull request where an entry is wrong or
+missing: the draft release takes its notes from it.
 
 **Tags.** A release is the tag `<package>-v<version>`, for example
 `canvod-filemap-v1.1.0`. `just release` refuses a version whose tag exists
