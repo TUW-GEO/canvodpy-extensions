@@ -235,4 +235,7 @@ tag PKG:
     tag="{{PKG}}-v${version}"
     grep -q "\[${tag}\]" "packages/{{PKG}}/CHANGELOG.md" || { echo "${tag} is not in packages/{{PKG}}/CHANGELOG.md: run just release first" >&2; exit 1; }
     git tag -a "${tag}" -m "{{PKG}} ${version}"
-    git push origin "${tag}"
+    # only this tag: with push.followTags set, git would also send every annotated
+    # tag on main that origin lacks, and GitHub starts no workflow for a push of
+    # more than three tags
+    git push --no-follow-tags origin "${tag}"
