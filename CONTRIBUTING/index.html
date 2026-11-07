@@ -26,7 +26,7 @@
       
       
       <link rel="icon" href="https://raw.githubusercontent.com/TUW-GEO/canvodpy/main/docs/assets/logo/canvodpy_favicon_bright_mode.svg">
-      <meta name="generator" content="zensical-0.0.72">
+      <meta name="generator" content="zensical-0.0.73">
     
     
       
@@ -1563,6 +1563,10 @@ just<span class="w"> </span>release<span class="w"> </span>canvod-filemap<span c
 </ul>
 <p>Commit messages become the changelog, so follow the commit convention here
 and mark breaking changes (<code>feat!:</code> or a <code>BREAKING CHANGE:</code> footer).</p>
+<p>A minor or major release also gets a release notebook: a marimo notebook
+<code>release-notes/&lt;package&gt;-v&lt;version&gt;.py</code> that shows what is new and how to
+use it. Copy <code>release-notes/_template.py</code>, and commit it on the release
+branch (<a href="https://extensions.canvodpy.eu/releasing/#release-notebooks">Release notebooks</a>).</p>
 <p><code>main</code> requires a PR (branch protection), so the tag is set after the merge:</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>chore/release-canvod-filemap-0.2.0<span class="w">   </span><span class="c1"># before just release</span>
 just<span class="w"> </span>release<span class="w"> </span>canvod-filemap<span class="w"> </span><span class="m">0</span>.2.0
@@ -1739,7 +1743,7 @@ and tags.</p>
       <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["content.code.copy","content.code.annotate","content.footnote.tooltips","content.tooltips","content.tabs.link","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","search.highlight","toc.follow"],"redirect":null,"search":"../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../assets/javascripts/bundle.10ee5ab6.min.js"></script>
+      <script src="../assets/javascripts/bundle.77dd0ce9.min.js"></script>
       
         <script src="../assets/mermaid-init.js"></script>
       

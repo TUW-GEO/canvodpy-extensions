@@ -26,7 +26,7 @@
       
       
       <link rel="icon" href="https://raw.githubusercontent.com/TUW-GEO/canvodpy/main/docs/assets/logo/canvodpy_favicon_bright_mode.svg">
-      <meta name="generator" content="zensical-0.0.72">
+      <meta name="generator" content="zensical-0.0.73">
     
     
       
@@ -781,6 +781,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="3. Draft releases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#release-notebooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Release notebooks
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1151,6 +1168,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="3. Draft releases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#release-notebooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Release notebooks
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1346,6 +1380,10 @@ commit message to <abbr title="Python Package Index — public Python package re
 <a href="https://canvodpy.eu/guides/HOW_RELEASE_WORKS/">How the release infrastructure works</a>;
 the extensions differ in one point: <strong>each package is released on its
 own</strong>, with its own version, tag, GitHub release, and <abbr title="Python Package Index — public Python package repository">PyPI</abbr> upload.</p>
+<p>When canVODpy and extension packages are released together, follow
+canVODpy's <a href="https://canvodpy.eu/RELEASING/">Release process</a> checklist:
+canVODpy is released first, then the extension packages, each with the
+steps on this page.</p>
 <hr />
 <h2 id="1-conventional-commits">1. Conventional commits<a class="headerlink" href="#1-conventional-commits" title="Permanent link">&para;</a></h2>
 <p>Commit messages follow <code>type(scope): subject</code>, for example
@@ -1383,9 +1421,10 @@ messages. The messages become the changelog, so mark breaking changes
 </table>
 <p><strong>Changelogs.</strong> Every package has a <code>CHANGELOG.md</code> in its folder.
 <a href="https://git-cliff.org">git-cliff</a> (<code>cliff.toml</code>) writes it from the commits
-that changed <code>packages/&lt;package&gt;/</code>. Edit the new section in the release
-pull request where an entry is wrong or missing: the draft release takes
-its notes from it.</p>
+that changed <code>packages/&lt;package&gt;/</code>. <code>just release</code> adds the new section at
+the top and leaves the earlier sections as they are, so edits to them stay.
+Edit the new section in the release pull request where an entry is wrong or
+missing: the draft release takes its notes from it.</p>
 <p><strong>Tags.</strong> A release is the tag <code>&lt;package&gt;-v&lt;version&gt;</code>, for example
 <code>canvod-filemap-v1.1.0</code>. <code>just release</code> refuses a version whose tag exists
 already. <code>just tag</code> refuses to tag unless <code>main</code> matches <code>origin/main</code> and
@@ -1404,12 +1443,32 @@ Tagging before the merge can leave the tag on a commit that never reaches
 <li>Takes the release notes from the tag's section of the package's
    <code>CHANGELOG.md</code>, as edited in the release pull request, and stops if
    there is none.</li>
+<li>Adds a link that opens the release notebook in molab, if the tagged
+   commit has <code>release-notes/&lt;package&gt;-v&lt;version&gt;.py</code> (see
+   <a href="#release-notebooks">Release notebooks</a>).</li>
 <li>Creates a <strong>draft</strong> release titled <code>&lt;package&gt; &lt;version&gt;</code> (a pre-release
    for <code>a</code>, <code>b</code> and <code>rc</code> versions).</li>
 </ol>
 <p>A maintainer reviews the draft and publishes it. Publishing archives the
 repository on Zenodo, versioned by the tag. <code>.zenodo.json</code> and
 <code>CITATION.cff</code> carry no version, since the packages have different ones.</p>
+<h3 id="release-notebooks">Release notebooks<a class="headerlink" href="#release-notebooks" title="Permanent link">&para;</a></h3>
+<p>A minor or major release of a package gets a marimo notebook that shows
+what is new and how to use it, next to the changelog. It is
+<code>release-notes/&lt;package&gt;-v&lt;version&gt;.py</code>, made from
+<code>release-notes/_template.py</code>:</p>
+<ul>
+<li>It pins the release it describes (<code>"canvod-filemap==1.1.0"</code>).</li>
+<li>One section per change that users notice: what it does, a link to its
+  docs page, and the code or command that uses it. A cell runs on
+  canVODpy's demo data (<code>canvodpy.demo_data()</code>) where it can; otherwise it
+  shows the code and says what it needs.</li>
+<li>It doesn't have to run from top to bottom; CI checks its format only
+  (<code>just check-release-notes</code>).</li>
+</ul>
+<p>Commit it on the release branch, so it is part of the release pull
+request, and add it to the table in <code>release-notes/README.md</code>. A patch
+release needs no notebook.</p>
 <hr />
 <h2 id="4-pypi-publishing">4. <abbr title="Python Package Index — public Python package repository">PyPI</abbr> publishing<a class="headerlink" href="#4-pypi-publishing" title="Permanent link">&para;</a></h2>
 <p><code>.github/workflows/publish_pypi.yml</code> runs only when started by hand, on a
@@ -1463,6 +1522,7 @@ then upload that package first.</p>
 just<span class="w"> </span>changelog<span class="w"> </span>canvod-filemap
 git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>chore/release-canvod-filemap-1.0.1
 just<span class="w"> </span>release<span class="w"> </span>canvod-filemap<span class="w"> </span>patch
+<span class="c1"># a minor or major release: commit release-notes/canvod-filemap-vX.Y.Z.py here</span>
 git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>chore/release-canvod-filemap-1.0.1
 gh<span class="w"> </span>pr<span class="w"> </span>create<span class="w"> </span>--fill
 <span class="c1"># merged once CI passes, then on main:</span>
@@ -1635,7 +1695,7 @@ on <abbr title="Python Package Index — public Python package repository">PyPI<
       <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["content.code.copy","content.code.annotate","content.footnote.tooltips","content.tooltips","content.tabs.link","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","search.highlight","toc.follow"],"redirect":null,"search":"../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../assets/javascripts/bundle.10ee5ab6.min.js"></script>
+      <script src="../assets/javascripts/bundle.77dd0ce9.min.js"></script>
       
         <script src="../assets/mermaid-init.js"></script>
       

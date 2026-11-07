@@ -26,7 +26,7 @@
       
       
       <link rel="icon" href="https://raw.githubusercontent.com/TUW-GEO/canvodpy/main/docs/assets/logo/canvodpy_favicon_bright_mode.svg">
-      <meta name="generator" content="zensical-0.0.72">
+      <meta name="generator" content="zensical-0.0.73">
     
     
       
@@ -1112,9 +1112,15 @@ already works on your data and your setup needs one of them.</p>
 </tbody>
 </table>
 <h2 id="install-a-package">Install a package<a class="headerlink" href="#install-a-package" title="Permanent link">&para;</a></h2>
-<p>Add the package to the project that uses canvodpy. Each package brings
-everything it needs.</p>
+<p>Each package brings everything it needs. <code>canvod-airflow</code> and
+<code>canvod-adapters</code> are used from Python: add them to the project that uses
+canvodpy.</p>
 <h3 id="canvod-filemap"><code>canvod-filemap</code><a class="headerlink" href="#canvod-filemap" title="Permanent link">&para;</a></h3>
+<p>If you run canVODpy from the command line, installed as a <abbr title="Fast Python package manager written in Rust — replaces pip, pip-tools, virtualenv">uv</abbr> tool,
+install <code>canvod-filemap</code> into that tool with <code>--with</code>:</p>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>canvodpy<span class="w"> </span>--with<span class="w"> </span>canvod-filemap
+</code></pre></div>
+<p>In a <abbr title="Fast Python package manager written in Rust — replaces pip, pip-tools, virtualenv">uv</abbr> project that uses canvodpy from Python:</p>
 <div class="highlight"><pre><span></span><code>uv<span class="w"> </span>add<span class="w"> </span>canvod-filemap
 </code></pre></div>
 <h3 id="canvod-airflow"><code>canvod-airflow</code><a class="headerlink" href="#canvod-airflow" title="Permanent link">&para;</a></h3>
@@ -1274,7 +1280,7 @@ around. A run never needs them.</p>
       <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["content.code.copy","content.code.annotate","content.footnote.tooltips","content.tooltips","content.tabs.link","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","search.highlight","toc.follow"],"redirect":null,"search":"../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../assets/javascripts/bundle.10ee5ab6.min.js"></script>
+      <script src="../assets/javascripts/bundle.77dd0ce9.min.js"></script>
       
         <script src="../assets/mermaid-init.js"></script>
       

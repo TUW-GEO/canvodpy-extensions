@@ -26,7 +26,7 @@
       
       
       <link rel="icon" href="https://raw.githubusercontent.com/TUW-GEO/canvodpy/main/docs/assets/logo/canvodpy_favicon_bright_mode.svg">
-      <meta name="generator" content="zensical-0.0.72">
+      <meta name="generator" content="zensical-0.0.73">
     
     
       
@@ -1247,14 +1247,19 @@ and the range:</p>
 that date; the rest of the range continues.</p>
 <h2 id="how-it-fits-into-a-run">How it fits into a run<a class="headerlink" href="#how-it-fits-into-a-run" title="Permanent link">&para;</a></h2>
 <p>The tasks call canvodpy's task functions directly: <code>validate_data_dirs</code>,
-<code>check_day</code>, <code>check_sp3_availability</code>, <code>process_day</code>, <code>validate_ingest</code>,
-and <code>calculate_vod</code>. These functions are stateless and accept only
-primitives, so they carry dates and settings to and from Airflow. Use
-them in a script or a notebook without Airflow if you want.</p>
-<p>The daily <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr> waits for <abbr title="Standard Product 3 — precise satellite orbit (position ± ~2 cm) file format, produced by IGS analysis centres (Navipedia: SP3)">SP3</abbr>/<abbr title="Clock — precise satellite and station clock correction file (30 s intervals), companion to SP3 orbits">CLK</abbr> products only when a run uses agency
-ephemerides, that is when <code>processing.params.ephemeris_source</code> is not
-<code>broadcast</code>. With <code>broadcast</code>, the satellite angles come from the <abbr title="Septentrio Binary Format — proprietary binary telemetry from Septentrio receivers; embeds satellite geometry">SBF</abbr>
-files themselves and the results are available the same day. See
+<code>check_day</code>, <code>process_day</code>, <code>validate_ingest</code>, and <code>calculate_vod</code>.
+These functions are stateless and accept only primitives, so they carry
+dates and settings to and from Airflow. Use them in a script or a
+notebook without Airflow if you want.</p>
+<p>The daily <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr> waits for <abbr title="Standard Product 3 — precise satellite orbit file format, produced by IGS analysis centres (Navipedia: SP3)">SP3</abbr>/<abbr title="Clock — precise satellite and station clock correction file (30 s intervals), companion to SP3 orbits">CLK</abbr> products only when a run uses the
+precise ephemeris, that is when <code>processing.params.ephemeris_source</code> is
+not <code>broadcast</code>. With <code>broadcast</code>, the satellite angles come from the
+receiver's own data, the <abbr title="Septentrio Binary Format — proprietary binary telemetry from Septentrio receivers; embeds satellite geometry">SBF</abbr> files or the <abbr title="Receiver Independent Exchange Format — standard ASCII format for GNSS observations, defined by IGS (Navipedia: RINEX)">RINEX</abbr> navigation files, and the
+results are available as soon as the day's files are there. The <abbr title="Standard Product 3 — precise satellite orbit file format, produced by IGS analysis centres (Navipedia: SP3)">SP3</abbr>/<abbr title="Clock — precise satellite and station clock correction file (30 s intervals), companion to SP3 orbits">CLK</abbr>
+wait, <code>check_sp3_availability</code> in <code>canvod.airflow.sensors</code>, goes by the
+day's age: it continues after 2 days for <code>rapid</code> and 14 days for <code>final</code>
+products (<code>processing.aux_data.product_type</code>), and skips days older than
+30 days. See
 <a href="https://canvodpy.eu/guides/configuration/">Configuration</a>.
 <a href="https://canvodpy.eu/guides/parallel-processing/">Parallel processing</a>
 and <a href="https://canvodpy.eu/packages/store/icechunk/"><abbr title="Version-controlled cloud-native tensor storage engine — git-like snapshots over Zarr v3 chunks">Icechunk</abbr> stores</a>
@@ -1415,7 +1420,7 @@ API.</p>
       <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["content.code.copy","content.code.annotate","content.footnote.tooltips","content.tooltips","content.tabs.link","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","search.highlight","toc.follow"],"redirect":null,"search":"../../../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.10ee5ab6.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.77dd0ce9.min.js"></script>
       
         <script src="../../../assets/mermaid-init.js"></script>
       

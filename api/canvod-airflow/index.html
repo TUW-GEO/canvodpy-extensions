@@ -26,7 +26,7 @@
       
       
       <link rel="icon" href="https://raw.githubusercontent.com/TUW-GEO/canvodpy/main/docs/assets/logo/canvodpy_favicon_bright_mode.svg">
-      <meta name="generator" content="zensical-0.0.72">
+      <meta name="generator" content="zensical-0.0.73">
     
     
       
@@ -933,10 +933,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create_daily_dagsite_name-str-agency_ephemeris-bool" class="md-nav__link">
+  <a href="#create_daily_dagsite_name-str-precise_ephemeris-bool" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        <code>create_daily_dag(site_name: str, agency_ephemeris: bool)</code>
+        <code>create_daily_dag(site_name: str, precise_ephemeris: bool)</code>
       </span>
     </span>
   </a>
@@ -1095,10 +1095,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create_daily_dagsite_name-str-agency_ephemeris-bool" class="md-nav__link">
+  <a href="#create_daily_dagsite_name-str-precise_ephemeris-bool" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        <code>create_daily_dag(site_name: str, agency_ephemeris: bool)</code>
+        <code>create_daily_dag(site_name: str, precise_ephemeris: bool)</code>
       </span>
     </span>
   </a>
@@ -1233,7 +1233,8 @@
         <p>canvod-airflow: Airflow <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr> definitions for canvodpy <abbr title="GNSS Transmissometry — method using differential SNR between canopy and reference receivers to estimate vegetation properties">GNSS-T</abbr> pipelines.</p>
 <p>See <code>daily_processing.py</code> (one daily <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr> per site) and
 <code>backfill.py</code> (manual date-range backfill <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr>). No pipeline logic lives
-here; every task wraps a stateless function from <code>canvodpy.workflows.tasks</code>.</p>
+here; every task wraps a stateless function from <code>canvodpy.workflows.tasks</code>.
+<code>sensors.py</code> holds the sensor gates, which are orchestration.</p>
 <p><code>daily_processing.py</code> and <code>backfill.py</code> import <code>airflow</code> at module
 level (<code>apache-airflow</code> is a dependency of this package), since these
 modules only ever run inside an Airflow scheduler process. <code>canvodpy</code>-side config/task imports are deferred
@@ -1286,11 +1287,12 @@ interface is described below by hand instead.</p>
 <h2 id="daily_processing"><code>daily_processing</code><a class="headerlink" href="#daily_processing" title="Permanent link">&para;</a></h2>
 <p>One factory builds the daily <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr> of a site. Importing the module builds
 one <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr> for every site in canvodpy's settings file.</p>
-<h3 id="create_daily_dagsite_name-str-agency_ephemeris-bool"><code>create_daily_dag(site_name: str, agency_ephemeris: bool)</code><a class="headerlink" href="#create_daily_dagsite_name-str-agency_ephemeris-bool" title="Permanent link">&para;</a></h3>
+<h3 id="create_daily_dagsite_name-str-precise_ephemeris-bool"><code>create_daily_dag(site_name: str, precise_ephemeris: bool)</code><a class="headerlink" href="#create_daily_dagsite_name-str-precise_ephemeris-bool" title="Permanent link">&para;</a></h3>
 <p>Builds the daily <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr> of <code>site_name</code>, scheduled daily. Chain:
 <code>validate_dirs → wait_for_data → (wait_for_sp3) → process_day → validate_ingest → calculate_vod</code>.</p>
-<p>When <code>agency_ephemeris</code> is true, the <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr> also waits for the <abbr title="Standard Product 3 — precise satellite orbit (position ± ~2 cm) file format, produced by IGS analysis centres (Navipedia: SP3)">SP3</abbr>/<abbr title="Clock — precise satellite and station clock correction file (30 s intervals), companion to SP3 orbits">CLK</abbr>
-products before it processes the day.</p>
+<p>When <code>precise_ephemeris</code> is true, the <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr> also waits for the <abbr title="Standard Product 3 — precise satellite orbit file format, produced by IGS analysis centres (Navipedia: SP3)">SP3</abbr>/<abbr title="Clock — precise satellite and station clock correction file (30 s intervals), companion to SP3 orbits">CLK</abbr>
+products before it processes the day. <code>agency_ephemeris</code>, its old name,
+works until the next major version and warns.</p>
 <h2 id="backfill"><code>backfill</code><a class="headerlink" href="#backfill" title="Permanent link">&para;</a></h2>
 <h3 id="canvod_backfill"><code>canvod_backfill</code><a class="headerlink" href="#canvod_backfill" title="Permanent link">&para;</a></h3>
 <p>A manually triggered <abbr title="Directed Acyclic Graph — task dependency structure used by workflow schedulers (Airflow, Prefect)">DAG</abbr> that accepts <code>site</code>, <code>start_date</code>, and <code>end_date</code>
@@ -1439,7 +1441,7 @@ examples.</p>
       <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["content.code.copy","content.code.annotate","content.footnote.tooltips","content.tooltips","content.tabs.link","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.sections","navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.tracking","search.highlight","toc.follow"],"redirect":null,"search":"../../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.10ee5ab6.min.js"></script>
+      <script src="../../assets/javascripts/bundle.77dd0ce9.min.js"></script>
       
         <script src="../../assets/mermaid-init.js"></script>
       
