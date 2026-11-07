@@ -34,8 +34,10 @@ brew install just
 
 ### Report bugs
 
-Report bugs at https://github.com/TUW-GEO/canvodpy-extensions/issues. Include
-your operating system, your setup, and the steps to reproduce.
+Report bugs at https://github.com/TUW-GEO/canvodpy-extensions/issues with the
+bug report form. It asks for the package and its version, the steps to
+reproduce, the error output, and the output of `canvodpy doctor`. Feature
+requests have their own form.
 
 ### Fix bugs and implement features
 
@@ -126,6 +128,10 @@ agents; the `CLAUDE.md` files import it. Task guides for agents are in
 `just check-agent-docs` checks that the paths and recipes they name exist.
 
 ## Pull request guidelines
+
+A new pull request starts from the template in
+`.github/pull_request_template.md`: summary, evidence, merge danger, and a
+checklist.
 
 1. Include tests for new features. New code must not reduce test coverage.
 2. Update the package's `README.md` and the Zensical documentation in `docs/` if

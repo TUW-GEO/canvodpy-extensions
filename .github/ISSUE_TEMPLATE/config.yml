@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+    - name: Documentation
+      url: https://extensions.canvodpy.eu
+      about: Guides and the API of the extension packages.
+    - name: A problem in canVODpy itself
+      url: https://github.com/TUW-GEO/canvodpy/issues/new/choose
+      about: Report it in the canVODpy repository.
+    - name: Security vulnerability
+      url: https://github.com/TUW-GEO/canvodpy-extensions/security/advisories/new
+      about: Report it privately, not as a public issue.
