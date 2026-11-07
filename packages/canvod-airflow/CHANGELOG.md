@@ -14,10 +14,6 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Build the daily DAG with Airflow 3 ([f57cdf7](https://github.com/TUW-GEO/canvodpy-extensions/commit/f57cdf78755e68751a57521c7eed29aa2ab8247f))
 
-### Dependencies
-
-- Needs canvodpy 1.1.0 and canvod-config 1.1.0: the DAG reads `ephemeris_source: broadcast`, new in canvod-config 1.1.0 ([9620f7f](https://github.com/TUW-GEO/canvodpy-extensions/commit/9620f7f))
-
 ### Refactoring
 
 - Say precise ephemeris, deprecate agency_ephemeris (#110) ([8c6210d](https://github.com/TUW-GEO/canvodpy-extensions/commit/8c6210d6d09263803d5a985427bdaa5185edebe4))
