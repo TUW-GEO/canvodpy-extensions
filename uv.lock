@@ -445,15 +445,15 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "apache-airflow", specifier = ">=3.3.2" },
-    { name = "canvod-config", specifier = ">=1.0.0" },
+    { name = "canvod-config", specifier = ">=1.1.0" },
     { name = "canvod-utils", specifier = ">=1.0.0" },
-    { name = "canvodpy", specifier = ">=1.0.0" },
+    { name = "canvodpy", specifier = ">=1.1.0" },
     { name = "structlog", specifier = ">=23.0" },
 ]
 
 [[package]]
 name = "canvod-auxiliary"
-version = "1.0.0"
+version = "1.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "canvod-config" },
@@ -470,14 +470,14 @@ dependencies = [
     { name = "tqdm" },
     { name = "xarray" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/56/19/165c28f68453e58958691d573be2387604e96e244425e50020aa9820fa4a/canvod_auxiliary-1.0.0.tar.gz", hash = "sha256:b76fa471adb1c25b4f60c44401b2e2dc1334157fe19e0b23068c779528c7972b", size = 68310, upload-time = "2026-10-23T23:04:22.822Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/63/fa/b30c11d29b803b1a73f97c98e7eac9ad3d1c36214c0cad8575b99b943673/canvod_auxiliary-1.1.0.tar.gz", hash = "sha256:1a378cd0fcd6d176bd29e5e4a45d9aabc983829108ee43a21cc7a9f33dc1575d", size = 80116, upload-time = "2026-11-07T14:01:33.592Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/63/09/882b590a6cfa616a3e3781ed0cb1ae560a03673e9616ec53ad96da9f7348/canvod_auxiliary-1.0.0-py3-none-any.whl", hash = "sha256:e40e582bf3b17fd72e7cfa4602c598497a2cfa87c18dec65e8dd4dba4f7aba94", size = 82603, upload-time = "2026-10-23T23:04:08.037Z" },
+    { url = "https://files.pythonhosted.org/packages/19/89/61c807b08b20fd0e2688949935c13c63d6cfe9d83cc04b5ee5940edf3ac6/canvod_auxiliary-1.1.0-py3-none-any.whl", hash = "sha256:74508134dd446d6ae36ca976a0ea89ab39a23c3595e16807f1896755971b3ac7", size = 95397, upload-time = "2026-11-07T14:01:23.896Z" },
 ]
 
 [[package]]
 name = "canvod-config"
-version = "1.0.0"
+version = "1.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "canvod-utils" },
@@ -487,9 +487,9 @@ dependencies = [
     { name = "pydantic-settings" },
     { name = "pyyaml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ed/9f/b3cb662d0632246f6a44044e46a5820a901c53885042e8a365fa1def6ef7/canvod_config-1.0.0.tar.gz", hash = "sha256:5bf60c0e756f8e42b7d3cc9d80846fb0602eebb524fc0f26909513c4fcbe2c42", size = 52294, upload-time = "2026-10-23T23:04:23.581Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/99/a1/75673e590fd1d78f850e75dd69e97a849ef7d1c05555b688ab264ccb93df/canvod_config-1.1.0.tar.gz", hash = "sha256:e1325e6289991772acc1caa8ac5f1b8c9dcf67cf9988e4414a4042d88866f8a8", size = 55156, upload-time = "2026-11-07T14:01:34.577Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b0/b7/cd733be13551bb5460e8de5ff8a49e1b76efa2eea57fdf92f3faac2951ba/canvod_config-1.0.0-py3-none-any.whl", hash = "sha256:6ccc8ddc9a6a041fde20d24a4be16cc94e9081c4a154998790db2a2cfd831518", size = 62699, upload-time = "2026-10-23T23:04:09.358Z" },
+    { url = "https://files.pythonhosted.org/packages/7c/d5/15a434fecd91dea6ad03975c9087e11973677856a126758be5531b918e60/canvod_config-1.1.0-py3-none-any.whl", hash = "sha256:b1eb1966d3a703a3d88783e3d9b58e118936485023c1b16c50708b6940e7e480", size = 65954, upload-time = "2026-11-07T14:01:25.371Z" },
 ]
 
 [[package]]
@@ -554,7 +554,7 @@ wheels = [
 
 [[package]]
 name = "canvod-preflight"
-version = "1.0.0"
+version = "1.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "canvod-utils" },
@@ -562,14 +562,14 @@ dependencies = [
     { name = "pydantic" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c7/5e/4f37e62a909ee205a8f2385c8a4dfb77e4a652a73fed45f32af5f1c1a3af/canvod_preflight-1.0.0.tar.gz", hash = "sha256:a032ed2663174cb8a4a2b29fb167a8b772a48a7c54c174ecf4ad3894147f3fb3", size = 19820, upload-time = "2026-10-23T23:04:26.353Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/57/19/75ef192b5dd51416a5590257d0fa998fcc70d69f51889ae3f480fc2c17c6/canvod_preflight-1.1.0.tar.gz", hash = "sha256:b967b6a05e68b4267f9889c6e3e2c850b3d13b9e96038adc19e7889c2b024b89", size = 20208, upload-time = "2026-11-07T14:01:35.567Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ba/52/b9d99fd4df38d50bfca66027dc5a6557147f8b4c7ec7a9b77a50251557e2/canvod_preflight-1.0.0-py3-none-any.whl", hash = "sha256:7a9475b875200e0ebaa8940bfeeef243b9d694b2e42b96fbbf11b86c4d358c68", size = 24522, upload-time = "2026-10-23T23:04:13.349Z" },
+    { url = "https://files.pythonhosted.org/packages/e4/b4/fd62362302480019a32f6e699f93efa037aeb6ad07b508f89d73522a86ff/canvod_preflight-1.1.0-py3-none-any.whl", hash = "sha256:156e3e647ddec33fe806ac9972ff657aefa020c2a802393f5856293279706398", size = 24837, upload-time = "2026-11-07T14:01:26.653Z" },
 ]
 
 [[package]]
 name = "canvod-readers"
-version = "1.0.0"
+version = "1.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "canvod-config" },
@@ -586,14 +586,14 @@ dependencies = [
     { name = "structlog" },
     { name = "xarray" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/3c/e7/1a7c0af8706b883640673519c26d483edb723fbeef74508647ee1e206d19/canvod_readers-1.0.0.tar.gz", hash = "sha256:9ba401a02874242298f4d61ea8851260bfddf0903d24be20a45525cbf3ef977b", size = 187372, upload-time = "2026-10-23T23:04:27.2Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ea/97/bcb3227c06bad96b351dc64734c8fbb68e828a860f770b630cfab510682c/canvod_readers-1.1.0.tar.gz", hash = "sha256:b6a599f07ecc040f892a126527151d95630ed7a5011e500a54ecc3e2591a0efb", size = 192329, upload-time = "2026-11-07T14:01:36.35Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c0/83/92f68bd54e6b713616f918aed2640b3b0c00cdc0c23a00a7a0927a45b8d2/canvod_readers-1.0.0-py3-none-any.whl", hash = "sha256:bc6cb64c8e7ec975bf1544fa86d45496e0fb0d46fc43069af17757dad779db30", size = 201724, upload-time = "2026-10-23T23:04:14.518Z" },
+    { url = "https://files.pythonhosted.org/packages/51/75/b1f320890a09e5897c61c19eebdcba41368ed4c23cc928a19f164350a7cb/canvod_readers-1.1.0-py3-none-any.whl", hash = "sha256:3611b65dc96390678347228628773161d5b68cb98bc6bb29aa341535a2cb9730", size = 207145, upload-time = "2026-11-07T14:01:27.957Z" },
 ]
 
 [[package]]
 name = "canvod-store"
-version = "1.0.0"
+version = "1.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "canvod-auxiliary" },
@@ -612,14 +612,14 @@ dependencies = [
     { name = "xarray" },
     { name = "zarr" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/6b/a5/c55da0bdc5746b52c0c117422851a42eb65ed0469131dd46c1789a5f3540/canvod_store-1.0.0.tar.gz", hash = "sha256:12a8c8b28f21c0b66ea1cf59bdfdd426dd370fe5a7c0e78d8886df2da7b7d339", size = 118852, upload-time = "2026-10-23T23:04:28.481Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/dc/2c/447490da743b87a4e09ab76a3e004dd659595fbf12a471d6d1888ed7b022/canvod_store-1.1.0.tar.gz", hash = "sha256:b2809650887fd12fc40f5762a452a1049e5c64b964a5d6f8a350cb3cb926ff46", size = 120388, upload-time = "2026-11-07T14:01:37.458Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/04/15/d1a9a171e8a41643b4f3333b6fa39b91f61e405fee3d21e7897f018b1269/canvod_store-1.0.0-py3-none-any.whl", hash = "sha256:dfefd83710f00562ea9723ba6cae928ee82c44b66d79e259f0a96e5eacaa93e2", size = 124919, upload-time = "2026-10-23T23:04:15.707Z" },
+    { url = "https://files.pythonhosted.org/packages/c7/81/ded1da9384edf95598908f8a8b5ddb417eccecb4ec685f033a7cbf1820d4/canvod_store-1.1.0-py3-none-any.whl", hash = "sha256:91be28ae488868c0819848a2dbc5830001f75f9018fe1d10645683ec43f1fed1", size = 126440, upload-time = "2026-11-07T14:01:29.255Z" },
 ]
 
 [[package]]
 name = "canvod-store-metadata"
-version = "1.0.0"
+version = "1.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "canvod-config" },
@@ -634,9 +634,9 @@ dependencies = [
     { name = "zarr" },
     { name = "zarr-cm" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/00/92/1a1fc632f7fef86f1d18837bb3a32f61073e11625e15d20f0c57594eac1f/canvod_store_metadata-1.0.0.tar.gz", hash = "sha256:e7807b38bef81470026a7c896ff6d35d2d860db54e2efadbba8210b278b8376b", size = 145885, upload-time = "2026-10-23T23:04:29.721Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/cc/fb/bc8160be5dc1e4cfc5c0342a44a0419ec07f06c7275a84605be6d4de3c8c/canvod_store_metadata-1.1.0.tar.gz", hash = "sha256:b5ea9109c51dd38c38f396f9e3a9158b81c468d6fa237dd8c31a5ebb3c74dd09", size = 147244, upload-time = "2026-11-07T14:01:38.309Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/aa/75/96a80342b38fe00feef3088fc2e4e0d7ee5f70817b24fcebddc692737ba6/canvod_store_metadata-1.0.0-py3-none-any.whl", hash = "sha256:1f728536c0a5ecafb72930de496e84a98194b5fbd1379062be92bd24ac5cfeff", size = 157715, upload-time = "2026-10-23T23:04:17.056Z" },
+    { url = "https://files.pythonhosted.org/packages/4c/c5/1c4a3371ab8354977e32dee41b871a73191ba11773da6611609776465e6e/canvod_store_metadata-1.1.0-py3-none-any.whl", hash = "sha256:f3d46128c075efbe4f8f37fcc59f341561f6542d3c3ff31f588bba221613da3f", size = 158926, upload-time = "2026-11-07T14:01:30.586Z" },
 ]
 
 [[package]]
@@ -685,7 +685,7 @@ wheels = [
 
 [[package]]
 name = "canvodpy"
-version = "1.0.0"
+version = "1.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "altair" },
@@ -713,14 +713,15 @@ dependencies = [
     { name = "pyarrow" },
     { name = "pydantic" },
     { name = "rich" },
+    { name = "shellingham" },
     { name = "structlog" },
     { name = "typer" },
     { name = "xarray" },
     { name = "zarr" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cd/f4/c1f62a361c27dd756a6dbfc935c0eca8cdc07f7d678e15c009626d6f915f/canvodpy-1.0.0.tar.gz", hash = "sha256:ad54d2c2406523767d7a6506840ff7ff97ede78290ecf8cdcac6598f61e9b97b", size = 290443, upload-time = "2026-10-23T23:04:33.063Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/34/90/8bdf39e3e43bf8f0e1c59ba63bd11c0ab9612df1ecfd6e04360d886030cf/canvodpy-1.1.0.tar.gz", hash = "sha256:c5e65573f8d113af3cde77f33f74b9e04deef13dac4066bca2a748c7df4b33ab", size = 319974, upload-time = "2026-11-07T14:01:39.432Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/23/24/b4a1cbe20cd971da7a02cf2c5dee1ae9741e9907d6a8d3481824db81df9e/canvodpy-1.0.0-py3-none-any.whl", hash = "sha256:2081c7cfd9428b992e0b8b9da0424b3e6c13945068d719b16c921bd6e7df9f23", size = 318375, upload-time = "2026-10-23T23:04:21.613Z" },
+    { url = "https://files.pythonhosted.org/packages/b8/23/506d4fed8b8ff602d6f0c14aef752dfb09a31a2bc021902e783c57696598/canvodpy-1.1.0-py3-none-any.whl", hash = "sha256:0afa705570c040d21956361482197abeab6f071ba0671e3fa6c169c58f818910", size = 348589, upload-time = "2026-11-07T14:01:32.193Z" },
 ]
 
 [[package]]
