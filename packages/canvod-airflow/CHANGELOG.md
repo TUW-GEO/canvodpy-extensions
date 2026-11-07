@@ -4,11 +4,32 @@ All notable changes to this package are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [canvod-airflow-v1.0.0](https://github.com/TUW-GEO/canvodpy-extensions/releases/tag/canvod-airflow-v1.0.0) - 2026-10-24
+## [canvod-airflow-v1.1.0](https://github.com/TUW-GEO/canvodpy-extensions/releases/tag/canvod-airflow-v1.1.0) - 2026-11-07
 
 ### Features
 
-- **Breaking:** Require canvodpy 1.0.0 from PyPI ([f695940](https://github.com/TUW-GEO/canvodpy-extensions/commit/f695940a09b30042c91811a0cfd8e2a31b4e3620))
+- Move the SP3 sensor gate into canvod-airflow ([d2f5422](https://github.com/TUW-GEO/canvodpy-extensions/commit/d2f5422efa309df3d054a496ae8fb42f1775ecb9))
+
+### Bug fixes
+
+- Build the daily DAG with Airflow 3 ([f57cdf7](https://github.com/TUW-GEO/canvodpy-extensions/commit/f57cdf78755e68751a57521c7eed29aa2ab8247f))
+
+### Refactoring
+
+- Say precise ephemeris, deprecate agency_ephemeris (#110) ([8c6210d](https://github.com/TUW-GEO/canvodpy-extensions/commit/8c6210d6d09263803d5a985427bdaa5185edebe4))
+
+### Documentation
+
+- Drop the copyright line and symbol ([0335f55](https://github.com/TUW-GEO/canvodpy-extensions/commit/0335f55b2c586a0ce1fa182471b8a58299770cec))
+- Restore the Apache placeholder in the LICENSE appendix ([1c7258a](https://github.com/TUW-GEO/canvodpy-extensions/commit/1c7258a7360838142bf257837fa593d49b555453))
+- Name the authors without a copyright claim ([9d529b0](https://github.com/TUW-GEO/canvodpy-extensions/commit/9d529b0f98b7810863a35a196b6c4b24e3947dba))
+- End the authors line with the licence ([1d18d8c](https://github.com/TUW-GEO/canvodpy-extensions/commit/1d18d8c0afafecc825dbda80bc0e7e195f96ecaa))
+- Describe the SP3 wait and broadcast availability by what the DAG does ([4164ece](https://github.com/TUW-GEO/canvodpy-extensions/commit/4164ece41960f2757f736d662773185a253c9090))
+
+## [canvod-airflow-v1.0.0](https://github.com/TUW-GEO/canvodpy-extensions/releases/tag/canvod-airflow-v1.0.0) - 2026-10-23
+
+### Features
+
 - Add canvod-airflow package with daily + backfill DAGs ([b66aae2](https://github.com/TUW-GEO/canvodpy-extensions/commit/b66aae271f5de3a48a3af8201012e1eac73cf6dd))
 - Publish the packages to PyPI ([306a20d](https://github.com/TUW-GEO/canvodpy-extensions/commit/306a20d4f79da74c87fdb8e7241cc0f7660d5574))
 - **Breaking:** No extras; each package brings what it needs ([8582445](https://github.com/TUW-GEO/canvodpy-extensions/commit/85824452d371b9cb9d9eee8a9f7a22f0b29d9aee))
@@ -19,7 +40,7 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Backfill parameters without defaults ([dfce93e](https://github.com/TUW-GEO/canvodpy-extensions/commit/dfce93e795883e2f784b1822ad64693fc3e64ff2))
 - Say Airflow runs on POSIX systems only ([8dadac1](https://github.com/TUW-GEO/canvodpy-extensions/commit/8dadac1fb29c0858b0a6994bd69d1359d6176486))
 - Update the locked packages past their known vulnerabilities ([0c40e33](https://github.com/TUW-GEO/canvodpy-extensions/commit/0c40e33ac71e8dc046451bedfa18274eff54eef8))
-- Read `__version__` from the package metadata (it said 0.3.0); require canvod-config itself, which the DAGs import ([5608804](https://github.com/TUW-GEO/canvodpy-extensions/commit/5608804ef6f69b94dfee2103fa5b6f9fd97d966a))
+- Package versions from metadata, airflow needs canvod-config ([5608804](https://github.com/TUW-GEO/canvodpy-extensions/commit/5608804ef6f69b94dfee2103fa5b6f9fd97d966a))
 
 ### Refactoring
 
@@ -28,6 +49,8 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Documentation
 
+- Pin all install snippets to the v0.1.0 tag, not the default branch ([d8d8c0a](https://github.com/TUW-GEO/canvodpy-extensions/commit/d8d8c0a9b1664e4ade06e4ea1fb7b25241b890e1))
+- Fix stale docstring — daily_processing generates three DAGs ([bce8f3f](https://github.com/TUW-GEO/canvodpy-extensions/commit/bce8f3f18491ff85116ce0b49647e0e2f61aabb7))
 - AGENTS.md and task guides for coding agents ([92c841d](https://github.com/TUW-GEO/canvodpy-extensions/commit/92c841da32370f84ba4ad1786cbe96310ee7b5f9))
 - Lead agents through canvodpy's trail before changing an extension ([6cbc821](https://github.com/TUW-GEO/canvodpy-extensions/commit/6cbc821fec392972890fe06ddc948f6c7e5b5b4e))
 - Host the documentation at extensions.canvodpy.eu ([3129c54](https://github.com/TUW-GEO/canvodpy-extensions/commit/3129c54fde078723c7620eec53c2756ea48a6f76))
@@ -36,3 +59,8 @@ and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Drop the leftover extras wording ([19f8c5e](https://github.com/TUW-GEO/canvodpy-extensions/commit/19f8c5ed4be604af596416949efd14a74ee516f8))
 - Drop the af example from the backfill docstring ([d0507a3](https://github.com/TUW-GEO/canvodpy-extensions/commit/d0507a3491cf5e15334764c7ac7214970b731dd3))
 - Name the pending publisher a new package needs ([7302afd](https://github.com/TUW-GEO/canvodpy-extensions/commit/7302afdce5b811c9771ff91c98aef3716e4456fc))
+- Edit the 1.0.0 sections ([09555dc](https://github.com/TUW-GEO/canvodpy-extensions/commit/09555dc2043583266015da6173afa36a0abb67e4))
+
+### bump
+
+- Version 0.0.0 → 0.1.0 ([9e24904](https://github.com/TUW-GEO/canvodpy-extensions/commit/9e249047772bcb94d84628b979c800c2b2b5dcd1))
