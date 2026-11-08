@@ -76,8 +76,10 @@ def fuzz_one_input(data: bytes) -> None:
             name = text.replace("/", "_").replace("\\", "_")
             if recipe.matches(name):
                 recipe.to_virtual_file(Path(name))
-    except yaml.YAMLError, ValueError:
-        pass
+    except (yaml.YAMLError, ValueError) as exc:
+        # Expected for malformed fuzz inputs; only unexpected exceptions
+        # should propagate and fail the run.
+        _ = exc
 
 
 def main() -> None:
