@@ -91,9 +91,11 @@ just lock-canvodpy                    # relock at the current tip of the canvodp
 
 Pre-commit runs ruff, `uv lock`, whitespace checks and the agent docs
 check; commitizen checks the commit message; the pre-push hook runs ty.
-CI runs `just check-lock`, `just check-lint-only`,
-`just check-format-only`, `just check-types` and the tests on Linux,
-macOS and Windows.
+CI (`.github/workflows/ci.yml`) runs `just check-lock`,
+`just check-lint-only`, `just check-format-only`, `just check-types`, the
+agent docs check, the docs checks and the tests on Linux, macOS and
+Windows, and sums them up in one check, `ci-ok`. A pull request that
+changes only docs (`tools/ci_changes.py`) skips ty and the tests.
 
 ## Rules
 

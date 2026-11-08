@@ -66,6 +66,7 @@ testpaths = [
     "packages/canvod-filemap/tests",
     "packages/canvod-airflow/tests",
     "packages/canvod-adapters/tests",
+    "tools/tests",
 ]
 addopts = "--cov --cov-report term-missing --cov-report lcov -rsx --verbose --color=yes"
 markers = [
