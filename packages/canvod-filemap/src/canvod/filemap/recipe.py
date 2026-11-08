@@ -73,12 +73,14 @@ from typing import Literal
 
 import yaml
 from canvod.preflight.convention import (
+    UNSPECIFIED_SAMPLING,
     AgencyId,
     CanVODFilename,
     ContentCode,
     Duration,
     FileType,
     ReceiverType,
+    Sampling,
     SiteId,
 )
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -119,10 +121,10 @@ class NamingRecipe(BaseModel):
     agency: AgencyId
     receiver_number: int = Field(ge=1, le=99)
     receiver_type: Literal["reference", "canopy"] = "canopy"
-    sampling: Duration = "05S"
+    sampling: Sampling = "05S"
     period: Duration = "15M"
     content: ContentCode = "AA"
-    file_type: Literal["rnx", "sbf", "ubx", "nmea"] = "rnx"
+    file_type: Literal["rnx", "sbf", "ubx", "nmea", "nav"] = "rnx"
 
     # File discovery
     glob: str = Field(description="Glob pattern to find files (e.g. '*.??o', '*.rinex')")
@@ -147,6 +149,19 @@ class NamingRecipe(BaseModel):
             if not isinstance(width, int) or width < 1:
                 msg = f"fields[{i}]: width must be a positive integer, got {width}"
                 raise ValueError(msg)
+        return self
+
+    @model_validator(mode="after")
+    def _validate_navigation_sampling(self) -> NamingRecipe:
+        # Navigation files, and only they, have unspecified sampling (00U)
+        is_nav = self.file_type == FileType.NAV.value
+        if is_nav != (self.sampling == UNSPECIFIED_SAMPLING):
+            msg = (
+                f"sampling {self.sampling} with file_type {self.file_type}: "
+                f"navigation files (file_type nav) have sampling {UNSPECIFIED_SAMPLING}, "
+                f"other files a sampling interval such as 05S"
+            )
+            raise ValueError(msg)
         return self
 
     # -- Parsing ---------------------------------------------------------------

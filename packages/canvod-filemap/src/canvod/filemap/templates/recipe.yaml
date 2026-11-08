@@ -25,15 +25,17 @@ receiver_type: reference       # reference or canopy
 # -----------------------------------------------------------------------
 # File properties written into the canonical name
 # -----------------------------------------------------------------------
-sampling: "05S"                # sampling interval, e.g. 01S, 05S, 15S, 30S
+sampling: "05S"                # sampling interval, e.g. 01S, 05S, 15S, 30S;
+                               # 00U for navigation files (file_type nav)
 period: "15M"                  # time span of one file, e.g. 15M, 01H, 01D
 content: AA                    # content code (AA = all observables)
-file_type: rnx                 # rnx, sbf, ubx or nmea
+file_type: rnx                 # rnx, sbf, ubx, nmea or nav
 
 # -----------------------------------------------------------------------
 # Which files belong to this receiver
 # -----------------------------------------------------------------------
-glob: "*.??o"                  # pattern the file names must match
+glob: "*.??o"                  # pattern the file names must match, e.g. *.??p for
+                               # RINEX 3 navigation files
 
 # -----------------------------------------------------------------------
 # Field extraction: a left-to-right walk over the file name

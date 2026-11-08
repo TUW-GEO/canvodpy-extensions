@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Literal
+
 import pytest
 from canvod.filemap.recipe import KNOWN_FIELDS, NamingRecipe
 from canvod.utils import testing
@@ -9,6 +11,32 @@ from canvod.utils import testing
 # ---------------------------------------------------------------------------
 # Fixtures
 # ---------------------------------------------------------------------------
+
+
+def _navigation_recipe(
+    file_type: Literal["rnx", "nav"] = "nav", sampling: str = "00U"
+) -> NamingRecipe:
+    """Recipe for RINEX navigation files of the canopy receiver: ract001a00.25p"""
+    return NamingRecipe(
+        name="fangorn_canopy_nav",
+        site=testing.SITE_ID,
+        agency=testing.AGENCY,
+        receiver_number=1,
+        receiver_type="canopy",
+        sampling=sampling,
+        period="15M",
+        file_type=file_type,
+        glob="*.??p",
+        fields=[
+            {"skip": 4},
+            {"doy": 3},
+            {"hour_letter": 1},
+            {"minute": 2},
+            {"skip": 1},
+            {"yy": 2},
+            {"skip": 1},
+        ],
+    )
 
 
 @pytest.fixture
@@ -249,6 +277,15 @@ class TestToVirtualFile:
         vf = septentrio_v2_recipe.to_virtual_file(f)
         assert vf.canonical_str == "FANR01INK_R_20250010015_15M_05S_AA.rnx"
 
+    def test_navigation_file(self, tmp_path):
+        """A RINEX navigation file gets type nav and sampling 00U."""
+        recipe = _navigation_recipe()
+        f = tmp_path / "ract001a00.25p"
+        f.touch()
+        assert recipe.matches(f.name)
+        vf = recipe.to_virtual_file(f)
+        assert vf.canonical_str == "FANA01INK_R_20250010000_15M_00U_AA.nav"
+
 
 # ---------------------------------------------------------------------------
 # Tests: matches()
@@ -298,6 +335,11 @@ class TestSerialization:
 
 
 class TestValidation:
+    @pytest.mark.parametrize(("file_type", "sampling"), [("nav", "05S"), ("rnx", "00U")])
+    def test_sampling_00U_is_for_navigation_files_only(self, file_type, sampling):
+        with pytest.raises(ValueError, match="00U"):
+            _navigation_recipe(file_type=file_type, sampling=sampling)
+
     def test_unknown_field_name(self):
         with pytest.raises(ValueError, match="unknown field 'garbage'"):
             NamingRecipe(
