@@ -8,6 +8,7 @@ code that needs your own data.
 
 | Release | Open |
 |---|---|
+| [canvod-filemap v1.1.0](canvod-filemap-v1.1.0.py): naming recipes for RINEX navigation files | [![Open in molab](https://marimo.io/molab-shield.svg)](https://molab.marimo.io/github/TUW-GEO/canvodpy-extensions/blob/main/release-notes/canvod-filemap-v1.1.0.py) |
 | [canvod-airflow v1.1.0](canvod-airflow-v1.1.0.py): the SP3/CLK wait in canvod-airflow, Airflow 3 fix | [![Open in molab](https://marimo.io/molab-shield.svg)](https://molab.marimo.io/github/TUW-GEO/canvodpy-extensions/blob/main/release-notes/canvod-airflow-v1.1.0.py) |
 
 To write one, copy `_template.py` to `<package>-vX.Y.Z.py`;
