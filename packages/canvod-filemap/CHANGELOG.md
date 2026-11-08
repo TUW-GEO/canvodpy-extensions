@@ -4,6 +4,24 @@ All notable changes to this package are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [canvod-filemap-v1.1.0](https://github.com/TUW-GEO/canvodpy-extensions/releases/tag/canvod-filemap-v1.1.0) - 2026-11-08
+
+### Features
+
+- Naming recipes for RINEX navigation files ([3dba55a](https://github.com/TUW-GEO/canvodpy-extensions/commit/3dba55a2ce737b34472f9c91a190d11b7239a395))
+
+### Bug fixes
+
+- A recipe nested too deeply is a YAML error, not a crash ([61c34f3](https://github.com/TUW-GEO/canvodpy-extensions/commit/61c34f33442a3bca2fe37f1f3b33db3f7343d637))
+
+### Documentation
+
+- Drop the copyright line and symbol ([0335f55](https://github.com/TUW-GEO/canvodpy-extensions/commit/0335f55b2c586a0ce1fa182471b8a58299770cec))
+- Restore the Apache placeholder in the LICENSE appendix ([1c7258a](https://github.com/TUW-GEO/canvodpy-extensions/commit/1c7258a7360838142bf257837fa593d49b555453))
+- Name the authors without a copyright claim ([9d529b0](https://github.com/TUW-GEO/canvodpy-extensions/commit/9d529b0f98b7810863a35a196b6c4b24e3947dba))
+- End the authors line with the licence ([1d18d8c](https://github.com/TUW-GEO/canvodpy-extensions/commit/1d18d8c0afafecc825dbda80bc0e7e195f96ecaa))
+- Install canvod-filemap into the canvodpy uv tool (canvodpy#541) ([415f977](https://github.com/TUW-GEO/canvodpy-extensions/commit/415f9771841494fda915a176d74c7c9a25a3c086))
+
 ## [canvod-filemap-v1.0.0](https://github.com/TUW-GEO/canvodpy-extensions/releases/tag/canvod-filemap-v1.0.0) - 2026-10-24
 
 ### Features
