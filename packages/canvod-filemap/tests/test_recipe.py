@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Literal
 
 import pytest
+import yaml
 from canvod.filemap.recipe import KNOWN_FIELDS, NamingRecipe
 from canvod.utils import testing
 
@@ -321,6 +322,17 @@ class TestSerialization:
         septentrio_v2_recipe.save(path)
         loaded = NamingRecipe.load(path)
         assert loaded == septentrio_v2_recipe
+
+    def test_yaml_nested_too_deeply_is_a_yaml_error(self, tmp_path):
+        # Python's recursion limit, not a YAML rule; it must not end a run
+        # with a RecursionError (found by fuzzing)
+        text = "[" * 5000
+        with pytest.raises(yaml.YAMLError, match="nested too deeply"):
+            NamingRecipe.from_yaml(text)
+        path = tmp_path / "deep.yaml"
+        path.write_text(text)
+        with pytest.raises(yaml.YAMLError, match="nested too deeply"):
+            NamingRecipe.unrecognized_fields(path)
 
     def test_yaml_is_human_readable(self, septentrio_v2_recipe):
         yaml_str = septentrio_v2_recipe.to_yaml()
