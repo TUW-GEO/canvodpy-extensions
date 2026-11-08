@@ -154,6 +154,24 @@ all source files. Per-file license headers are not required.
 
 Run `just check` before committing.
 
+## Continuous integration
+
+Every pull request and every push to `main` runs one workflow on GitHub
+Actions, **CI**, which sums up its checks in one check, `ci-ok`. A pull
+request that changes only docs skips the type check and the platform
+tests (`tools/ci_changes.py` says which files are docs). CI runs:
+
+- **Python Code Quality:** checks that `uv.lock` is up to date, runs ruff
+  (lint and format) and ty (types), and checks the paths named in
+  `AGENTS.md` files and skills.
+- **Platform Tests:** the test suite on Linux, Windows, and macOS. The Linux
+  job uploads the coverage to Coveralls and posts it as a comment on the
+  pull request.
+- **Docs Quality:** a language check (Vale) of the changed pages, and a
+  link check (lychee) of the built site. Pull requests check the links
+  between our pages only; the weekly run also checks the external links
+  and opens an issue when one fails.
+
 ## Releasing
 
 Releases are cut by a maintainer, never by a coding agent; only
