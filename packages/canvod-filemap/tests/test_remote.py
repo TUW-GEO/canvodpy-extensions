@@ -370,6 +370,7 @@ def test_name_that_does_not_match_the_file_is_refused(server: RecipeServer) -> N
     [
         (b"name: [unclosed\n", "not a YAML file"),
         (b"\xff\xfe not text", "not a YAML file"),
+        (b"[" * 5000, "nested too deeply"),
         (f"name: {NAME}\nsite: {testing.SITE_ID}\n".encode(), "not a valid recipe"),
         (RECIPE.replace(b"- doy: 3", b"- dayofyear: 3"), "not a valid recipe"),
     ],

@@ -353,9 +353,16 @@ class NamingRecipe(BaseModel):
 
     @classmethod
     def from_yaml(cls, text: str) -> NamingRecipe:
-        """Load from a YAML string."""
-        data = yaml.safe_load(text)
-        return cls.model_validate(data)
+        """Load from a YAML string.
+
+        Raises
+        ------
+        yaml.YAMLError
+            If ``text`` is not YAML, or is nested too deeply to read.
+        pydantic.ValidationError
+            If the YAML is not a valid recipe.
+        """
+        return cls.model_validate(_read_yaml(text))
 
     @classmethod
     def load(cls, path: Path) -> NamingRecipe:
@@ -379,11 +386,25 @@ class NamingRecipe(BaseModel):
         -------
         list[str]
             The unknown field names, in file order; empty if there are none.
+
+        Raises
+        ------
+        yaml.YAMLError
+            If the file is not YAML, or is nested too deeply to read.
         """
-        data = yaml.safe_load(path.read_text(encoding="utf-8"))
+        data = _read_yaml(path.read_text(encoding="utf-8"))
         if not isinstance(data, dict):
             return []
         return [str(key) for key in data if key not in cls.model_fields]
+
+
+def _read_yaml(text: str) -> object:
+    """Parse YAML; nesting deeper than Python's recursion limit is a YAML error."""
+    try:
+        return yaml.safe_load(text)
+    except RecursionError:
+        msg = "the YAML is nested too deeply to read"
+        raise yaml.YAMLError(msg) from None
 
 
 def recipe_sha256(path: Path) -> str:
