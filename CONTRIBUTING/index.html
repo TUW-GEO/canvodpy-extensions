@@ -896,6 +896,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#continuous-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Continuous integration
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Continuous integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fuzzing" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Fuzzing
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#releasing" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1338,6 +1366,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#continuous-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Continuous integration
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Continuous integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fuzzing" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Fuzzing
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#releasing" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1451,8 +1507,10 @@ brew<span class="w"> </span>install<span class="w"> </span>just
 <p><a href="https://github.com/casey/just">just documentation</a></p>
 <h2 id="ways-to-contribute">Ways to contribute<a class="headerlink" href="#ways-to-contribute" title="Permanent link">&para;</a></h2>
 <h3 id="report-bugs">Report bugs<a class="headerlink" href="#report-bugs" title="Permanent link">&para;</a></h3>
-<p>Report bugs at <a href="https://github.com/TUW-GEO/canvodpy-extensions/issues">https://github.com/TUW-GEO/canvodpy-extensions/issues</a>. Include
-your operating system, your setup, and the steps to reproduce.</p>
+<p>Report bugs at <a href="https://github.com/TUW-GEO/canvodpy-extensions/issues">https://github.com/TUW-GEO/canvodpy-extensions/issues</a> with the
+bug report form. It asks for the package and its version, the steps to
+reproduce, the error output, and the output of <code>canvodpy doctor</code>. Feature
+requests have their own form.</p>
 <h3 id="fix-bugs-and-implement-features">Fix bugs and implement features<a class="headerlink" href="#fix-bugs-and-implement-features" title="Permanent link">&para;</a></h3>
 <p>Issues tagged "bug"/"enhancement" and "help wanted" are open for contributions.</p>
 <h3 id="add-a-new-package">Add a new package<a class="headerlink" href="#add-a-new-package" title="Permanent link">&para;</a></h3>
@@ -1527,6 +1585,9 @@ agents; the <code>CLAUDE.md</code> files import it. Task guides for agents are i
 <code>.claude/skills/</code>. Keep them correct when you change what they describe;
 <code>just check-agent-docs</code> checks that the paths and recipes they name exist.</p>
 <h2 id="pull-request-guidelines">Pull request guidelines<a class="headerlink" href="#pull-request-guidelines" title="Permanent link">&para;</a></h2>
+<p>A new pull request starts from the template in
+<code>.github/pull_request_template.md</code>: summary, evidence, merge danger, and a
+checklist.</p>
 <ol>
 <li>Include tests for new features. New code must not reduce test coverage.</li>
 <li>Update the package's <code>README.md</code> and the Zensical documentation in <code>docs/</code> if
@@ -1546,6 +1607,43 @@ all source files. Per-file license headers are not required.</p>
 <li><strong>pytest</strong> for testing with coverage</li>
 </ul>
 <p>Run <code>just check</code> before committing.</p>
+<h2 id="continuous-integration">Continuous integration<a class="headerlink" href="#continuous-integration" title="Permanent link">&para;</a></h2>
+<p>Every pull request and every push to <code>main</code> runs one workflow on GitHub
+Actions, <strong>CI</strong>, which sums up its checks in one check, <code>ci-ok</code>. A pull
+request that changes only docs skips the type check and the platform
+tests (<code>tools/ci_changes.py</code> says which files are docs). CI runs:</p>
+<ul>
+<li><strong>Python Code Quality:</strong> checks that <code>uv.lock</code> is up to date, runs <abbr title="Fast Python linter and formatter written in Rust — replaces flake8, black, isort">ruff</abbr>
+  (lint and format) and ty (types), and checks the paths named in
+  <code>AGENTS.md</code> files and skills.</li>
+<li><strong>Platform Tests:</strong> the test suite on Linux, Windows, and macOS. The Linux
+  job uploads the coverage to Coveralls and posts it as a comment on the
+  pull request.</li>
+<li><strong>Docs Quality:</strong> a language check (Vale) of the changed pages, and a
+  link check (lychee) of the built site. Pull requests check the links
+  between our pages only; the weekly run also checks the external links
+  and opens an issue when one fails.</li>
+</ul>
+<h3 id="fuzzing">Fuzzing<a class="headerlink" href="#fuzzing" title="Permanent link">&para;</a></h3>
+<p>A fuzzer feeds random inputs to the parsers and looks for inputs that end
+in an error the code doesn't document for bad input, a hang, or a memory
+blow-up. Each target has a harness, <code>fuzz/fuzz_&lt;target&gt;.py</code> (so far
+<code>filemap</code>: naming recipes and the file names read with them), and seed
+inputs in <code>fuzz/corpus/&lt;target&gt;/</code>.</p>
+<ul>
+<li>The <strong>Fuzzing</strong> workflow runs every target for 10 minutes each week, and
+  opens an issue when it finds a crash. It isn't part of <code>ci-ok</code>: a fuzzer
+  can find a crash that has nothing to do with the pull request at hand.
+  A pull request that changes the fuzzing setup or a fuzzed parser runs
+  each target for one minute.</li>
+<li>The tests replay every saved input on all platforms
+  (<code>fuzz/tests/test_fuzz_replay.py</code>).</li>
+<li>Fix a crash like any bug, and save its input in
+  <code>fuzz/crashes/&lt;target&gt;/</code> in the same pull request, so it stays fixed.</li>
+</ul>
+<p><code>just fuzz filemap 600</code> fuzzes for 10 minutes on your machine. It needs
+Linux on x86_64: <a href="https://github.com/google/atheris">atheris</a> has no
+other wheels.</p>
 <h2 id="releasing">Releasing<a class="headerlink" href="#releasing" title="Permanent link">&para;</a></h2>
 <p>Releases are cut by a maintainer, never by a coding agent; only
 maintainers can create release tags.</p>
