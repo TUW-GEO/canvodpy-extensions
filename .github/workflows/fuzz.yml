@@ -8,7 +8,8 @@ name: Fuzzing
 #
 # - weekly and by hand: 10 minutes per target (by hand: any length); a
 #   crash opens an issue
-# - a pull request that changes the fuzzing setup: 1 minute per target
+# - a pull request that changes the fuzzing setup or a fuzzed parser:
+#   1 minute per target
 
 on:
     schedule:
@@ -23,6 +24,7 @@ on:
         paths:
             - 'fuzz/**'
             - '.github/workflows/fuzz.yml'
+            - 'packages/canvod-filemap/src/**'
 
 permissions:
     contents: read

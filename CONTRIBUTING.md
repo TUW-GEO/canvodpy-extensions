@@ -183,8 +183,8 @@ inputs in `fuzz/corpus/<target>/`.
 - The **Fuzzing** workflow runs every target for 10 minutes each week, and
   opens an issue when it finds a crash. It isn't part of `ci-ok`: a fuzzer
   can find a crash that has nothing to do with the pull request at hand.
-  A pull request that changes the fuzzing setup runs each target for one
-  minute.
+  A pull request that changes the fuzzing setup or a fuzzed parser runs
+  each target for one minute.
 - The tests replay every saved input on all platforms
   (`fuzz/tests/test_fuzz_replay.py`).
 - Fix a crash like any bug, and save its input in
