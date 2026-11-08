@@ -503,7 +503,7 @@ wheels = [
 
 [[package]]
 name = "canvod-filemap"
-version = "1.0.0"
+version = "1.1.0"
 source = { editable = "packages/canvod-filemap" }
 dependencies = [
     { name = "canvod-preflight" },
