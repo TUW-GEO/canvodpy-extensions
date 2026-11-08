@@ -126,3 +126,5 @@ mkdocstrings
 daily_processing
 READMEs
 canvod-(adapters|airflow|filemap)
+[Ff]uzzers?
+[Aa]theris

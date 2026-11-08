@@ -10,6 +10,9 @@
 # graphify (code knowledge graph): generated, local
 graphify-out/
 
+# just fuzz: new inputs and crashes, local
+.fuzz/
+
 # ============================================================================
 # Python
 # ============================================================================

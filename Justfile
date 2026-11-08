@@ -120,6 +120,14 @@ test-coverage:
 test-package PKG:
     uv run pytest packages/{{PKG}}/tests
 
+# fuzz one target for SECONDS, e.g. `just fuzz filemap 600` (Linux x86_64
+# only: atheris has no other wheels). New inputs and crashes go to .fuzz/
+fuzz TARGET="filemap" SECONDS="60":
+    mkdir -p .fuzz/{{TARGET}}
+    uv run --group fuzz python fuzz/fuzz_{{TARGET}}.py \
+        -max_total_time={{SECONDS}} -timeout=10 -rss_limit_mb=2048 \
+        -artifact_prefix=.fuzz/{{TARGET}}- .fuzz/{{TARGET}} fuzz/corpus/{{TARGET}}
+
 # ============================================================================
 # Cleanup
 # ============================================================================

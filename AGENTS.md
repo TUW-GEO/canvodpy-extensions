@@ -83,6 +83,7 @@ just agent-skills                     # the agent workflow plugin (Claude Code)
 just check                            # ruff lint + format, ty, agent docs
 just test                             # all tests
 just test-package canvod-filemap      # one package
+just fuzz filemap 600                 # fuzz a parser (Linux x86_64 only)
 just docs                             # preview the docs site
 just versions                         # version of every package
 just canvodpy-ref                     # canvodpy code this workspace is locked at
@@ -96,6 +97,9 @@ CI (`.github/workflows/ci.yml`) runs `just check-lock`,
 agent docs check, the docs checks and the tests on Linux, macOS and
 Windows, and sums them up in one check, `ci-ok`. A pull request that
 changes only docs (`tools/ci_changes.py`) skips ty and the tests.
+Fuzzing (`.github/workflows/fuzz.yml`, harnesses in `fuzz/`) runs weekly,
+outside `ci-ok`; the tests replay its saved inputs. An input that once
+found a bug goes into `fuzz/crashes/<target>/` with its fix.
 
 ## Rules
 

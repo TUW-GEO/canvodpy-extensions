@@ -172,6 +172,28 @@ tests (`tools/ci_changes.py` says which files are docs). CI runs:
   between our pages only; the weekly run also checks the external links
   and opens an issue when one fails.
 
+### Fuzzing
+
+A fuzzer feeds random inputs to the parsers and looks for inputs that end
+in an error the code doesn't document for bad input, a hang, or a memory
+blow-up. Each target has a harness, `fuzz/fuzz_<target>.py` (so far
+`filemap`: naming recipes and the file names read with them), and seed
+inputs in `fuzz/corpus/<target>/`.
+
+- The **Fuzzing** workflow runs every target for 10 minutes each week, and
+  opens an issue when it finds a crash. It isn't part of `ci-ok`: a fuzzer
+  can find a crash that has nothing to do with the pull request at hand.
+  A pull request that changes the fuzzing setup runs each target for one
+  minute.
+- The tests replay every saved input on all platforms
+  (`fuzz/tests/test_fuzz_replay.py`).
+- Fix a crash like any bug, and save its input in
+  `fuzz/crashes/<target>/` in the same pull request, so it stays fixed.
+
+`just fuzz filemap 600` fuzzes for 10 minutes on your machine. It needs
+Linux on x86_64: [atheris](https://github.com/google/atheris) has no
+other wheels.
+
 ## Releasing
 
 Releases are cut by a maintainer, never by a coding agent; only
