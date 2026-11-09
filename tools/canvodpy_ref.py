@@ -19,8 +19,9 @@ REPO_URL = "https://github.com/TUW-GEO/canvodpy"
 def locked_packages() -> list[tuple[str, str, str, str]]:
     """``(name, version, where, ref)`` of every canvodpy package in ``uv.lock``.
 
-    ``ref`` is the locked commit for a git source, the release tag
-    ``v<version>`` for PyPI.
+    ``ref`` is the locked commit for a git source, else the release tag:
+    ``v<version>`` for canvodpy, ``<name>-v<version>`` for the others
+    (canvodpy tags every package on its own).
     """
     lock = tomllib.loads((ROOT / "uv.lock").read_text(encoding="utf-8"))
     rows = []
@@ -33,7 +34,9 @@ def locked_packages() -> list[tuple[str, str, str, str]]:
             branch = unquote(parse_qs(url.query).get("branch", ["?"])[0])
             ref, where = url.fragment, f"git, branch {branch}"
         else:
-            ref, where = f"v{package['version']}", "PyPI"
+            version = package["version"]
+            ref = f"v{version}" if name == "canvodpy" else f"{name}-v{version}"
+            where = "PyPI"
         rows.append((name, package["version"], where, ref))
     return sorted(rows)
 
